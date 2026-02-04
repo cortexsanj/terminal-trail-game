@@ -9,12 +9,12 @@ build:
       - python3 -m pip install --upgrade pip
       - python3 -m pip install --no-cache-dir -r requirements-web.txt
       - echo "=== Verifying installation ==="
-      - python3 -c "import fastapi; print(f'✓ FastAPI version: {fastapi.__version__}')"
-      - python3 -c "import uvicorn; print(f'✓ Uvicorn installed')"
+      - python3 -c "import fastapi; print('FastAPI installed successfully')"
+      - python3 -c "import uvicorn; print('Uvicorn installed successfully')"
       - echo "=== Checking game files ==="
       - ls -la
-      - test -d challenges && echo "✓ challenges/ found" || echo "✗ challenges/ missing"
-      - test -d assets && echo "✓ assets/ found" || echo "✗ assets/ missing"
+      - test -d challenges && echo "challenges folder found" || echo "challenges folder missing"
+      - test -d assets && echo "assets folder found" || echo "assets folder missing"
       - echo "=== Build complete ==="
 
 run:
