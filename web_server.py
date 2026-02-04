@@ -297,7 +297,11 @@ async def run_game_session(session: GameSession):
                 # Display story
                 story_text = step.get('story', '')
                 if story_text:
-                    formatted_story = story_manager.format_story(story_text)
+                    # Story can be a list or string
+                    if isinstance(story_text, list):
+                        formatted_story = "\n".join(story_text)
+                    else:
+                        formatted_story = story_text
                     await session.send_output(formatted_story + "\n\n")
                 
                 # Display hint if available
