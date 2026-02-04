@@ -575,21 +575,80 @@ body {
 
 /* Responsive */
 @media (max-width: 768px) {
+    body {
+        padding: 10px;
+        align-items: flex-start;
+    }
+    
+    .container {
+        margin: 10px 0;
+        border-radius: 5px;
+    }
+    
+    .header {
+        padding: 15px 10px;
+    }
+    
     .header h1 {
-        font-size: 1.5em;
+        font-size: 1.3em;
+    }
+    
+    .header p {
+        font-size: 0.85em;
+    }
+    
+    #terminal-container {
+        padding: 10px;
     }
     
     .xterm {
         height: 400px;
+        padding: 5px;
+    }
+    
+    .footer {
+        padding: 10px;
+        font-size: 0.8em;
+    }
+}
+
+/* Extra small devices (phones in portrait) */
+@media (max-width: 480px) {
+    body {
+        padding: 5px;
+    }
+    
+    .container {
+        margin: 5px 0;
+    }
+    
+    .header h1 {
+        font-size: 1.1em;
+    }
+    
+    .header p {
+        font-size: 0.75em;
+    }
+    
+    .xterm {
+        height: 350px;
+    }
+    
+    .footer p {
+        font-size: 0.7em;
     }
 }
 """
     
     # Create terminal.js
     js_content = """// Terminal Trail - Browser Client
+// Detect mobile and adjust terminal settings
+const isMobile = window.innerWidth <= 768;
+const fontSize = isMobile ? 12 : 14;
+
 const term = new Terminal({
     cursorBlink: true,
-    fontSize: 14,
+    fontSize: fontSize,
     fontFamily: 'Courier New, monospace',
     theme: {
         background: '#000000',
@@ -618,6 +677,20 @@ const term = new Terminal({
 
 // Open terminal in container
 term.open(document.getElementById('terminal-container'));
+
+// Fit terminal to container
+function fitTerminal() {
+    const container = document.getElementById('terminal-container');
+    const dims = {
+        cols: Math.floor(container.offsetWidth / (fontSize * 0.6)),
+        rows: Math.floor(container.offsetHeight / (fontSize * 1.5))
+    };
+    term.resize(dims.cols, dims.rows);
+}
+
+// Fit on load and resize
+window.addEventListener('load', fitTerminal);
+window.addEventListener('resize', fitTerminal);
 
 // WebSocket connection
 let ws = null;
