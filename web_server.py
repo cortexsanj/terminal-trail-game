@@ -12,17 +12,41 @@ from pathlib import Path
 import asyncio
 import json
 import sys
+import os
+
+# Add current directory to path for imports
+sys.path.insert(0, str(Path(__file__).parent))
 
 # Import game components
-from game_engine import GameEngine
-from terminal_handler import TerminalHandler
-from file_system import GameFileSystem
+try:
+    from game_engine import GameEngine
+    from terminal_handler import TerminalHandler
+    from file_system import GameFileSystem
+except ImportError as e:
+    print(f"Error importing game components: {e}")
+    print(f"Current directory: {os.getcwd()}")
+    print(f"Python path: {sys.path}")
+    sys.exit(1)
 
 app = FastAPI(title="Terminal Trail")
 
 # Serve static files (HTML, CSS, JS)
 static_dir = Path(__file__).parent / "web_static"
 static_dir.mkdir(exist_ok=True)
+
+# Add startup event for logging
+@app.on_event("startup")
+async def startup_event():
+    import logging
+    logger = logging.getLogger("uvicorn")
+    logger.info("=" * 60)
+    logger.info("FastAPI application starting up")
+    logger.info(f"Static directory: {static_dir}")
+    logger.info(f"Static directory exists: {static_dir.exists()}")
+    if static_dir.exists():
+        files = list(static_dir.glob("*"))
+        logger.info(f"Static files: {[f.name for f in files]}")
+    logger.info("=" * 60)
 
 app.mount("/static", StaticFiles(directory=str(static_dir)), name="static")
 
@@ -674,36 +698,95 @@ window.addEventListener('resize', () => {
 
 if __name__ == "__main__":
     import uvicorn
+    import os
+    import logging
     
-    # Check if --setup flag
-    if "--setup" in sys.argv:
-        print("Creating static files...")
-        create_static_files()
-        print("\nSetup complete! Now run: python3 web_server.py")
-        sys.exit(0)
-    
-    # Create static files if they don't exist
-    if not (static_dir / "index.html").exists():
-        print("Static files not found. Creating them...")
-        create_static_files()
-        print()
-    
-    print("=" * 60)
-    print("🎮 Terminal Trail Web Server")
-    print("=" * 60)
-    print()
-    print("Starting server...")
-    print("Local URL: http://localhost:8000")
-    print()
-    print("Press Ctrl+C to stop")
-    print("=" * 60)
-    
-    # Run server
-    # For local: host="127.0.0.1"
-    # For AWS App Runner: host="0.0.0.0"
-    uvicorn.run(
-        app, 
-        host="0.0.0.0",  # Bind to all interfaces (works locally and on AWS)
-        port=8000,
-        log_level="info"
+    # Configure logging for App Runner
+    logging.basicConfig(
+        level=logging.INFO,
+        format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
+        handlers=[
+            logging.StreamHandler(sys.stdout)
+        ]
     )
+    logger = logging.getLogger(__name__)
+    
+    try:
+        logger.info("=" * 60)
+        logger.info("🎮 Terminal Trail Web Server Starting")
+        logger.info("=" * 60)
+        
+        # Check if --setup flag
+        if "--setup" in sys.argv:
+            logger.info("Running setup mode...")
+            create_static_files()
+            logger.info("Setup complete!")
+            sys.exit(0)
+        
+        # Log environment info
+        logger.info(f"Python version: {sys.version}")
+        logger.info(f"Current directory: {os.getcwd()}")
+        logger.info(f"Files in current directory: {os.listdir('.')}")
+        
+        # Check for required directories
+        required_dirs = ['challenges', 'assets']
+        for dir_name in required_dirs:
+            if os.path.exists(dir_name):
+                count = len(os.listdir(dir_name))
+                logger.info(f"✓ Found {dir_name}/ with {count} items")
+            else:
+                logger.error(f"✗ Missing required directory: {dir_name}/")
+                sys.exit(1)
+        
+        # Create static files if they don't exist
+        if not (static_dir / "index.html").exists():
+            logger.info("Static files not found. Creating them...")
+            try:
+                create_static_files()
+                logger.info("✓ Static files created successfully")
+            except Exception as e:
+                logger.error(f"✗ Failed to create static files: {e}")
+                import traceback
+                traceback.print_exc()
+                sys.exit(1)
+        else:
+            logger.info("✓ Static files already exist")
+        
+        # Get port from environment or default to 8000
+        port = int(os.environ.get("PORT", 8000))
+        logger.info(f"Port: {port}")
+        logger.info(f"Host: 0.0.0.0 (all interfaces)")
+        
+        # Test import of game components
+        logger.info("Testing game component imports...")
+        try:
+            from story_manager import StoryManager
+            from progress_tracker import ProgressTracker
+            logger.info("✓ All game components imported successfully")
+        except Exception as e:
+            logger.error(f"✗ Failed to import game components: {e}")
+            import traceback
+            traceback.print_exc()
+            sys.exit(1)
+        
+        logger.info("=" * 60)
+        logger.info("Starting uvicorn server...")
+        logger.info("=" * 60)
+        
+        # Run server
+        uvicorn.run(
+            app, 
+            host="0.0.0.0",
+            port=port,
+            log_level="info",
+            access_log=True
+        )
+        
+    except KeyboardInterrupt:
+        logger.info("Server stopped by user")
+        sys.exit(0)
+    except Exception as e:
+        logger.error(f"✗ Fatal error starting server: {e}")
+        import traceback
+        traceback.print_exc()
+        sys.exit(1)

@@ -1,11 +1,21 @@
 version: 1.0
 
 runtime: python311
+
 build:
   commands:
     build:
+      - echo "=== Installing dependencies ==="
       - python3 -m pip install --upgrade pip
       - python3 -m pip install --no-cache-dir -r requirements-web.txt
+      - echo "=== Verifying installation ==="
+      - python3 -c "import fastapi; print(f'✓ FastAPI version: {fastapi.__version__}')"
+      - python3 -c "import uvicorn; print(f'✓ Uvicorn installed')"
+      - echo "=== Checking game files ==="
+      - ls -la
+      - test -d challenges && echo "✓ challenges/ found" || echo "✗ challenges/ missing"
+      - test -d assets && echo "✓ assets/ found" || echo "✗ assets/ missing"
+      - echo "=== Build complete ==="
 
 run:
   command: python3 web_server.py
