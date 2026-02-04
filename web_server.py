@@ -505,7 +505,7 @@ body {
 
 .container {
     width: 100%;
-    max-width: 1200px;
+    max-width: 1080px;
     background: rgba(0, 0, 0, 0.8);
     border-radius: 10px;
     box-shadow: 0 10px 50px rgba(0, 0, 0, 0.5);
@@ -537,7 +537,7 @@ body {
 }
 
 .xterm {
-    height: 600px;
+    height: 540px;
     padding: 10px;
 }
 
