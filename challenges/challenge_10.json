@@ -1,0 +1,75 @@
+{
+  "title": "Back to Mum",
+  "description": "Navigate back to tell Mum what you found",
+  "commands_taught": [
+    "cd"
+  ],
+  "steps": [
+    {
+      "story": [
+        "You're in ~/my-house/garden/greenhouse! \ud83d\udccd",
+        "",
+        "That note was concerning! We need to tell Mum about this.",
+        "Let's go back to the kitchen step by step.",
+        "",
+        "First, go back to the garden using 'cd ..'"
+      ],
+      "objective": "Go back to the garden",
+      "start_dir": "~/my-house/garden/greenhouse",
+      "end_dir": "~/my-house/garden",
+      "commands": [
+        "cd ..",
+        "cd ../"
+      ],
+      "hints": [
+        "Type 'cd ..' to go back to the garden.",
+        "\ud83d\udca1 TIP: Press the UP arrow key to replay your previous command!"
+      ],
+      "next": [
+        10,
+        2
+      ]
+    },
+    {
+      "story": [
+        "You're back in the garden. \ud83c\udf3b",
+        "Use 'cd ..' again to go back to the house.",
+        "",
+        "\ud83d\udca1 TIP: Press the UP arrow key to replay your previous command!"
+      ],
+      "objective": "Go back to the house",
+      "start_dir": "~/my-house/garden",
+      "end_dir": "~/my-house",
+      "commands": [
+        "cd ..",
+        "cd ../"
+      ],
+      "hints": [
+        "Type 'cd ..' to go back to the house."
+      ],
+      "next": [
+        10,
+        3
+      ]
+    },
+    {
+      "story": [
+        "Now go back into the kitchen to see Mum. \ud83d\udc69\u200d\ud83c\udf73"
+      ],
+      "objective": "Go to the kitchen",
+      "start_dir": "~/my-house",
+      "end_dir": "~/my-house/kitchen",
+      "commands": [
+        "cd kitchen",
+        "cd kitchen/"
+      ],
+      "hints": [
+        "Type 'cd kitchen' to go back to the kitchen."
+      ],
+      "next": [
+        11,
+        1
+      ]
+    }
+  ]
+}

@@ -1,0 +1,30 @@
+{
+  "title": "A Mysterious Note",
+  "description": "Discover the first clue",
+  "commands_taught": [
+    "cat"
+  ],
+  "steps": [
+    {
+      "story": [
+        "Everyone has gone.",
+        "Wait - there's a note on the floor.",
+        "",
+        "Use 'cat' to read the note."
+      ],
+      "objective": "Read the mysterious note",
+      "start_dir": "~/town",
+      "end_dir": "~/town",
+      "commands": [
+        "cat note"
+      ],
+      "hints": [
+        "Use 'cat note' to read the note."
+      ],
+      "next": [
+        19,
+        1
+      ]
+    }
+  ]
+}

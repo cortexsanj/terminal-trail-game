@@ -1,0 +1,31 @@
+{
+  "title": "A Happy Family",
+  "description": "Check on the family with their new food supply",
+  "commands_taught": [
+    "cat"
+  ],
+  "steps": [
+    {
+      "story": [
+        "Check on everyone with 'cat' to see if they're happy with the food."
+      ],
+      "objective": "Talk to all the family members",
+      "start_dir": "~/town/.hidden-shelter",
+      "end_dir": "~/town/.hidden-shelter",
+      "commands": [
+        "cat Edith",
+        "cat Eleanor",
+        "cat Edward",
+        "cat dog"
+      ],
+      "hints": [
+        "Check on everyone using 'cat'",
+        "Talk to Edith, Eleanor, Edward, and the dog"
+      ],
+      "next": [
+        29,
+        1
+      ]
+    }
+  ]
+}

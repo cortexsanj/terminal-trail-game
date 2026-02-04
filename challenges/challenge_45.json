@@ -1,0 +1,86 @@
+{
+    "title": "The Restaurant",
+    "description": "Explore the restaurant and discover Clara in the cellar",
+    "commands_taught": ["cd", "ls", "ls -a", "cat"],
+    "steps": [
+        {
+            "step": 1,
+            "story": [
+                "You're back in the east part of town.",
+                "Eleanor: \"Let's check out that restaurant! Maybe we can find some food.\"",
+                "",
+                "Go into the restaurant."
+            ],
+            "start_dir": "~/town/east",
+            "end_dir": "~/town/east/restaurant",
+            "commands": ["cd restaurant"],
+            "hints": [
+                "Use 'cd restaurant' to go into the restaurant."
+            ],
+            "next": [45, 2]
+        },
+        {
+            "step": 2,
+            "story": [
+                "You enter the restaurant. It's eerily quiet.",
+                "Eleanor: \"This place feels abandoned...\"",
+                "",
+                "Look around the restaurant."
+            ],
+            "start_dir": "~/town/east/restaurant",
+            "end_dir": "~/town/east/restaurant",
+            "commands": ["ls", "ls -a"],
+            "hints": [
+                "Use 'ls' to look around.",
+                "Try 'ls -a' to see if there are any hidden areas."
+            ],
+            "next": [45, 3]
+        },
+        {
+            "step": 3,
+            "story": [
+                "You notice there's a hidden .cellar!",
+                "Eleanor: \"A secret cellar! Let's go down and see what's there.\"",
+                "",
+                "Go into the .cellar."
+            ],
+            "start_dir": "~/town/east/restaurant",
+            "end_dir": "~/town/east/restaurant/.cellar",
+            "commands": ["cd .cellar"],
+            "hints": [
+                "Use 'cd .cellar' to go into the hidden cellar."
+            ],
+            "next": [45, 4]
+        },
+        {
+            "step": 4,
+            "story": [
+                "In the cellar, you find someone hiding!",
+                "",
+                "Look around to see who it is."
+            ],
+            "start_dir": "~/town/east/restaurant/.cellar",
+            "end_dir": "~/town/east/restaurant/.cellar",
+            "commands": ["ls", "ls -a"],
+            "hints": [
+                "Use 'ls' to see who is in the cellar."
+            ],
+            "next": [45, 5]
+        },
+        {
+            "step": 5,
+            "story": [
+                "You see Clara hiding in the cellar!",
+                "",
+                "Talk to Clara to see what she knows."
+            ],
+            "start_dir": "~/town/east/restaurant/.cellar",
+            "end_dir": "~/town/east/restaurant/.cellar",
+            "commands": ["cat Clara"],
+            "hints": [
+                "Use 'cat Clara' to talk to her."
+            ],
+            "next": [46, 1]
+        }
+    ]
+}

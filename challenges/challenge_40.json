@@ -1,0 +1,93 @@
+{
+    "title": "Eleanor Joins You",
+    "description": "Meet Eleanor and explore the east part of town together",
+    "commands_taught": ["cat", "echo", "cd", "ls"],
+    "steps": [
+        {
+            "step": 1,
+            "story": [
+                "You see Eleanor. Listen to what she has to say."
+            ],
+            "start_dir": "~/town/.hidden-shelter",
+            "end_dir": "~/town/.hidden-shelter",
+            "commands": ["cat Eleanor"],
+            "hints": [
+                "Use 'cat Eleanor' to see what she has to say."
+            ],
+            "next": [40, 2]
+        },
+        {
+            "step": 2,
+            "story": [
+                "Eleanor: \"Oh, it's you! Have you seen my Mum and Dad?\"",
+                "",
+                "1: \"I'm afraid not. When did you last see them?\"",
+                "2: \"Weren't they with you in the hidden-shelter?\"",
+                "3: \"(lie) Yes, I saw them in town.\"",
+                "",
+                "Use the 'echo' command to talk to Eleanor."
+            ],
+            "start_dir": "~/town/.hidden-shelter",
+            "end_dir": "~/town/.hidden-shelter",
+            "commands": ["echo 1", "echo 2", "echo 3"],
+            "hints": [
+                "Use 'echo 1', 'echo 2' or 'echo 3' to reply."
+            ],
+            "next": [40, 3]
+        },
+        {
+            "step": 3,
+            "story": [
+                "Eleanor: \"Not long ago. The dog ran out again, so they went outside to look for him.\"",
+                "\"Let's go to town together and find them. I'm sure I'll be safe if I'm with you.\"",
+                "",
+                "Eleanor joined you as a companion! You can check how she is any time with 'cat Eleanor'.",
+                "",
+                "Leave the .hidden-shelter. Don't worry, Eleanor will follow!"
+            ],
+            "start_dir": "~/town/.hidden-shelter",
+            "end_dir": "~/town",
+            "commands": ["cd .."],
+            "hints": [
+                "Use 'cd ..' to go into town."
+            ],
+            "next": [40, 4]
+        },
+        {
+            "step": 4,
+            "story": [
+                "Eleanor: \"Let's go to the east of town.\"",
+                "\"Haven't you noticed it before? It's over there! Look over there.\"",
+                "",
+                "Use 'ls' to see what Eleanor is trying to show you."
+            ],
+            "start_dir": "~/town",
+            "end_dir": "~/town",
+            "commands": ["ls", "ls -a"],
+            "hints": [
+                "Eleanor: Have you forgotten how to look around? You need to use 'ls'.",
+                "Look around with 'ls'."
+            ],
+            "next": [40, 5]
+        },
+        {
+            "step": 5,
+            "story": [
+                "You look in the direction Eleanor is pointing.",
+                "There is a narrow road leading to another part of town.",
+                "This must take us to the east part.",
+                "",
+                "Eleanor: \"Let's go there and see if we can find my parents.\"",
+                "",
+                "Go into the east of town."
+            ],
+            "start_dir": "~/town",
+            "end_dir": "~/town/east",
+            "commands": ["cd east"],
+            "hints": [
+                "Use 'cd east' to go to the east part of town."
+            ],
+            "next": [41, 1]
+        }
+    ]
+}

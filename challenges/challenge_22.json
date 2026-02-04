@@ -1,0 +1,56 @@
+{
+  "title": "The Survivors",
+  "description": "Meet the people who escaped the disappearances",
+  "commands_taught": [
+    "ls",
+    "cat"
+  ],
+  "steps": [
+    {
+      "story": [
+        "Is anyone there? Have a look around."
+      ],
+      "objective": "Look around the hidden shelter",
+      "start_dir": "~/town/.hidden-shelter",
+      "end_dir": "~/town/.hidden-shelter",
+      "commands": [
+        "ls",
+        "ls -a"
+      ],
+      "hints": [
+        "Use 'ls' to have a look around you."
+      ],
+      "next": [
+        22,
+        2
+      ]
+    },
+    {
+      "story": [
+        "\ud83c\udf89 Amazing! You found the survivors!",
+        "",
+        "There are people here: Eleanor, Edward, Edith, and even a dog!",
+        "Talk to them to learn what happened.",
+        "",
+        "Use 'cat' to talk to at least 2 of the survivors."
+      ],
+      "objective": "Talk to at least 2 survivors",
+      "start_dir": "~/town/.hidden-shelter",
+      "end_dir": "~/town/.hidden-shelter",
+      "commands": [
+        "cat Eleanor",
+        "cat Edward",
+        "cat Edith",
+        "cat dog"
+      ],
+      "hints": [
+        "Use 'cat' with the names Eleanor, Edward, or Edith",
+        "Talk to at least 2 people to learn their stories"
+      ],
+      "next": [
+        23,
+        1
+      ]
+    }
+  ]
+}

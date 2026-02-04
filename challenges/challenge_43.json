@@ -1,0 +1,120 @@
+{
+    "title": "The Library",
+    "description": "Visit the library and discover the VI command",
+    "commands_taught": ["ls", "cd", "cat"],
+    "steps": [
+        {
+            "step": 1,
+            "story": [
+                "You are back in town. Eleanor waves her arms and points at a building in the distance.",
+                "",
+                "Look around to see where Eleanor is pointing."
+            ],
+            "start_dir": "~/town/east",
+            "end_dir": "~/town/east",
+            "commands": ["ls", "ls -a"],
+            "hints": [
+                "Use 'ls' to look around."
+            ],
+            "next": [43, 2]
+        },
+        {
+            "step": 2,
+            "story": [
+                "You see the library ahead.",
+                "Eleanor: \"There it is! The library is right there! Let's go inside.\""
+            ],
+            "start_dir": "~/town/east",
+            "end_dir": "~/town/east/library",
+            "commands": ["cd library"],
+            "hints": [
+                "Use 'cd library' to go inside the library."
+            ],
+            "next": [43, 3]
+        },
+        {
+            "step": 3,
+            "story": [
+                "Eleanor skips into the library, while you follow her.",
+                "",
+                "Look around the library."
+            ],
+            "start_dir": "~/town/east/library",
+            "end_dir": "~/town/east/library",
+            "commands": ["ls", "ls -a"],
+            "hints": [
+                "Use 'ls' to look around."
+            ],
+            "next": [43, 4]
+        },
+        {
+            "step": 4,
+            "story": [
+                "You're in a corridor leading to two clearly labelled doors.",
+                "One has the sign public-section, the other private-section.",
+                "",
+                "Eleanor: \"There used to be a librarian here.",
+                "She would tell me off for trying to look in the private-section.",
+                "What do you think is in there? Let's try and look inside.\""
+            ],
+            "start_dir": "~/town/east/library",
+            "end_dir": "~/town/east/library",
+            "commands": ["ls private-section/", "ls private-section"],
+            "hints": [
+                "Use 'ls private-section/' to look in the private-section of the library."
+            ],
+            "next": [43, 5]
+        },
+        {
+            "step": 5,
+            "story": [
+                "Eleanor: \"I guess the private-section is locked to outsiders...\"",
+                "\"Let's see if we can find something useful in the public section.\"",
+                "",
+                "Use 'ls' to look in the public-section."
+            ],
+            "start_dir": "~/town/east/library",
+            "end_dir": "~/town/east/library",
+            "commands": ["ls public-section", "ls public-section/"],
+            "hints": [
+                "Use 'ls' to look in the public section.",
+                "Use 'ls public-section' to look in the public-section."
+            ],
+            "next": [43, 6]
+        },
+        {
+            "step": 6,
+            "story": [
+                "Eleanor: \"Wow, all the commands have disappeared.",
+                "I wonder if people have been stealing them?\"",
+                "",
+                "\"What is that VI paper?\"",
+                "\"Let's examine it.\""
+            ],
+            "start_dir": "~/town/east/library",
+            "end_dir": "~/town/east/library",
+            "commands": ["cat public-section/VI"],
+            "hints": [
+                "Examine the VI script with 'cat public-section/VI'"
+            ],
+            "next": [43, 7]
+        },
+        {
+            "step": 7,
+            "story": [
+                "Eleanor: \"So vi allows you to edit files?\"",
+                "\"Maybe we could use this to fix that best-horn-in-the-world.sh script?\"",
+                "",
+                "\"Let's head back to the shed-shop.\""
+            ],
+            "start_dir": "~/town/east/library",
+            "end_dir": "~/town/east/shed-shop",
+            "commands": ["cd ../shed-shop"],
+            "hints": [
+                "Use 'cd ../' to go back.",
+                "Then use 'cd shed-shop/' to go into the shed-shop."
+            ],
+            "next": [44, 1]
+        }
+    ]
+}

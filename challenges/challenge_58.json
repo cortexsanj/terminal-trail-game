@@ -1,0 +1,54 @@
+{
+    "title": "Meet the Rabbit",
+    "description": "Examine the Rabbit and follow it to the library",
+    "commands_taught": ["cat", "cd"],
+    "steps": [
+        {
+            "step": 1,
+            "story": [
+                "You see a Rabbit, a piece of paper, and a rabbithole.",
+                "This Rabbit looks somewhat familiar...",
+                "Eleanor: \"Let's listen to what the Rabbit has to say.\""
+            ],
+            "start_dir": "~/woods/thicket",
+            "end_dir": "~/woods/thicket",
+            "commands": ["cat Rabbit"],
+            "hints": [
+                "Use 'cat Rabbit' to listen to the Rabbit."
+            ],
+            "next": [58, 2]
+        },
+        {
+            "step": 2,
+            "story": [
+                "Rabbit: ...",
+                "",
+                "The Rabbit doesn't say anything. That's quite normal for rabbits.",
+                "Eleanor: \"Maybe the note will tell us something?\""
+            ],
+            "start_dir": "~/woods/thicket",
+            "end_dir": "~/woods/thicket",
+            "commands": ["cat note"],
+            "hints": [
+                "Use 'cat note' to examine the note."
+            ],
+            "next": [58, 3]
+        },
+        {
+            "step": 3,
+            "story": [
+                "The note says: 'The Super User command is kept in ~/town/east/library'",
+                "",
+                "Eleanor: \"The library! That's where we found the VI command.\"",
+                "\"Let's go there. It looks like the Rabbit will follow us.\""
+            ],
+            "start_dir": "~/woods/thicket",
+            "end_dir": "~/town/east/library",
+            "commands": ["cd ~/town/east/library"],
+            "hints": [
+                "Use 'cd ~/town/east/library' to go to the library."
+            ],
+            "next": [59, 1]
+        }
+    ]
+}

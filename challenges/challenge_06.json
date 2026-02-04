@@ -1,0 +1,47 @@
+{
+  "title": "Finding Mum",
+  "description": "Talk to Mum in the kitchen",
+  "commands_taught": [
+    "cat"
+  ],
+  "steps": [
+    {
+      "story": [
+        "Great, you're in the kitchen. \ud83c\udf73",
+        "",
+        "Look around to see what's here."
+      ],
+      "objective": "Look around the kitchen",
+      "start_dir": "~/my-house/kitchen",
+      "end_dir": "~/my-house/kitchen",
+      "commands": [
+        "ls"
+      ],
+      "hints": [
+        "Type 'ls' to see what's in the kitchen."
+      ],
+      "next": [
+        6,
+        2
+      ]
+    },
+    {
+      "story": [
+        "There's Mum! Talk to her to see what she says. \ud83d\udc69\u200d\ud83c\udf73"
+      ],
+      "objective": "Talk to Mum",
+      "start_dir": "~/my-house/kitchen",
+      "end_dir": "~/my-house/kitchen",
+      "commands": [
+        "cat Mum"
+      ],
+      "hints": [
+        "Type 'cat Mum' to talk to your mother."
+      ],
+      "next": [
+        7,
+        1
+      ]
+    }
+  ]
+}

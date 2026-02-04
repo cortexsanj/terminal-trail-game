@@ -1,0 +1,72 @@
+{
+    "title": "The Shed Shop",
+    "description": "Explore the east part of town and visit Bernard's shed shop",
+    "commands_taught": ["ls", "cd", "cat"],
+    "steps": [
+        {
+            "step": 1,
+            "story": [
+                "You walk down the narrow road, with Eleanor dancing alongside, until you reach an open space in the east part of town.",
+                "",
+                "Look around."
+            ],
+            "start_dir": "~/town/east",
+            "end_dir": "~/town/east",
+            "commands": ["ls", "ls -a"],
+            "hints": [
+                "Look around with 'ls'."
+            ],
+            "next": [41, 2]
+        },
+        {
+            "step": 2,
+            "story": [
+                "You see a shed-shop, library and restaurant.",
+                "",
+                "Eleanor: \"Hey, what is that shed-shop?\"",
+                "\"Let's go in!\""
+            ],
+            "start_dir": "~/town/east",
+            "end_dir": "~/town/east/shed-shop",
+            "commands": ["cd shed-shop"],
+            "hints": [
+                "Use 'cd shed-shop' to go in the shed-shop."
+            ],
+            "next": [41, 3]
+        },
+        {
+            "step": 3,
+            "story": [
+                "You both walk slowly into the shop.",
+                "It is dusty and significantly darker in here than outside.",
+                "Eleanor looks like she needs to sneeze.",
+                "",
+                "Look around."
+            ],
+            "start_dir": "~/town/east/shed-shop",
+            "end_dir": "~/town/east/shed-shop",
+            "commands": ["ls", "ls -a"],
+            "hints": [
+                "Look around with 'ls'."
+            ],
+            "next": [41, 4]
+        },
+        {
+            "step": 4,
+            "story": [
+                "You see a man called Bernard, a door and a couple of tools.",
+                "",
+                "The tools show up as green in the Terminal.",
+                "",
+                "Listen to what Bernard has to say."
+            ],
+            "start_dir": "~/town/east/shed-shop",
+            "end_dir": "~/town/east/shed-shop",
+            "commands": ["cat Bernard"],
+            "hints": [
+                "Use 'cat Bernard' to see what Bernard has to say."
+            ],
+            "next": [42, 1]
+        }
+    ]
+}

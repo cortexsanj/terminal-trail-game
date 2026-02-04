@@ -1,0 +1,196 @@
+{
+    "title": "Cave of mysteries",
+    "description": "Explore the cave and learn about chmod",
+    "commands_taught": ["ls", "cat", "cd", "mv", "chmod"],
+    "steps": [
+        {
+            "step": 1,
+            "story": [
+                "You walk slowly into the cave. It has a musty smell.",
+                "Eleanor: \"It's dark in here. Look around carefully.\""
+            ],
+            "start_dir": "~/woods/cave",
+            "end_dir": "~/woods/cave",
+            "commands": ["ls", "ls -a"],
+            "hints": [
+                "Use 'ls' to look around."
+            ],
+            "modifications": [
+                {
+                    "action": "add",
+                    "path": "~/woods/cave/dark-room",
+                    "type": "directory",
+                    "permissions": {"r": false, "w": true, "x": true}
+                },
+                {
+                    "action": "add",
+                    "path": "~/woods/cave/dark-room/sign",
+                    "type": "file",
+                    "content": "x-sign"
+                },
+                {
+                    "action": "add",
+                    "path": "~/woods/cave/locked-room",
+                    "type": "directory",
+                    "permissions": {"r": true, "w": true, "x": false}
+                },
+                {
+                    "action": "add",
+                    "path": "~/woods/cave/locked-room/sign",
+                    "type": "file",
+                    "content": "w-sign"
+                },
+                {
+                    "action": "add",
+                    "path": "~/woods/cave/locked-room/lighter",
+                    "type": "file",
+                    "content": "#!/bin/bash\necho 'Whoosh! The lighter ignites!'\necho 'BOOM! Fireworks explode!'",
+                    "permissions": {"r": true, "w": true, "x": false}
+                },
+                {
+                    "action": "add",
+                    "path": "~/woods/cave/cage",
+                    "type": "directory",
+                    "permissions": {"r": true, "w": false, "x": true}
+                },
+                {
+                    "action": "add",
+                    "path": "~/woods/cave/cage/bird",
+                    "type": "file",
+                    "content": "bird"
+                },
+                {
+                    "action": "add",
+                    "path": "~/woods/cave/cage/sign",
+                    "type": "file",
+                    "content": "r-sign"
+                }
+            ],
+            "next": [51, 2]
+        },
+        {
+            "step": 2,
+            "story": [
+                "There are three doors, leading to two rooms and a cage.",
+                "Eleanor: \"Let's look inside the dark-room first.\""
+            ],
+            "start_dir": "~/woods/cave",
+            "end_dir": "~/woods/cave",
+            "commands": ["ls dark-room", "ls dark-room/"],
+            "hints": [
+                "Use 'ls dark-room' to look inside the dark-room."
+            ],
+            "next": [51, 3]
+        },
+        {
+            "step": 3,
+            "story": [
+                "The room is pitch black. You can't see anything inside.",
+                "Eleanor: \"It's too dark. Let's try the locked-room next.\""
+            ],
+            "start_dir": "~/woods/cave",
+            "end_dir": "~/woods/cave",
+            "commands": ["ls locked-room", "ls locked-room/"],
+            "hints": [
+                "Use 'ls locked-room' to look inside the locked-room."
+            ],
+            "next": [51, 4]
+        },
+        {
+            "step": 4,
+            "story": [
+                "Peering through a grimy window, you can just make out some items inside.",
+                "Eleanor: \"I can see something, but it's hard to tell what it is.\"",
+                "\"Try to examine the items inside.\""
+            ],
+            "start_dir": "~/woods/cave",
+            "end_dir": "~/woods/cave",
+            "commands": ["cat locked-room/sign", "cat locked-room/lighter"],
+            "hints": [
+                "Try 'cat locked-room/sign' to examine the sign."
+            ],
+            "next": [51, 5]
+        },
+        {
+            "step": 5,
+            "story": [
+                "You can't read the items clearly from outside.",
+                "Eleanor: \"Maybe we can go inside? Try to enter the locked-room.\""
+            ],
+            "start_dir": "~/woods/cave",
+            "end_dir": "~/woods/cave",
+            "commands": ["cd locked-room", "cd locked-room/"],
+            "hints": [
+                "Try 'cd locked-room' to go inside."
+            ],
+            "next": [51, 6]
+        },
+        {
+            "step": 6,
+            "story": [
+                "The door is locked. You can't go in.",
+                "Eleanor: \"Hmm, that didn't work. Let's check the cage.\""
+            ],
+            "start_dir": "~/woods/cave",
+            "end_dir": "~/woods/cave",
+            "commands": ["ls cage", "ls cage/"],
+            "hints": [
+                "Look inside the cage with 'ls cage'"
+            ],
+            "next": [51, 7]
+        },
+        {
+            "step": 7,
+            "story": [
+                "There is a bird in the cage.",
+                "Eleanor: \"Poor thing! Let's see if it's okay.\""
+            ],
+            "start_dir": "~/woods/cave",
+            "end_dir": "~/woods/cave",
+            "commands": ["cat cage/bird"],
+            "hints": [
+                "Examine the bird with 'cat cage/bird'"
+            ],
+            "next": [51, 8]
+        },
+        {
+            "step": 8,
+            "story": [
+                "Bird: \"...Me...trapped...\"",
+                "\"Please help....get me out.\"",
+                "",
+                "Eleanor: \"We need to help! Try to move the bird outside the cage.\""
+            ],
+            "start_dir": "~/woods/cave",
+            "end_dir": "~/woods/cave",
+            "commands": ["mv cage/bird .", "mv cage/bird ./"],
+            "hints": [
+                "Move the bird outside with 'mv cage/bird ./'"
+            ],
+            "next": [51, 9]
+        },
+        {
+            "step": 9,
+            "story": [
+                "You can't move the bird. The cage is locked.",
+                "",
+                "Bird: \"...didn't work....\"",
+                "\"...look in dark-room to find help..\"",
+                "\"..use 'chmod +r dark-room' to switch lights on.\"",
+                "\"...get me out...and I'll help you.\"",
+                "",
+                "Eleanor: \"A new command! Let's try it.\"",
+                "",
+                "NEW POWER: Use 'chmod +r dark-room' to allow yourself to READ",
+                "the contents of dark-room. This turns the lights on!"
+            ],
+            "start_dir": "~/woods/cave",
+            "end_dir": "~/woods/cave",
+            "commands": ["chmod +r dark-room", "chmod +r dark-room/"],
+            "hints": [
+                "Follow the bird's instructions: 'chmod +r dark-room'"
+            ],
+            "next": [52, 1]
+        }
+    ]
+}

@@ -1,0 +1,64 @@
+{
+    "title": "Set off the fireworks",
+    "description": "Use chmod +x to make the lighter executable",
+    "commands_taught": ["cat", "chmod", "ls", "./"],
+    "steps": [
+        {
+            "step": 1,
+            "story": [
+                "The bird flies away happily!",
+                "",
+                "Eleanor: \"Look! The bird dropped something in the cage.\""
+            ],
+            "start_dir": "~/woods/cave",
+            "end_dir": "~/woods/cave",
+            "commands": ["cat cage/scroll"],
+            "hints": [
+                "Examine the scroll with 'cat cage/scroll'"
+            ],
+            "next": [53, 2]
+        },
+        {
+            "step": 2,
+            "story": [
+                "The scroll says: 'To activate the lighter, use chmod +x on it.'",
+                "",
+                "Eleanor: \"The lighter in the locked-room! Let's activate it.\""
+            ],
+            "start_dir": "~/woods/cave",
+            "end_dir": "~/woods/cave",
+            "commands": ["chmod +x locked-room/lighter"],
+            "hints": [
+                "Use 'chmod +x locked-room/lighter' to activate it."
+            ],
+            "next": [53, 3]
+        },
+        {
+            "step": 3,
+            "story": [
+                "Eleanor: \"Look in the locked-room to see what happened.\""
+            ],
+            "start_dir": "~/woods/cave",
+            "end_dir": "~/woods/cave",
+            "commands": ["ls locked-room", "ls locked-room/"],
+            "hints": [
+                "Use 'ls locked-room' to look inside."
+            ],
+            "next": [53, 4]
+        },
+        {
+            "step": 4,
+            "story": [
+                "The lighter is now glowing green!",
+                "Eleanor: \"It's executable now! Run it with './locked-room/lighter'\""
+            ],
+            "start_dir": "~/woods/cave",
+            "end_dir": "~/woods/cave",
+            "commands": ["./locked-room/lighter"],
+            "hints": [
+                "Run the lighter with './locked-room/lighter'"
+            ],
+            "next": [54, 1]
+        }
+    ]
+}

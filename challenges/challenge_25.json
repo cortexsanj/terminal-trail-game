@@ -1,0 +1,139 @@
+{
+  "title": "Gathering Food",
+  "description": "Help gather food for the hungry family",
+  "commands_taught": [
+    "mv",
+    "cd"
+  ],
+  "steps": [
+    {
+      "story": [
+        "\ud83d\udc67 Eleanor: \"Yay, Doggie!\"",
+        "",
+        "\ud83d\udc15 Dog: \"Ruff!\"",
+        "",
+        "\ud83d\udc69 Edith: \"Thank you so much for getting them both back.",
+        "I was wrong about you. You're a hero!\"",
+        "",
+        "\ud83d\udc68 Edward: \"Thank you so much for saving my little girl!",
+        "I have another favour to ask...\"",
+        "\"We haven't got any food. Could you gather some for us?",
+        "We didn't have time to grab any before we went into hiding.\"",
+        "\"Do you remember seeing any food in your travels?\"",
+        "",
+        "...ah! You have all that food in your kitchen!",
+        "We could give that to this family.",
+        "",
+        "Start by moving the basket to ~ (home).",
+        "Use the command 'mv basket ~/'."
+      ],
+      "objective": "Move the basket to the home directory",
+      "start_dir": "~/town/.hidden-shelter",
+      "end_dir": "~/town/.hidden-shelter",
+      "commands": [
+        "mv basket ~",
+        "mv basket/ ~",
+        "mv basket ~/",
+        "mv basket/ ~/",
+        "mv basket ../..",
+        "mv basket/ ../..",
+        "mv basket ../../",
+        "mv basket/ ../../"
+      ],
+      "hints": [
+        "Use the command 'mv basket ~/' to move the basket to the windy road ~"
+      ],
+      "modifications": [
+        {
+          "action": "remove",
+          "path": "~/town/.hidden-shelter/basket"
+        },
+        {
+          "action": "add",
+          "path": "~/basket",
+          "type": "directory"
+        }
+      ],
+      "next": [
+        25,
+        2
+      ]
+    },
+    {
+      "story": [
+        "Now follow the basket. Use 'cd' by itself to go to the windy road ~."
+      ],
+      "objective": "Go to the home directory",
+      "start_dir": "~/town/.hidden-shelter",
+      "end_dir": "~",
+      "commands": [
+        "cd",
+        "cd ~",
+        "cd ~/"
+      ],
+      "hints": [
+        "Use the command 'cd' by itself to move yourself to the road ~"
+      ],
+      "next": [
+        25,
+        3
+      ]
+    },
+    {
+      "story": [
+        "You are now back on the long windy road. Look around with 'ls' to check that you have your basket with you."
+      ],
+      "objective": "Check that the basket is here",
+      "start_dir": "~",
+      "end_dir": "~",
+      "commands": [
+        "ls"
+      ],
+      "hints": [
+        "Use 'ls' by itself to look around."
+      ],
+      "next": [
+        25,
+        4
+      ]
+    },
+    {
+      "story": [
+        "You have your basket safely alongside you, and you see my-house close by.",
+        "Move the basket to my-house/kitchen.",
+        "Don't forget to use the TAB key to autocomplete your commands."
+      ],
+      "objective": "Move the basket to the kitchen",
+      "start_dir": "~",
+      "end_dir": "~",
+      "commands": [
+        "mv basket my-house/kitchen",
+        "mv basket/ my-house/kitchen",
+        "mv basket my-house/kitchen/",
+        "mv basket/ my-house/kitchen/",
+        "mv basket ~/my-house/kitchen",
+        "mv basket/ ~/my-house/kitchen",
+        "mv basket ~/my-house/kitchen/",
+        "mv basket/ ~/my-house/kitchen/"
+      ],
+      "hints": [
+        "Use 'mv basket my-house/kitchen/' to move the basket to your kitchen."
+      ],
+      "modifications": [
+        {
+          "action": "remove",
+          "path": "~/basket"
+        },
+        {
+          "action": "add",
+          "path": "~/my-house/kitchen/basket",
+          "type": "directory"
+        }
+      ],
+      "next": [
+        26,
+        1
+      ]
+    }
+  ]
+}

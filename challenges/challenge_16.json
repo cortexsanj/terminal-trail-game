@@ -1,0 +1,92 @@
+{
+  "title": "The Bell Rings",
+  "description": "Witness the mysterious disappearances begin",
+  "commands_taught": [
+    "ls"
+  ],
+  "steps": [
+    {
+      "story": [
+        "\ud83c\udfe0 You're back at your house, but something feels different...",
+        "",
+        "Let's go back to town to check on everyone.",
+        "Use 'cd town' to return to town."
+      ],
+      "objective": "Go back to town",
+      "start_dir": "~/my-house",
+      "end_dir": "~/town",
+      "commands": [
+        "cd town",
+        "cd ~/town"
+      ],
+      "hints": [
+        "Use 'cd town' to go back to town"
+      ],
+      "next": [
+        16,
+        2
+      ]
+    },
+    {
+      "story": [
+        "\ud83d\udd14 Ding. Dong.",
+        "",
+        "It sounds like the bell you heard before.",
+        "",
+        "Use 'ls' to look around again."
+      ],
+      "objective": "Look around to see what changed",
+      "start_dir": "~/town",
+      "end_dir": "~/town",
+      "commands": [
+        "ls"
+      ],
+      "hints": [
+        "Use 'ls' to look around."
+      ],
+      "modifications": [
+        {
+          "action": "remove",
+          "path": "~/town/grumpy-man"
+        }
+      ],
+      "next": [
+        16,
+        3
+      ]
+    },
+    {
+      "story": [
+        "\ud83d\udc66 Little-boy: \"Oh no! That grumpy-man with the funny legs has gone!\"",
+        "\"Did you hear the bell just before he vanished??\"",
+        "",
+        "\ud83d\udc67 Young-girl: \"I'm scared...\"",
+        "",
+        "\ud83d\udd14 Ding. Dong.",
+        "",
+        "\ud83d\udc67 Young-girl: \"Oh! I heard it go again!\"",
+        "",
+        "Take a look around you to check."
+      ],
+      "objective": "Look around to see what else changed",
+      "start_dir": "~/town",
+      "end_dir": "~/town",
+      "commands": [
+        "ls"
+      ],
+      "hints": [
+        "Use 'ls' to look around."
+      ],
+      "modifications": [
+        {
+          "action": "remove",
+          "path": "~/town/little-boy"
+        }
+      ],
+      "next": [
+        17,
+        1
+      ]
+    }
+  ]
+}

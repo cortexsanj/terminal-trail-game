@@ -1,0 +1,77 @@
+{
+  "title": "Farm Exploration",
+  "description": "Explore the farm and find the people",
+  "commands_taught": [
+    "ls",
+    "cd"
+  ],
+  "steps": [
+    {
+      "story": [
+        "You are in a farm, with a barn, a farmhouse and a large toolshed in sight.",
+        "The land is well tended and weed free, so there must be people about here.",
+        "",
+        "Look around and see if you can find someone to talk to.",
+        "Try looking in the barn."
+      ],
+      "objective": "Look in the barn for people",
+      "start_dir": "~/farm",
+      "end_dir": "~/farm",
+      "commands": [
+        "ls barn",
+        "ls barn/"
+      ],
+      "hints": [
+        "There is no one here. You should look somewhere else.",
+        "Have you looked in the barn yet?",
+        "Use 'ls barn' to look in the barn."
+      ],
+      "next": [
+        34,
+        2
+      ]
+    },
+    {
+      "story": [
+        "In the barn, you see a woman tending some animals.",
+        "Walk into the barn so you can have a closer look."
+      ],
+      "objective": "Go into the barn",
+      "start_dir": "~/farm",
+      "end_dir": "~/farm/barn",
+      "commands": [
+        "cd barn",
+        "cd barn/"
+      ],
+      "hints": [
+        "Use 'cd barn' to walk into the barn."
+      ],
+      "next": [
+        34,
+        3
+      ]
+    },
+    {
+      "story": [
+        "Examine everyone in the barn using the 'cat' command."
+      ],
+      "objective": "Talk to everyone in the barn",
+      "start_dir": "~/farm/barn",
+      "end_dir": "~/farm/barn",
+      "commands": [
+        "cat Ruth",
+        "cat Cobweb",
+        "cat Trotter",
+        "cat Daisy"
+      ],
+      "hints": [
+        "If you've forgotten who's in the barn, use 'ls' to remind yourself.",
+        "Use 'cat' with the names of the people and animals"
+      ],
+      "next": [
+        35,
+        1
+      ]
+    }
+  ]
+}

@@ -1,0 +1,127 @@
+{
+    "title": "Meet the Swordmaster",
+    "description": "Talk with the Swordmaster and learn ls -l",
+    "commands_taught": ["cat", "echo", "ls -l"],
+    "steps": [
+        {
+            "step": 1,
+            "story": [
+                "You see a Masked Swordmaster watching you.",
+                "Eleanor: \"Listen to what he has to say.\""
+            ],
+            "start_dir": "~/woods/clearing/house",
+            "end_dir": "~/woods/clearing/house",
+            "commands": ["cat Swordmaster"],
+            "hints": [
+                "Use 'cat Swordmaster' to listen."
+            ],
+            "next": [56, 2]
+        },
+        {
+            "step": 2,
+            "story": [
+                "Swordmaster: \"Child, why do you seek me?\"",
+                "",
+                "1: I want to unlock the private section in the library.",
+                "2: Who are you?",
+                "3: Have you been leaving me strange notes?",
+                "",
+                "Eleanor: \"Tell him about the library! Use 'echo 1'\""
+            ],
+            "start_dir": "~/woods/clearing/house",
+            "end_dir": "~/woods/clearing/house",
+            "commands": ["echo 1"],
+            "hints": [
+                "Use 'echo 1' to respond."
+            ],
+            "next": [56, 3]
+        },
+        {
+            "step": 3,
+            "story": [
+                "Swordmaster: \"Well, if you unlocked the chest in the cave,\"",
+                "\"then you already know how.\"",
+                "\"A note of caution: what is inside is both powerful and dangerous.\"",
+                "",
+                "Eleanor: \"What's so dangerous?\"",
+                "",
+                "1: What is inside the library that is so dangerous?",
+                "2: Why do you live so far from other people?",
+                "3: Do you know why people are disappearing?",
+                "",
+                "Use 'echo 3' to ask about the disappearances."
+            ],
+            "start_dir": "~/woods/clearing/house",
+            "end_dir": "~/woods/clearing/house",
+            "commands": ["echo 3"],
+            "hints": [
+                "Use 'echo 3' to ask about the disappearances."
+            ],
+            "next": [56, 4]
+        },
+        {
+            "step": 4,
+            "story": [
+                "Swordmaster: \"I wasn't aware people were disappearing.\"",
+                "\"Is that what is causing that bell?\"",
+                "\"Perhaps it is good you are here then.\"",
+                "\"Tell me, what is your name?\"",
+                "",
+                "Eleanor: \"Tell him your name! Use 'echo player'\""
+            ],
+            "start_dir": "~/woods/clearing/house",
+            "end_dir": "~/woods/clearing/house",
+            "commands": ["echo player"],
+            "hints": [
+                "Use 'echo player' to give your name."
+            ],
+            "next": [56, 5]
+        },
+        {
+            "step": 5,
+            "story": [
+                "Swordmaster: \"I thought you might be.\"",
+                "\"Few have the power to use the commands you used earlier.\"",
+                "\"How did I know your name? Use 'ls -l' to see.\"",
+                "",
+                "Eleanor: \"A new command! Let's try it.\"",
+                "",
+                "NEW POWER: Use 'ls -l' to see detailed file information",
+                "including permissions and ownership."
+            ],
+            "start_dir": "~/woods/clearing/house",
+            "end_dir": "~/woods/clearing/house",
+            "commands": ["ls -l"],
+            "hints": [
+                "Use 'ls -l' to see file details."
+            ],
+            "modifications": [
+                {
+                    "action": "add",
+                    "path": "~/woods/clearing/house/note",
+                    "type": "file",
+                    "content": "note_swordsmaster-house"
+                }
+            ],
+            "next": [56, 6]
+        },
+        {
+            "step": 6,
+            "story": [
+                "You see 'player' listed as the owner of files!",
+                "",
+                "Swordmaster: \"Your name is written in this world.\"",
+                "\"...\"",
+                "\"...why is there a note in this room?\"",
+                "\"Do you see it? Use 'cat note' to examine it.\""
+            ],
+            "start_dir": "~/woods/clearing/house",
+            "end_dir": "~/woods/clearing/house",
+            "commands": ["cat note"],
+            "hints": [
+                "Use 'cat note' to read the mysterious note."
+            ],
+            "next": [57, 1]
+        }
+    ]
+}

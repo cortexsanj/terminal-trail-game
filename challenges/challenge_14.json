@@ -1,0 +1,42 @@
+{
+  "title": "Strange Happenings",
+  "description": "Discover the mystery of the disappearing people",
+  "commands_taught": [
+    "cat",
+    "ls"
+  ],
+  "steps": [
+    {
+      "story": [
+        "The townspeople are clearly worried about something! \ud83d\ude30",
+        "",
+        "Each person you talk to reveals more about the mystery:",
+        "\u2022 The grumpy man mentions strange bells and his legs feeling odd",
+        "\u2022 The young girl is looking for her missing friend Amy",
+        "\u2022 The little boy has lost his dog Pongo",
+        "",
+        "This is definitely connected to the news report you heard this morning!",
+        "Continue talking to people to gather more information.",
+        "",
+        "Talk to at least 2 more townspeople to learn what's happening."
+      ],
+      "objective": "Talk to more townspeople (any 2 of the 3)",
+      "start_dir": "~/town",
+      "end_dir": "~/town",
+      "commands": [
+        "cat grumpy-man",
+        "cat young-girl",
+        "cat little-boy"
+      ],
+      "hints": [
+        "Use 'cat' with any of the townspeople names",
+        "Try talking to grumpy-man, young-girl, and little-boy",
+        "You need to talk to at least 2 people total"
+      ],
+      "next": [
+        15,
+        1
+      ]
+    }
+  ]
+}

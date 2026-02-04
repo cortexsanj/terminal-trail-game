@@ -1,0 +1,49 @@
+{
+  "title": "The Greenhouse Mystery",
+  "description": "Discover what happened to Dad",
+  "commands_taught": [
+    "ls",
+    "cat"
+  ],
+  "steps": [
+    {
+      "story": [
+        "Look around the greenhouse for Dad. \ud83d\udd0d"
+      ],
+      "objective": "Search the greenhouse",
+      "start_dir": "~/my-house/garden/greenhouse",
+      "end_dir": "~/my-house/garden/greenhouse",
+      "commands": [
+        "ls"
+      ],
+      "hints": [
+        "Type 'ls' to look around the greenhouse."
+      ],
+      "next": [
+        8,
+        2
+      ]
+    },
+    {
+      "story": [
+        "Dad's not here, but there's a note! \ud83d\udcdd",
+        "That's strange... what does it say?",
+        "",
+        "Read the note to find out what happened."
+      ],
+      "objective": "Read the note",
+      "start_dir": "~/my-house/garden/greenhouse",
+      "end_dir": "~/my-house/garden/greenhouse",
+      "commands": [
+        "cat note"
+      ],
+      "hints": [
+        "Type 'cat note' to read what the note says."
+      ],
+      "next": [
+        9,
+        1
+      ]
+    }
+  ]
+}

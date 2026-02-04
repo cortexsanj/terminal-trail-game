@@ -1,0 +1,63 @@
+{
+    "title": "Clara's Information",
+    "description": "Learn about the masked swordmaster from Clara",
+    "commands_taught": ["echo", "cd"],
+    "steps": [
+        {
+            "step": 1,
+            "story": [
+                "Clara: \"Oh! You startled me! I've been hiding here since the bell started ringing.\"",
+                "\"I know what's happening. There's a masked swordmaster who has been taking people.\"",
+                "\"He has a secret lair somewhere, but I don't know where.\"",
+                "",
+                "Eleanor: \"A masked swordmaster? That sounds scary!\"",
+                "",
+                "Ask Clara more about the swordmaster."
+            ],
+            "start_dir": "~/town/east/restaurant/.cellar",
+            "end_dir": "~/town/east/restaurant/.cellar",
+            "commands": ["echo \"Tell us more about the swordmaster\""],
+            "hints": [
+                "Use echo to ask Clara about the swordmaster."
+            ],
+            "next": [46, 2]
+        },
+        {
+            "step": 2,
+            "story": [
+                "Clara: \"The swordmaster wears a mask and carries a powerful sword.\"",
+                "\"I heard he might be hiding in the woods or maybe in a cave.\"",
+                "\"The library's private section might have more information, but it's locked.\"",
+                "",
+                "Eleanor: \"We need to find a way to stop him and rescue everyone!\"",
+                "",
+                "Ask Clara if she wants to come with you."
+            ],
+            "start_dir": "~/town/east/restaurant/.cellar",
+            "end_dir": "~/town/east/restaurant/.cellar",
+            "commands": ["echo \"Will you come with us?\""],
+            "hints": [
+                "Use echo to ask Clara to join you."
+            ],
+            "next": [46, 3]
+        },
+        {
+            "step": 3,
+            "story": [
+                "Clara: \"I'm too scared to leave this cellar. But I'll stay here and keep watch.\"",
+                "\"Eleanor can stay with me if she wants to be safe.\"",
+                "",
+                "Eleanor: \"I want to help you find the swordmaster! I'll stay brave.\"",
+                "",
+                "It's time to leave the restaurant and continue your quest."
+            ],
+            "start_dir": "~/town/east/restaurant/.cellar",
+            "end_dir": "~/town/east",
+            "commands": ["cd ../.."],
+            "hints": [
+                "Use 'cd ../..' to go back to the east town area."
+            ],
+            "next": [47, 1]
+        }
+    ]
+}

@@ -1,0 +1,94 @@
+{
+  "title": "The Toolshed Discovery",
+  "description": "Help Ruth find shelter-building tools",
+  "commands_taught": [
+    "cd",
+    "ls"
+  ],
+  "steps": [
+    {
+      "story": [
+        "\ud83d\udc69 Ruth: \"Oh! That reminds me, my husband used to build special shelters to store crops in over winter.",
+        "I think he used a specific tool.",
+        "We should take a look in his toolshed to see if we can find it.\"",
+        "",
+        "Use the 'cd' command to go into the toolshed."
+      ],
+      "objective": "Go to the toolshed",
+      "start_dir": "~/farm/barn",
+      "end_dir": "~/farm/toolshed",
+      "commands": [
+        "cd ../toolshed",
+        "cd ~/farm/toolshed"
+      ],
+      "hints": [
+        "Go to the toolshed in one step using 'cd ../toolshed'"
+      ],
+      "modifications": [
+        {
+          "action": "remove",
+          "path": "~/farm/barn/Ruth"
+        },
+        {
+          "action": "add",
+          "path": "~/farm/toolshed/Ruth",
+          "type": "file",
+          "content": "Ruth"
+        }
+      ],
+      "next": [
+        36,
+        2
+      ]
+    },
+    {
+      "story": [
+        "Ruth follows you into the toolshed. It's a very large space with tools lining the walls.",
+        "",
+        "\ud83d\udc69 Ruth: \"Let's look around for anything that could be useful.\""
+      ],
+      "objective": "Look around the toolshed",
+      "start_dir": "~/farm/toolshed",
+      "end_dir": "~/farm/toolshed",
+      "commands": [
+        "ls",
+        "ls -a",
+        "ls .",
+        "ls ./",
+        "ls -a .",
+        "ls -a ./"
+      ],
+      "hints": [
+        "Use 'ls' to look around."
+      ],
+      "next": [
+        36,
+        3
+      ]
+    },
+    {
+      "story": [
+        "\ud83d\udc69 Ruth: \"Ah, look! There are some instructions with the word MKDIR on it.\"",
+        "\"What does it say?\"",
+        "",
+        "Examine the MKDIR instructions."
+      ],
+      "objective": "Read the MKDIR instructions",
+      "start_dir": "~/farm/toolshed",
+      "end_dir": "~/farm/toolshed",
+      "commands": [
+        "cat MKDIR"
+      ],
+      "hints": [
+        "Ruth: \"...you are able to read, yes? You use 'cat' to read things.\"",
+        "Ruth: \"What do you kids learn in schools nowadays...\"",
+        "\"Just use 'cat MKDIR' to read the paper.\"",
+        "Use 'cat MKDIR' to read it."
+      ],
+      "next": [
+        37,
+        1
+      ]
+    }
+  ]
+}

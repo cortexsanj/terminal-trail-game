@@ -1,0 +1,57 @@
+{
+    "title": "Preparing for the Final Quest",
+    "description": "Get ready to find the masked swordmaster",
+    "commands_taught": ["cd", "ls", "echo"],
+    "steps": [
+        {
+            "step": 1,
+            "story": [
+                "You're back in the east part of town with Eleanor.",
+                "Eleanor: \"Now we know about the masked swordmaster, we need to find him!\"",
+                "\"Clara mentioned he might be in the woods or a cave.\"",
+                "",
+                "Let's go back to the main town and look for clues."
+            ],
+            "start_dir": "~/town/east",
+            "end_dir": "~/town",
+            "commands": ["cd .."],
+            "hints": [
+                "Use 'cd ..' to go back to the main town."
+            ],
+            "next": [47, 2]
+        },
+        {
+            "step": 2,
+            "story": [
+                "You're back in the main town area.",
+                "Eleanor: \"I think I remember seeing a path to the woods from here.\"",
+                "",
+                "Look around carefully to see if there are any new areas to explore."
+            ],
+            "start_dir": "~/town",
+            "end_dir": "~/town",
+            "commands": ["ls", "ls -a"],
+            "hints": [
+                "Use 'ls' to look around for new paths.",
+                "Try 'ls -a' to see if there are any hidden paths."
+            ],
+            "next": [47, 3]
+        },
+        {
+            "step": 3,
+            "story": [
+                "Eleanor: \"I can see a path leading to the woods! But first...\"",
+                "\"Bernard has been acting strange. Let's check his shed-shop one more time.\"",
+                "",
+                "Go back to the east part of town."
+            ],
+            "start_dir": "~/town",
+            "end_dir": "~/town/east",
+            "commands": ["cd east", "cd east/"],
+            "hints": [
+                "Use 'cd east' to go to the east part of town."
+            ],
+            "next": [48, 1]
+        }
+    ]
+}

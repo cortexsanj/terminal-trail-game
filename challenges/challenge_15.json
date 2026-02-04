@@ -1,0 +1,44 @@
+{
+  "title": "Navigation Mastery",
+  "description": "Test your navigation skills by exploring",
+  "commands_taught": [
+    "cd",
+    "ls",
+    "pwd",
+    "cat"
+  ],
+  "steps": [
+    {
+      "story": [
+        "\ud83c\udf89 Excellent detective work! You've learned a lot about the mystery.",
+        "",
+        "You now know how to:",
+        "\u2022 Navigate between locations with 'cd'",
+        "\u2022 Explore areas with 'ls'",
+        "\u2022 Talk to characters with 'cat'",
+        "\u2022 Check your location with 'pwd'",
+        "",
+        "Let's test your skills! Navigate back home and check on things there.",
+        "Use 'pwd' to see where you are, then go back to your house."
+      ],
+      "objective": "Check where you are, then go back to your house",
+      "start_dir": "~/town",
+      "end_dir": "~/my-house",
+      "commands": [
+        "pwd",
+        "cd ~/my-house",
+        "cd ..",
+        "cd ../my-house"
+      ],
+      "hints": [
+        "First use 'pwd' to see where you are",
+        "Then use 'cd ~/my-house' to go home directly",
+        "Or use 'cd ..' then 'cd my-house' to go step by step"
+      ],
+      "next": [
+        16,
+        1
+      ]
+    }
+  ]
+}

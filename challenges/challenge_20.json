@@ -1,0 +1,46 @@
+{
+  "title": "Searching for Clues",
+  "description": "Examine objects in the kitchen for clues",
+  "commands_taught": [
+    "cat"
+  ],
+  "steps": [
+    {
+      "story": [
+        "\ud83d\udcdd The note says: \"Prepare yourself.\"",
+        "",
+        "You're in your house. You appear to be alone.",
+        "Use 'cat' to examine some of the objects around you.",
+        "",
+        "Look at at least 2 different food items to search for clues."
+      ],
+      "objective": "Examine 2 different food items in the kitchen",
+      "start_dir": "~/my-house/kitchen",
+      "end_dir": "~/my-house/kitchen",
+      "commands": [
+        "cat banana",
+        "cat cake",
+        "cat croissant",
+        "cat grapes",
+        "cat milk",
+        "cat newspaper",
+        "cat pie",
+        "cat sandwich"
+      ],
+      "hints": [
+        "Use 'cat' to look at two of the food items around you.",
+        "Try examining items like banana, cake, grapes, milk, pie, or sandwich"
+      ],
+      "modifications": [
+        {
+          "action": "remove",
+          "path": "~/my-house/kitchen/note"
+        }
+      ],
+      "next": [
+        21,
+        1
+      ]
+    }
+  ]
+}

@@ -1,0 +1,75 @@
+{
+  "title": "Exploring Your Room",
+  "description": "Discover more items in your room",
+  "commands_taught": [
+    "ls",
+    "cat"
+  ],
+  "steps": [
+    {
+      "story": [
+        "Love it! Put it on quickly. \ud83e\udde2",
+        "There's loads more interesting stuff in your room.",
+        "",
+        "Let's look in your shelves using 'ls'."
+      ],
+      "objective": "Look at your shelves",
+      "start_dir": "~/my-house/my-room",
+      "end_dir": "~/my-house/my-room",
+      "commands": [
+        "ls shelves",
+        "ls shelves/"
+      ],
+      "hints": [
+        "Type 'ls shelves/' to look at your books."
+      ],
+      "next": [
+        4,
+        2
+      ]
+    },
+    {
+      "story": [
+        "Did you know you can use the TAB key to speed up your typing? \u26a1",
+        "Try it by checking out that comic book.",
+        "",
+        "Examine it with 'cat shelves/comic-book'",
+        "Press the TAB key before you've finished typing! \ud83d\udcda"
+      ],
+      "objective": "Read the comic book",
+      "start_dir": "~/my-house/my-room",
+      "end_dir": "~/my-house/my-room",
+      "commands": [
+        "cat shelves/comic-book"
+      ],
+      "hints": [
+        "Type 'cat shelves/comic-book' to read the comic."
+      ],
+      "next": [
+        4,
+        3
+      ]
+    },
+    {
+      "story": [
+        "Why is it covered in pawprints? \ud83d\udc3e",
+        "Hang on, can you see that? There's a note amongst your books.",
+        "",
+        "Read the note using 'cat'."
+      ],
+      "objective": "Read the mysterious note",
+      "start_dir": "~/my-house/my-room",
+      "end_dir": "~/my-house/my-room",
+      "commands": [
+        "cat shelves/note"
+      ],
+      "hints": [
+        "Type 'cat shelves/note' to read the note."
+      ],
+      "next": [
+        5,
+        1
+      ]
+    }
+  ]
+}

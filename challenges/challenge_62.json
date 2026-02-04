@@ -1,0 +1,90 @@
+{
+    "title": "Save Everyone",
+    "description": "Free everyone from the cage",
+    "commands_taught": ["ls", "cat", "chmod", "mv"],
+    "steps": [
+        {
+            "step": 1,
+            "story": [
+                "You push the boulder aside. Light pours out from the crack.",
+                "You're in the rabbithole!",
+                "Eleanor: \"Look around!\""
+            ],
+            "start_dir": "~/woods/thicket/rabbithole",
+            "end_dir": "~/woods/thicket/rabbithole",
+            "commands": ["ls", "ls -a"],
+            "hints": [
+                "Use 'ls' to look around."
+            ],
+            "next": [62, 2]
+        },
+        {
+            "step": 2,
+            "story": [
+                "You see the Rabbit, but it seems distracted.",
+                "There is also a cage and a mysteriously glowing bell.",
+                "You sneak over to the cage.",
+                "",
+                "Swordmaster: \"Psst! We're inside the cage!\"",
+                "",
+                "Eleanor: \"Look inside the cage!\""
+            ],
+            "start_dir": "~/woods/thicket/rabbithole",
+            "end_dir": "~/woods/thicket/rabbithole",
+            "commands": ["ls cage", "ls cage/"],
+            "hints": [
+                "Use 'ls cage' to look inside."
+            ],
+            "next": [62, 3]
+        },
+        {
+            "step": 3,
+            "story": [
+                "You see all the people who disappeared! Including your Mum and Dad!",
+                "",
+                "Swordmaster: \"Listen. We don't have much time.\"",
+                "\"I think it's the bell - it's controlling the Rabbit.\"",
+                "\"The Rabbit hasn't figured out how to use the power it stole yet.\"",
+                "\"Before it does, you must let us out of this cage, quietly.\"",
+                "",
+                "Eleanor: \"We need to unlock the cage!\""
+            ],
+            "start_dir": "~/woods/thicket/rabbithole",
+            "end_dir": "~/woods/thicket/rabbithole",
+            "commands": ["chmod +w cage", "chmod +w cage/"],
+            "hints": [
+                "The cage needs write permissions. Use 'chmod +w cage'"
+            ],
+            "next": [62, 4]
+        },
+        {
+            "step": 4,
+            "story": [
+                "The cage unlocks!",
+                "",
+                "Swordmaster: \"Now move us all to ~/town\"",
+                "\"To move a large group, use the *. Like this: mv cage/* ~/town\""
+            ],
+            "start_dir": "~/woods/thicket/rabbithole",
+            "end_dir": "~/woods/thicket/rabbithole",
+            "commands": ["mv cage/* ~/town", "mv cage/* ~/town/"],
+            "hints": [
+                "Use 'mv cage/* ~/town' to move everyone to safety."
+            ],
+            "next": [62, 5]
+        },
+        {
+            "step": 5,
+            "story": [
+                "Eleanor: \"Did it work? Let's check ~/town to make sure everyone is safe.\""
+            ],
+            "start_dir": "~/woods/thicket/rabbithole",
+            "end_dir": "~/woods/thicket/rabbithole",
+            "commands": ["ls ~/town", "ls ~/town/"],
+            "hints": [
+                "Use 'ls ~/town' to check everyone is there."
+            ],
+            "next": [63, 1]
+        }
+    ]
+}

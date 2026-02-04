@@ -1,0 +1,101 @@
+{
+    "title": "The Swordmaster's Sword",
+    "description": "Learn the rm command from the Swordmaster",
+    "commands_taught": ["echo", "ls", "cat", "rm"],
+    "steps": [
+        {
+            "step": 1,
+            "story": [
+                "You stand alone in the library. The Rabbit has stolen the command.",
+                "Then, the Swordmaster runs into the room.",
+                "",
+                "Swordmaster: \"What have you done?\"",
+                "",
+                "1: A rabbit came and stole the command in front of me.",
+                "2: Nothing.",
+                "",
+                "Eleanor: \"Tell him the truth! Use 'echo 1'\""
+            ],
+            "start_dir": "~/town/east/library/private-section",
+            "end_dir": "~/town/east/library/private-section",
+            "commands": ["echo 1"],
+            "hints": [
+                "Use 'echo 1' to tell the Swordmaster what happened."
+            ],
+            "modifications": [
+                {
+                    "action": "add",
+                    "path": "~/town/east/library/private-section/Swordmaster",
+                    "type": "file",
+                    "content": "swordmaster"
+                }
+            ],
+            "next": [60, 2]
+        },
+        {
+            "step": 2,
+            "story": [
+                "Swordmaster: \"A Rabbit? I often see a white rabbit in a thicket near my house.\"",
+                "\"But it always seemed so innocent.\"",
+                "\"I wonder what has changed? Perhaps...the bell...\"",
+                "\"We must remove the source of the problem. I will teach you how.\"",
+                "",
+                "Ding. Dong.",
+                "",
+                "You hear a bell. Look around."
+            ],
+            "start_dir": "~/town/east/library/private-section",
+            "end_dir": "~/town/east/library/private-section",
+            "commands": ["ls", "ls -a"],
+            "hints": [
+                "Look around with 'ls'"
+            ],
+            "modifications": [
+                {
+                    "action": "remove",
+                    "path": "~/town/east/library/private-section/Swordmaster"
+                },
+                {
+                    "action": "add",
+                    "path": "~/town/east/library/private-section/sword",
+                    "type": "file",
+                    "content": "RM-sword"
+                }
+            ],
+            "next": [60, 3]
+        },
+        {
+            "step": 3,
+            "story": [
+                "The Swordmaster has gone.",
+                "He left something behind. It looks like the sword he carries.",
+                "Eleanor: \"Examine it!\""
+            ],
+            "start_dir": "~/town/east/library/private-section",
+            "end_dir": "~/town/east/library/private-section",
+            "commands": ["cat sword"],
+            "hints": [
+                "Use 'cat sword' to examine it."
+            ],
+            "next": [60, 4]
+        },
+        {
+            "step": 4,
+            "story": [
+                "It has a command inscribed on it: 'rm'",
+                "",
+                "NEW POWER: Use 'rm' to REMOVE an item.",
+                "",
+                "Eleanor: \"Let's test it on the note. Use 'rm note'\"",
+                "\"Be careful though...it looks dangerous.\""
+            ],
+            "start_dir": "~/town/east/library/private-section",
+            "end_dir": "~/town/east/library/private-section",
+            "commands": ["rm note"],
+            "hints": [
+                "Use 'rm note' to remove the note."
+            ],
+            "next": [61, 1]
+        }
+    ]
+}

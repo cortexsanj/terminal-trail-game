@@ -1,0 +1,128 @@
+{
+    "title": "Unlock the Library",
+    "description": "Unlock the private section and discover the Rabbit's plan",
+    "commands_taught": ["ls", "chmod", "cd", "cat"],
+    "steps": [
+        {
+            "step": 1,
+            "story": [
+                "You're at the library with the Rabbit.",
+                "Eleanor: \"Which room was locked? Look around to remind yourself.\""
+            ],
+            "start_dir": "~/town/east/library",
+            "end_dir": "~/town/east/library",
+            "commands": ["ls", "ls -a"],
+            "hints": [
+                "Use 'ls' to look around."
+            ],
+            "modifications": [
+                {
+                    "action": "add",
+                    "path": "~/town/east/library/Rabbit",
+                    "type": "file",
+                    "content": "Rabbit"
+                }
+            ],
+            "next": [59, 2]
+        },
+        {
+            "step": 2,
+            "story": [
+                "Ah, it's the private-section!",
+                "The Rabbit looks very excited. His eyes are sparkling.",
+                "",
+                "Eleanor: \"Let's unlock it using chmod +rwx\""
+            ],
+            "start_dir": "~/town/east/library",
+            "end_dir": "~/town/east/library",
+            "commands": ["chmod +rwx private-section", "chmod +rwx private-section/"],
+            "hints": [
+                "Use 'chmod +rwx private-section' to unlock it."
+            ],
+            "next": [59, 3]
+        },
+        {
+            "step": 3,
+            "story": [
+                "The door unlocks!",
+                "Eleanor: \"Let's go inside.\""
+            ],
+            "start_dir": "~/town/east/library",
+            "end_dir": "~/town/east/library/private-section",
+            "commands": ["cd private-section", "cd private-section/"],
+            "hints": [
+                "Use 'cd private-section' to go inside."
+            ],
+            "modifications": [
+                {
+                    "action": "add",
+                    "path": "~/town/east/library/private-section/chest",
+                    "type": "directory"
+                },
+                {
+                    "action": "add",
+                    "path": "~/town/east/library/private-section/chest/scroll",
+                    "type": "file",
+                    "content": "scroll"
+                },
+                {
+                    "action": "add",
+                    "path": "~/town/east/library/private-section/chest/torn-note",
+                    "type": "file",
+                    "content": "torn-note"
+                }
+            ],
+            "next": [59, 4]
+        },
+        {
+            "step": 4,
+            "story": [
+                "You're in the private section!",
+                "Eleanor: \"Look around!\""
+            ],
+            "start_dir": "~/town/east/library/private-section",
+            "end_dir": "~/town/east/library/private-section",
+            "commands": ["ls", "ls -a"],
+            "hints": [
+                "Use 'ls' to look around."
+            ],
+            "next": [59, 5]
+        },
+        {
+            "step": 5,
+            "story": [
+                "You see a chest! It looks like it might contain the powers you need.",
+                "",
+                "The Rabbit's excitement grows. He jumps up and down.",
+                "Then suddenly he snatches the chest and runs off!",
+                "",
+                "Eleanor: \"No! The Rabbit stole it!\"",
+                "",
+                "A note flutters through the air. You catch it."
+            ],
+            "start_dir": "~/town/east/library/private-section",
+            "end_dir": "~/town/east/library/private-section",
+            "commands": ["cat note"],
+            "hints": [
+                "Read the note with 'cat note'"
+            ],
+            "modifications": [
+                {
+                    "action": "remove",
+                    "path": "~/town/east/library/private-section/chest"
+                },
+                {
+                    "action": "remove",
+                    "path": "~/town/east/library/Rabbit"
+                },
+                {
+                    "action": "add",
+                    "path": "~/town/east/library/private-section/note",
+                    "type": "file",
+                    "content": "note_private-section"
+                }
+            ],
+            "next": [60, 1]
+        }
+    ]
+}

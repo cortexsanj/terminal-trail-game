@@ -1,0 +1,111 @@
+{
+    "title": "Answer the riddle",
+    "description": "Use chmod +rwx to unlock the chest",
+    "commands_taught": ["chmod", "ls", "cat"],
+    "steps": [
+        {
+            "step": 1,
+            "story": [
+                "Whoosh! The lighter ignites!",
+                "BOOM! Fireworks explode!",
+                "",
+                "Eleanor: \"Wow! That was amazing!\"",
+                "",
+                "Thunk.",
+                "",
+                "Something landed in front of you.",
+                "Look around to see what it is."
+            ],
+            "start_dir": "~/woods/cave",
+            "end_dir": "~/woods/cave",
+            "commands": ["ls", "ls -a"],
+            "hints": [
+                "Use 'ls' to see what appeared."
+            ],
+            "modifications": [
+                {
+                    "action": "add",
+                    "path": "~/woods/cave/chest",
+                    "type": "directory",
+                    "permissions": {"r": false, "w": false, "x": false}
+                },
+                {
+                    "action": "add",
+                    "path": "~/woods/cave/chest/answer",
+                    "type": "file",
+                    "content": "answer-cave"
+                },
+                {
+                    "action": "add",
+                    "path": "~/woods/cave/chest/riddle",
+                    "type": "file",
+                    "content": "riddle-cave"
+                }
+            ],
+            "next": [54, 2]
+        },
+        {
+            "step": 2,
+            "story": [
+                "There is a chest in front of you!",
+                "It's wrapped tightly by a big chain.",
+                "Eleanor: \"Try to look inside the chest.\""
+            ],
+            "start_dir": "~/woods/cave",
+            "end_dir": "~/woods/cave",
+            "commands": ["ls chest", "ls chest/"],
+            "hints": [
+                "Use 'ls chest' to look inside."
+            ],
+            "next": [54, 3]
+        },
+        {
+            "step": 3,
+            "story": [
+                "The chain won't budge. You cannot see inside.",
+                "",
+                "Eleanor: \"We need to break the chain!\"",
+                "\"We've learned chmod +r, +w, and +x.\"",
+                "\"Maybe we need to combine all three: chmod +rwx\"",
+                "",
+                "NEW POWER: Use 'chmod +rwx chest' to unlock it completely!"
+            ],
+            "start_dir": "~/woods/cave",
+            "end_dir": "~/woods/cave",
+            "commands": ["chmod +rwx chest", "chmod +rwx chest/"],
+            "hints": [
+                "Use 'chmod +rwx chest' to unlock the chest."
+            ],
+            "next": [54, 4]
+        },
+        {
+            "step": 4,
+            "story": [
+                "The chains shatter and fall away!",
+                "Eleanor: \"You did it! Now look inside the chest.\""
+            ],
+            "start_dir": "~/woods/cave",
+            "end_dir": "~/woods/cave",
+            "commands": ["ls chest", "ls chest/"],
+            "hints": [
+                "Use 'ls chest' to look inside."
+            ],
+            "next": [54, 5]
+        },
+        {
+            "step": 5,
+            "story": [
+                "You see a riddle and an answer inside!",
+                "Eleanor: \"That must be the answer to the Swordmaster's riddle!\"",
+                "\"Examine the answer.\""
+            ],
+            "start_dir": "~/woods/cave",
+            "end_dir": "~/woods/cave",
+            "commands": ["cat chest/answer"],
+            "hints": [
+                "Use 'cat chest/answer' to read it."
+            ],
+            "next": [55, 1]
+        }
+    ]
+}

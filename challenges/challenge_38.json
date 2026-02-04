@@ -1,0 +1,122 @@
+{
+    "title": "Building Hidden Shelters",
+    "description": "Learn to create hidden directories and move people to safety",
+    "commands_taught": ["mkdir", "echo", "ls -a", "mv", "cd"],
+    "steps": [
+        {
+            "step": 1,
+            "story": [
+                "Wow! You built a toolshed. You now have the power of mkdir.",
+                "",
+                "Ruth: \"That's amazing! Please help me build a shelter!",
+                "Can we build it in the barn, as then it'll be easier to move the animals inside.\"",
+                "",
+                "Go back into the barn."
+            ],
+            "start_dir": "~/farm/toolshed",
+            "end_dir": "~/farm/barn",
+            "commands": ["cd ..", "cd ../barn"],
+            "hints": [
+                "Use 'cd ..' to go back to the farm.",
+                "Then use 'cd barn' to go into the barn."
+            ],
+            "next": [38, 2]
+        },
+        {
+            "step": 2,
+            "story": [
+                "Ruth: \"Your toolshed was great, but anyone would be able to find it.\"",
+                "\"Is it possible to make something hidden?\"",
+                "",
+                "1: \"If we call it 'hidden-shelter', that will make it hidden.\"",
+                "2: \"Putting a . at the front makes things hidden.\"",
+                "3: \"It's impossible to make a hidden shelter.\"",
+                "",
+                "Use 'echo' to tell Ruth how to make things hidden."
+            ],
+            "start_dir": "~/farm/barn",
+            "end_dir": "~/farm/barn",
+            "commands": ["echo 1", "echo 2", "echo 3"],
+            "hints": [
+                "Ruth: \"You're really going to have to speak up, I can't understand anything you're saying.\"",
+                "Use 'echo 1', 'echo 2' or 'echo 3' to reply to Ruth."
+            ],
+            "next": [38, 3]
+        },
+        {
+            "step": 3,
+            "story": [
+                "Ruth: \"So if we called the shelter '.shelter', it would be hidden? Let's try it!\"",
+                "",
+                "Build a shelter called '.shelter'"
+            ],
+            "start_dir": "~/farm/barn",
+            "end_dir": "~/farm/barn",
+            "commands": ["mkdir .shelter"],
+            "hints": [
+                "Make '.shelter' using 'mkdir .shelter' - remember the dot!"
+            ],
+            "next": [38, 4]
+        },
+        {
+            "step": 4,
+            "story": [
+                "Check it is properly hidden. Use 'ls' to see if it is visible."
+            ],
+            "start_dir": "~/farm/barn",
+            "end_dir": "~/farm/barn",
+            "commands": ["ls"],
+            "hints": [
+                "Use 'ls', not 'ls -a', to check your shelter is hidden."
+            ],
+            "next": [38, 5]
+        },
+        {
+            "step": 5,
+            "story": [
+                "Good, we can't see it in the barn.",
+                "",
+                "Now look around with 'ls -a' to check it actually exists!"
+            ],
+            "start_dir": "~/farm/barn",
+            "end_dir": "~/farm/barn",
+            "commands": ["ls -a"],
+            "hints": [
+                "Use 'ls -a' to look around."
+            ],
+            "next": [38, 6]
+        },
+        {
+            "step": 6,
+            "story": [
+                "It worked! You've successfully created something hidden.",
+                "",
+                "Ruth: \"Did you make something? That's amazing!\"",
+                "\"...unfortunately I can't see it...please can you put me and the animals inside?\"",
+                "",
+                "Move everyone into the '.shelter' one by one."
+            ],
+            "start_dir": "~/farm/barn",
+            "end_dir": "~/farm/barn",
+            "commands": ["mv Trotter .shelter/", "mv Daisy .shelter/", "mv Cobweb .shelter/", "mv Ruth .shelter/"],
+            "hints": [
+                "Use 'mv Trotter .shelter/' to move Trotter into the shelter.",
+                "Move all the animals and Ruth into the .shelter."
+            ],
+            "next": [38, 7]
+        },
+        {
+            "step": 7,
+            "story": [
+                "Go into the '.shelter' along with Ruth and the animals."
+            ],
+            "start_dir": "~/farm/barn",
+            "end_dir": "~/farm/barn/.shelter",
+            "commands": ["cd .shelter"],
+            "hints": [
+                "Type 'cd .shelter' to go into the .shelter."
+            ],
+            "next": [39, 1]
+        }
+    ]
+}

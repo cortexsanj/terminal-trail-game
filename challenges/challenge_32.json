@@ -1,0 +1,122 @@
+{
+  "title": "The Secret Safe",
+  "description": "Discover the secret safe and learn the echo command",
+  "commands_taught": [
+    "ls -a",
+    "cat",
+    "echo"
+  ],
+  "steps": [
+    {
+      "story": [
+        "Look around closely."
+      ],
+      "objective": "Look for hidden items in parents' room",
+      "start_dir": "~/my-house/parents-room",
+      "end_dir": "~/my-house/parents-room",
+      "commands": [
+        "ls -a",
+        "ls -a .",
+        "ls -a ./"
+      ],
+      "hints": [
+        "Use the command 'ls -a' to look around closely."
+      ],
+      "next": [
+        32,
+        2
+      ]
+    },
+    {
+      "story": [
+        "There's a .safe!",
+        "",
+        "Maybe there's something useful in here. Look inside the .safe."
+      ],
+      "objective": "Look inside the safe",
+      "start_dir": "~/my-house/parents-room",
+      "end_dir": "~/my-house/parents-room",
+      "commands": [
+        "ls .safe",
+        "ls .safe/",
+        "ls -a .safe",
+        "ls -a .safe/"
+      ],
+      "hints": [
+        "Look in the .safe using ls.",
+        "Use 'ls .safe' to look into the .safe."
+      ],
+      "next": [
+        32,
+        3
+      ]
+    },
+    {
+      "story": [
+        "So you found your Mum's diary?",
+        "You probably shouldn't read it...",
+        "",
+        "What else is here? Let's examine that map."
+      ],
+      "objective": "Read the map",
+      "start_dir": "~/my-house/parents-room",
+      "end_dir": "~/my-house/parents-room",
+      "commands": [
+        "cat .safe/map"
+      ],
+      "hints": [
+        "Use 'cat' to read the map.",
+        "Use 'cat .safe/map' to read the map."
+      ],
+      "next": [
+        32,
+        4
+      ]
+    },
+    {
+      "story": [
+        "So there's a farm around here?",
+        "Apparently it's not far from our house, just off the windy road...",
+        "",
+        "What is this ECHO note? Examine the ECHO note."
+      ],
+      "objective": "Read the ECHO scroll",
+      "start_dir": "~/my-house/parents-room",
+      "end_dir": "~/my-house/parents-room",
+      "commands": [
+        "cat .safe/ECHO"
+      ],
+      "hints": [
+        "Use the 'cat' command to read the ECHO note.",
+        "Use 'cat .safe/ECHO' to read the note."
+      ],
+      "next": [
+        32,
+        5
+      ]
+    },
+    {
+      "story": [
+        "So the note says \"echo hello - will make you say hello\"",
+        "Let's test this out.",
+        "",
+        "\ud83d\udca1 NEW POWER: 'echo' followed by words lets you speak"
+      ],
+      "objective": "Test the echo command",
+      "start_dir": "~/my-house/parents-room",
+      "end_dir": "~/my-house/parents-room",
+      "commands": [
+        "echo hello",
+        "echo HELLO",
+        "echo Hello"
+      ],
+      "hints": [
+        "Use the command 'echo hello'"
+      ],
+      "next": [
+        33,
+        1
+      ]
+    }
+  ]
+}

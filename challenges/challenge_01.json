@@ -1,0 +1,39 @@
+{
+  "title": "Wake Up Call",
+  "description": "Learn to look around with the ls command",
+  "commands_taught": [
+    "ls"
+  ],
+  "steps": [
+    {
+      "story": [
+        "\ud83d\udd14 Alarm: \"Beep beep beep! Beep beep beep!\"",
+        "",
+        "\ud83d\udcfb Radio: \"Good Morning, this is the 9am news.\"",
+        "\"The town of Folderton has awoken to strange news. There have been",
+        "reports of missing people and damaged buildings across the town, with",
+        "more stories coming in as we speak.\"",
+        "",
+        "\"Mayor Hubert has called an emergency town meeting and we'll keep",
+        "you posted as it happens...\"",
+        "",
+        "It's time to get up sleepy head! \ud83d\ude34",
+        "",
+        "\ud83d\udca1 NEW POWER: Type 'ls' and press Enter to look around."
+      ],
+      "objective": "Type 'ls' and press Enter to look around your bedroom",
+      "start_dir": "~/my-house/my-room",
+      "end_dir": "~/my-house/my-room",
+      "commands": [
+        "ls"
+      ],
+      "hints": [
+        "Type 'ls' and press Enter to take a look around your bedroom."
+      ],
+      "next": [
+        2,
+        1
+      ]
+    }
+  ]
+}

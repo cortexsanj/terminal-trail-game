@@ -1,0 +1,79 @@
+{
+  "title": "More Hidden Treasures",
+  "description": "Discover more hidden items using ls -a",
+  "commands_taught": [
+    "ls -a"
+  ],
+  "steps": [
+    {
+      "story": [
+        "\ud83d\udc69 Edith: \"You saved my little girl and my dog, and now you've saved us from starvation...how can I thank you?\"",
+        "",
+        "\ud83d\udc67 Eleanor: \"Yummy! See, I told you doggy, someone would help us.\"",
+        "",
+        "\ud83d\udc68 Edward: \"Thank you! I knew you would come through for us. You really are a hero!\"",
+        "",
+        "\ud83d\udc15 Dog: \"Woof!\" (The dog seems very excited.)",
+        "",
+        "You get the nagging feeling that you're missing something.",
+        "What was the command that helped you find the hidden shelter?",
+        "",
+        "Use it to have a closer look around."
+      ],
+      "objective": "Look more closely around the shelter",
+      "start_dir": "~/town/.hidden-shelter",
+      "end_dir": "~/town/.hidden-shelter",
+      "commands": [
+        "ls -a"
+      ],
+      "hints": [
+        "Use 'ls -a' to look more closely around you."
+      ],
+      "next": [
+        29,
+        2
+      ]
+    },
+    {
+      "story": [
+        "What's that? There's a .tiny-chest in the corner of the shelter.",
+        "Have a look inside the .tiny-chest."
+      ],
+      "objective": "Look inside the tiny chest",
+      "start_dir": "~/town/.hidden-shelter",
+      "end_dir": "~/town/.hidden-shelter",
+      "commands": [
+        "ls .tiny-chest",
+        "ls .tiny-chest/",
+        "ls -a .tiny-chest",
+        "ls -a .tiny-chest/"
+      ],
+      "hints": [
+        "Use 'ls .tiny-chest' to look inside"
+      ],
+      "next": [
+        29,
+        3
+      ]
+    },
+    {
+      "story": [
+        "You see a special looking scroll with a stamp that says MV.",
+        "Read what it says."
+      ],
+      "objective": "Read the MV scroll",
+      "start_dir": "~/town/.hidden-shelter",
+      "end_dir": "~/town/.hidden-shelter",
+      "commands": [
+        "cat .tiny-chest/MV"
+      ],
+      "hints": [
+        "Use 'cat .tiny-chest/MV' to read the MV parchment"
+      ],
+      "next": [
+        30,
+        1
+      ]
+    }
+  ]
+}

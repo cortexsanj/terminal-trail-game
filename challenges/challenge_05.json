@@ -1,0 +1,81 @@
+{
+  "title": "Moving Around",
+  "description": "Learn to change directories with cd",
+  "commands_taught": [
+    "cd"
+  ],
+  "steps": [
+    {
+      "story": [
+        "That's weird. No time for that now though - let's find Mum. \ud83d\udc69",
+        "",
+        "\ud83d\udca1 NEW POWER: 'cd' lets you move between places.",
+        "",
+        "Use the command 'cd ..' to leave your room.",
+        "The '..' means the place behind you."
+      ],
+      "objective": "Leave your room using 'cd ..'",
+      "start_dir": "~/my-house/my-room",
+      "end_dir": "~/my-house",
+      "commands": [
+        "cd ..",
+        "cd ../",
+        "cd ~/my-house",
+        "cd ~/my-house/"
+      ],
+      "hints": [
+        "Type 'cd ..' to leave your room. The '..' is the room behind you.",
+        "Type 'cd ..' to leave your room."
+      ],
+      "next": [
+        5,
+        2
+      ]
+    },
+    {
+      "story": [
+        "You've left my-room and are in the hall of my-house. \ud83c\udfe0",
+        "",
+        "Look around at the different rooms using 'ls'."
+      ],
+      "objective": "Look around the house",
+      "start_dir": "~/my-house",
+      "end_dir": "~/my-house",
+      "commands": [
+        "ls"
+      ],
+      "hints": [
+        "Type 'ls' and press Enter."
+      ],
+      "next": [
+        5,
+        3
+      ]
+    },
+    {
+      "story": [
+        "\ud83d\udd14 Ding. Dong. \ud83d\udd14",
+        "",
+        "What was that? A bell? That's a bit odd.",
+        "You see the door to your kitchen, and hear the sound of cooking.",
+        "Sounds like someone is preparing breakfast! \ud83c\udf73",
+        "",
+        "To go inside the kitchen, use 'cd kitchen'"
+      ],
+      "objective": "Go to the kitchen",
+      "start_dir": "~/my-house",
+      "end_dir": "~/my-house/kitchen",
+      "commands": [
+        "cd kitchen",
+        "cd kitchen/"
+      ],
+      "hints": [
+        "Type 'cd kitchen' and press Enter."
+      ],
+      "next": [
+        6,
+        1
+      ]
+    }
+  ]
+}

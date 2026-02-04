@@ -1,0 +1,96 @@
+{
+  "title": "The Mystery Deepens",
+  "description": "Watch as more people disappear",
+  "commands_taught": [
+    "ls",
+    "cat"
+  ],
+  "steps": [
+    {
+      "story": [
+        "\ud83d\udc67 Young-girl: \"Wait, there was a little-boy here...right?\"",
+        "\"Every time that bell goes, someone disappears!\"",
+        "",
+        "\ud83d\udc68\u200d\ud83d\udcbc Mayor: \"Maybe they just decided to go home...?\"",
+        "",
+        "\ud83d\udd14 Ding. Dong.",
+        "",
+        "Look around."
+      ],
+      "objective": "Look around to see the next disappearance",
+      "start_dir": "~/town",
+      "end_dir": "~/town",
+      "commands": [
+        "ls"
+      ],
+      "hints": [
+        "Use 'ls' to look around."
+      ],
+      "modifications": [
+        {
+          "action": "remove",
+          "path": "~/town/young-girl"
+        }
+      ],
+      "next": [
+        17,
+        2
+      ]
+    },
+    {
+      "story": [
+        "You are alone with the Mayor.",
+        "",
+        "Listen to what the Mayor has to say."
+      ],
+      "objective": "Talk to the Mayor",
+      "start_dir": "~/town",
+      "end_dir": "~/town",
+      "commands": [
+        "cat Mayor"
+      ],
+      "hints": [
+        "Use 'cat Mayor' to talk to the Mayor."
+      ],
+      "next": [
+        17,
+        3
+      ]
+    },
+    {
+      "story": [
+        "\ud83d\udc68\u200d\ud83d\udcbc Mayor: \"Everyone...has disappeared??\"",
+        "\"....I should head home now...\"",
+        "",
+        "\ud83d\udd14 Ding. Dong.",
+        "",
+        "Look around one more time..."
+      ],
+      "objective": "Look around to see the final disappearance",
+      "start_dir": "~/town",
+      "end_dir": "~/town",
+      "commands": [
+        "ls"
+      ],
+      "hints": [
+        "Use 'ls' to look around."
+      ],
+      "modifications": [
+        {
+          "action": "remove",
+          "path": "~/town/Mayor"
+        },
+        {
+          "action": "add",
+          "path": "~/town/note",
+          "type": "file",
+          "content": "note_town"
+        }
+      ],
+      "next": [
+        18,
+        1
+      ]
+    }
+  ]
+}

@@ -1,0 +1,81 @@
+{
+  "title": "Welcome to Town",
+  "description": "Explore the town and meet the townspeople",
+  "commands_taught": [
+    "ls",
+    "cat"
+  ],
+  "steps": [
+    {
+      "story": [
+        "Welcome to the town of Folderton! \ud83c\udfd8\ufe0f",
+        "",
+        "This is where the strange events from the radio news are happening.",
+        "Have a look around to see what's going on!"
+      ],
+      "objective": "Look around the town",
+      "start_dir": "~/town",
+      "end_dir": "~/town",
+      "commands": [
+        "ls"
+      ],
+      "hints": [
+        "Use 'ls' to look around and see who's in town."
+      ],
+      "next": [
+        13,
+        2
+      ]
+    },
+    {
+      "story": [
+        "Wow, there's so many people here! \ud83d\udc65",
+        "You can see the Mayor, and several townspeople.",
+        "",
+        "Find the Mayor and listen to what he has to say.",
+        "Maybe he knows something about Dad!"
+      ],
+      "objective": "Talk to the Mayor",
+      "start_dir": "~/town",
+      "end_dir": "~/town",
+      "commands": [
+        "cat Mayor"
+      ],
+      "hints": [
+        "Type 'cat Mayor' to listen to the Mayor."
+      ],
+      "next": [
+        13,
+        3
+      ]
+    },
+    {
+      "story": [
+        "\ud83c\udfdb\ufe0f Mayor: \"Calm down please! We have our best people looking into",
+        "the disappearances, and we're hoping to have an explanation soon.\"",
+        "",
+        "Disappearances? That sounds serious! \ud83d\ude1f",
+        "Something strange is definitely happening here.",
+        "",
+        "Better check on the other people to see if they're okay.",
+        "Talk to some of the townspeople to learn more."
+      ],
+      "objective": "Talk to the townspeople (grumpy-man, young-girl, or little-boy)",
+      "start_dir": "~/town",
+      "end_dir": "~/town",
+      "commands": [
+        "cat grumpy-man",
+        "cat young-girl",
+        "cat little-boy"
+      ],
+      "hints": [
+        "Try 'cat grumpy-man', 'cat young-girl', or 'cat little-boy'",
+        "Talk to any of the townspeople to learn what's happening."
+      ],
+      "next": [
+        14,
+        1
+      ]
+    }
+  ]
+}

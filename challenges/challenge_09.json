@@ -1,0 +1,33 @@
+{
+  "title": "Where Am I?",
+  "description": "Learn to check your location with pwd",
+  "commands_taught": [
+    "pwd"
+  ],
+  "steps": [
+    {
+      "story": [
+        "That's concerning! We need to tell Mum about this. \ud83d\ude1f",
+        "",
+        "But first, let's learn a useful command.",
+        "Sometimes you might forget where you are.",
+        "The 'pwd' command shows your current location.",
+        "",
+        "\ud83d\udca1 NEW POWER: 'pwd' shows where you are."
+      ],
+      "objective": "Type 'pwd' to see where you are",
+      "start_dir": "~/my-house/garden/greenhouse",
+      "end_dir": "~/my-house/garden/greenhouse",
+      "commands": [
+        "pwd"
+      ],
+      "hints": [
+        "Type 'pwd' to print your working directory."
+      ],
+      "next": [
+        10,
+        1
+      ]
+    }
+  ]
+}

@@ -1,0 +1,133 @@
+{
+  "title": "Learning to Move Things",
+  "description": "Learn the mv command to move objects around",
+  "commands_taught": [
+    "mv"
+  ],
+  "steps": [
+    {
+      "story": [
+        "\ud83d\udc68 Edward: \"You found us! I told you to keep your voice down, Edith.\"",
+        "",
+        "\ud83d\udc69 Edith: \"Edward, I don't think they mean any harm. Maybe they could help us?\"",
+        "",
+        "\ud83d\udc67 Eleanor: \"My mummy is scared the bell will find us if we go outside.\"",
+        "",
+        "\ud83d\udc15 Dog: \"Woof woof!\"",
+        "",
+        "Edward looks like he has something he wants to say to you.",
+        "",
+        "\ud83d\udc68 Edward: \"Hey! Can you help me?\"",
+        "\"I've been trying to move this apple into the basket.\"",
+        "\"I was told the command 'mv apple basket/' would make it happen,\"",
+        "\"but I can't seem to make it work. Do you have the power to make it happen?\"",
+        "",
+        "\ud83d\udca1 NEW POWER: To move objects, type 'mv' and the object name."
+      ],
+      "objective": "Move the apple into the basket",
+      "start_dir": "~/town/.hidden-shelter",
+      "end_dir": "~/town/.hidden-shelter",
+      "commands": [
+        "mv apple basket",
+        "mv apple basket/"
+      ],
+      "hints": [
+        "Use the command 'mv apple basket/' to move the apple into the basket."
+      ],
+      "next": [
+        23,
+        2
+      ]
+    },
+    {
+      "story": [
+        "Check you've managed to move the apple. Look around in this directory."
+      ],
+      "objective": "Look around to see the apple is gone",
+      "start_dir": "~/town/.hidden-shelter",
+      "end_dir": "~/town/.hidden-shelter",
+      "commands": [
+        "ls",
+        "ls -a"
+      ],
+      "hints": [
+        "Use 'ls' to look around."
+      ],
+      "modifications": [
+        {
+          "action": "remove",
+          "path": "~/town/.hidden-shelter/apple"
+        },
+        {
+          "action": "add",
+          "path": "~/town/.hidden-shelter/basket/apple",
+          "type": "file",
+          "content": "apple"
+        }
+      ],
+      "next": [
+        23,
+        3
+      ]
+    },
+    {
+      "story": [
+        "\u2705 Nice work! The apple isn't in this directory anymore.",
+        "",
+        "Now check the apple is in the basket using 'ls'."
+      ],
+      "objective": "Check the apple is in the basket",
+      "start_dir": "~/town/.hidden-shelter",
+      "end_dir": "~/town/.hidden-shelter",
+      "commands": [
+        "ls basket",
+        "ls basket/",
+        "ls -a basket",
+        "ls -a basket/"
+      ],
+      "hints": [
+        "Use the command 'ls basket/' to look in the basket."
+      ],
+      "next": [
+        23,
+        4
+      ]
+    },
+    {
+      "story": [
+        "\u2705 Excellent, you moved the apple into the basket!",
+        "",
+        "\ud83d\udc68 Edward: \"Wow, you did it!\"",
+        "\"Can you also move the apple from the basket back to here?\"",
+        "",
+        "Move the apple back to your current location using '.' (dot)."
+      ],
+      "objective": "Move the apple back from the basket",
+      "start_dir": "~/town/.hidden-shelter",
+      "end_dir": "~/town/.hidden-shelter",
+      "commands": [
+        "mv basket/apple .",
+        "mv basket/apple ./"
+      ],
+      "hints": [
+        "Use the command 'mv basket/apple ./' to move the apple from the basket to your current position (./)"
+      ],
+      "modifications": [
+        {
+          "action": "remove",
+          "path": "~/town/.hidden-shelter/basket/apple"
+        },
+        {
+          "action": "add",
+          "path": "~/town/.hidden-shelter/apple",
+          "type": "file",
+          "content": "apple"
+        }
+      ],
+      "next": [
+        24,
+        1
+      ]
+    }
+  ]
+}

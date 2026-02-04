@@ -1,0 +1,102 @@
+{
+    "title": "Another locked door",
+    "description": "Meet the Swordmaster's locked door and receive a riddle",
+    "commands_taught": ["ls", "cat", "echo", "cd"],
+    "steps": [
+        {
+            "step": 1,
+            "story": [
+                "You are in a clearing.",
+                "Eleanor: \"Look around. Maybe the Swordmaster is here.\""
+            ],
+            "start_dir": "~/woods/clearing",
+            "end_dir": "~/woods/clearing",
+            "commands": ["ls", "ls -a"],
+            "hints": [
+                "Look around the clearing with 'ls'"
+            ],
+            "next": [50, 2]
+        },
+        {
+            "step": 2,
+            "story": [
+                "There's a house in the clearing.",
+                "Eleanor: \"That must be where the Swordmaster lives!\"",
+                "\"Try to look inside the house, or go inside.\""
+            ],
+            "start_dir": "~/woods/clearing",
+            "end_dir": "~/woods/clearing",
+            "commands": ["ls house", "ls house/", "cd house", "cd house/"],
+            "hints": [
+                "Use 'ls house' to look in the house, or 'cd house' to try to go inside."
+            ],
+            "next": [50, 3]
+        },
+        {
+            "step": 3,
+            "story": [
+                "The house is locked. You can't see inside or enter.",
+                "Eleanor: \"It's locked, just like the private section in the library.\"",
+                "\"Maybe there's a clue somewhere around here.\"",
+                "",
+                "Investigate the area and see if you can find any clues."
+            ],
+            "start_dir": "~/woods/clearing",
+            "end_dir": "~/woods/clearing",
+            "commands": ["cat signpost"],
+            "hints": [
+                "There is a signpost in the clearing. Examine it with 'cat signpost'"
+            ],
+            "next": [50, 4]
+        },
+        {
+            "step": 4,
+            "story": [
+                "The signpost says: 'To speak with the Swordmaster, use: echo knock knock'",
+                "Eleanor: \"Let's try it!\""
+            ],
+            "start_dir": "~/woods/clearing",
+            "end_dir": "~/woods/clearing",
+            "commands": ["echo knock knock"],
+            "hints": [
+                "Use 'echo knock knock' to knock on the door."
+            ],
+            "next": [50, 5]
+        },
+        {
+            "step": 5,
+            "story": [
+                "You hear a deep voice on the other side of the door.",
+                "",
+                "Swordmaster: \"If you have me, you want to share me.\"",
+                "\"If you share me, you haven't got me.\"",
+                "\"What am I?\"",
+                "",
+                "Eleanor: \"That's a riddle! We need to find the answer.\"",
+                "\"The diaries mentioned a cave. Maybe the answer is there?\"",
+                "",
+                "Let's head to the cave in the woods."
+            ],
+            "start_dir": "~/woods/clearing",
+            "end_dir": "~/woods/cave",
+            "commands": ["cd ../cave", "cd ~/woods/cave"],
+            "hints": [
+                "Head to the cave with 'cd ../cave' or 'cd ~/woods/cave'"
+            ],
+            "modifications": [
+                {
+                    "action": "add",
+                    "path": "~/woods/cave",
+                    "type": "directory"
+                },
+                {
+                    "action": "add",
+                    "path": "~/woods/cave/sign",
+                    "type": "file",
+                    "content": "sign_cave"
+                }
+            ],
+            "next": [51, 1]
+        }
+    ]
+}

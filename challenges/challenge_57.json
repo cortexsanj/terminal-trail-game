@@ -1,0 +1,176 @@
+{
+    "title": "Trail of notes",
+    "description": "Follow the mysterious trail of notes",
+    "commands_taught": ["cd", "ls", "cat"],
+    "steps": [
+        {
+            "step": 1,
+            "story": [
+                "Swordmaster: \"...this is very strange.\"",
+                "\"I left the door open. Perhaps someone...or something...\"",
+                "\"sneaked in while we were talking.\"",
+                "\"You may need my help later. Come back if you need guidance.\"",
+                "",
+                "Eleanor: \"That's creepy. Let's leave and look for more clues.\""
+            ],
+            "start_dir": "~/woods/clearing/house",
+            "end_dir": "~/woods/clearing",
+            "commands": ["cd ..", "cd ../"],
+            "hints": [
+                "Leave the house with 'cd ..'"
+            ],
+            "modifications": [
+                {
+                    "action": "add",
+                    "path": "~/woods/clearing/note",
+                    "type": "file",
+                    "content": "note_swordsmaster-clearing"
+                },
+                {
+                    "action": "add",
+                    "path": "~/woods/note",
+                    "type": "file",
+                    "content": "note_woods"
+                },
+                {
+                    "action": "add",
+                    "path": "~/woods/thicket",
+                    "type": "directory"
+                },
+                {
+                    "action": "add",
+                    "path": "~/woods/thicket/Rabbit",
+                    "type": "file",
+                    "content": "Rabbit"
+                },
+                {
+                    "action": "add",
+                    "path": "~/woods/thicket/rabbithole",
+                    "type": "directory"
+                },
+                {
+                    "action": "add",
+                    "path": "~/woods/thicket/note",
+                    "type": "file",
+                    "content": "note_thicket"
+                }
+            ],
+            "next": [57, 2]
+        },
+        {
+            "step": 2,
+            "story": [
+                "You're back in the clearing.",
+                "Eleanor: \"Look around for clues.\""
+            ],
+            "start_dir": "~/woods/clearing",
+            "end_dir": "~/woods/clearing",
+            "commands": ["ls", "ls -a"],
+            "hints": [
+                "Use 'ls' to look around."
+            ],
+            "next": [57, 3]
+        },
+        {
+            "step": 3,
+            "story": [
+                "Another note!",
+                "Eleanor: \"What does this one say?\""
+            ],
+            "start_dir": "~/woods/clearing",
+            "end_dir": "~/woods/clearing",
+            "commands": ["cat note"],
+            "hints": [
+                "Use 'cat note' to read it."
+            ],
+            "next": [57, 4]
+        },
+        {
+            "step": 4,
+            "story": [
+                "The note says to leave the clearing.",
+                "Eleanor: \"Let's go back into the woods.\""
+            ],
+            "start_dir": "~/woods/clearing",
+            "end_dir": "~/woods",
+            "commands": ["cd ..", "cd ../"],
+            "hints": [
+                "Go back to the woods with 'cd ..'"
+            ],
+            "next": [57, 5]
+        },
+        {
+            "step": 5,
+            "story": [
+                "You're back in the woods.",
+                "Eleanor: \"Look around again.\""
+            ],
+            "start_dir": "~/woods",
+            "end_dir": "~/woods",
+            "commands": ["ls", "ls -a"],
+            "hints": [
+                "Use 'ls' to look around."
+            ],
+            "next": [57, 6]
+        },
+        {
+            "step": 6,
+            "story": [
+                "There's another note, and a new area called 'thicket'!",
+                "Eleanor: \"Read the note first.\""
+            ],
+            "start_dir": "~/woods",
+            "end_dir": "~/woods",
+            "commands": ["cat note"],
+            "hints": [
+                "Use 'cat note' to read it."
+            ],
+            "next": [57, 7]
+        },
+        {
+            "step": 7,
+            "story": [
+                "The note points to the thicket.",
+                "Eleanor: \"Let's go into the thicket.\""
+            ],
+            "start_dir": "~/woods",
+            "end_dir": "~/woods/thicket",
+            "commands": ["cd thicket", "cd thicket/"],
+            "hints": [
+                "Use 'cd thicket' to go there."
+            ],
+            "next": [57, 8]
+        },
+        {
+            "step": 8,
+            "story": [
+                "You push through into a dense patch of plants.",
+                "The trees overshadow you.",
+                "Eleanor: \"Look around carefully.\""
+            ],
+            "start_dir": "~/woods/thicket",
+            "end_dir": "~/woods/thicket",
+            "commands": ["ls", "ls -a"],
+            "hints": [
+                "Use 'ls' to look around."
+            ],
+            "next": [57, 9]
+        },
+        {
+            "step": 9,
+            "story": [
+                "You see a Rabbit and a rabbithole!",
+                "",
+                "Eleanor: \"This is getting stranger and stranger.\"",
+                "\"Let's examine the Rabbit and see what it wants.\""
+            ],
+            "start_dir": "~/woods/thicket",
+            "end_dir": "~/woods/thicket",
+            "commands": ["ls", "ls -a"],
+            "hints": [
+                "Use 'ls' to look around."
+            ],
+            "next": [58, 1]
+        }
+    ]
+}

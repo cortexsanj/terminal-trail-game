@@ -1,0 +1,102 @@
+{
+    "title": "Explore the shed-shop",
+    "description": "Investigate Bernard's basement",
+    "commands_taught": ["ls", "cd", "cat"],
+    "steps": [
+        {
+            "step": 1,
+            "story": [
+                "You've arrived back at the shed-shop.",
+                "Eleanor: \"Something feels different here. Look around.\""
+            ],
+            "start_dir": "~/town/east",
+            "end_dir": "~/town/east/shed-shop",
+            "commands": ["cd shed-shop", "cd shed-shop/"],
+            "hints": [
+                "Use 'cd shed-shop' to go into Bernard's shop."
+            ],
+            "next": [48, 2]
+        },
+        {
+            "step": 2,
+            "story": [
+                "You're in the shed-shop. Look around carefully."
+            ],
+            "start_dir": "~/town/east/shed-shop",
+            "end_dir": "~/town/east/shed-shop",
+            "commands": ["ls", "ls -a"],
+            "hints": [
+                "Use 'ls' to look around the shed-shop."
+            ],
+            "next": [48, 3]
+        },
+        {
+            "step": 3,
+            "story": [
+                "Eleanor: \"Huh, I can't see Bernard anywhere. I wonder where he went.\"",
+                "\"Maybe he's in his basement? Let's go down there.\""
+            ],
+            "start_dir": "~/town/east/shed-shop",
+            "end_dir": "~/town/east/shed-shop/basement",
+            "commands": ["cd basement", "cd basement/"],
+            "hints": [
+                "Go into the basement with 'cd basement'"
+            ],
+            "next": [48, 4]
+        },
+        {
+            "step": 4,
+            "story": [
+                "You walked into Bernard's basement.",
+                "It's dark and dusty down here.",
+                "Look around to see what's here."
+            ],
+            "start_dir": "~/town/east/shed-shop/basement",
+            "end_dir": "~/town/east/shed-shop/basement",
+            "commands": ["ls", "ls -a"],
+            "hints": [
+                "Look around with 'ls'"
+            ],
+            "modifications": [
+                {
+                    "action": "add",
+                    "path": "~/town/east/shed-shop/basement",
+                    "type": "directory"
+                },
+                {
+                    "action": "add",
+                    "path": "~/town/east/shed-shop/basement/bernards-diary-1",
+                    "type": "file",
+                    "content": "bernards-diary-1"
+                },
+                {
+                    "action": "add",
+                    "path": "~/town/east/shed-shop/basement/bernards-diary-2",
+                    "type": "file",
+                    "content": "bernards-diary-2"
+                },
+                {
+                    "action": "add",
+                    "path": "~/town/east/shed-shop/basement/photocopier.sh",
+                    "type": "file",
+                    "content": "#!/bin/bash\n# Photocopier script\necho \"Making a copy...\"\necho \"Copy complete!\""
+                }
+            ],
+            "next": [48, 5]
+        },
+        {
+            "step": 5,
+            "story": [
+                "You see what looks like a couple of diaries and a script.",
+                "Eleanor: \"Let's examine them. Maybe they'll tell us where Bernard went.\""
+            ],
+            "start_dir": "~/town/east/shed-shop/basement",
+            "end_dir": "~/town/east/shed-shop/basement",
+            "commands": ["cat bernards-diary-1", "cat bernards-diary-2", "cat photocopier.sh"],
+            "hints": [
+                "Use 'cat' to examine the objects. Try 'cat bernards-diary-1' first."
+            ],
+            "next": [49, 1]
+        }
+    ]
+}

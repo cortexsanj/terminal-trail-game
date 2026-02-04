@@ -1,0 +1,121 @@
+{
+  "title": "Delivering the Food",
+  "description": "Deliver the food-filled basket to the family",
+  "commands_taught": [
+    "mv",
+    "cd"
+  ],
+  "steps": [
+    {
+      "story": [
+        "Now we want to head back to the .hidden-shelter with the basket.",
+        "Move the basket back to ~."
+      ],
+      "objective": "Move the basket back to home",
+      "start_dir": "~/my-house/kitchen",
+      "end_dir": "~/my-house/kitchen",
+      "commands": [
+        "mv basket ~",
+        "mv basket/ ~",
+        "mv basket ~/",
+        "mv basket/ ~/"
+      ],
+      "hints": [
+        "Use the command 'mv basket ~/' to move the basket to the windy road ~"
+      ],
+      "modifications": [
+        {
+          "action": "remove",
+          "path": "~/my-house/kitchen/basket"
+        },
+        {
+          "action": "add",
+          "path": "~/basket",
+          "type": "directory"
+        }
+      ],
+      "next": [
+        27,
+        2
+      ]
+    },
+    {
+      "story": [
+        "Follow the basket by using 'cd'."
+      ],
+      "objective": "Go back to home directory",
+      "start_dir": "~/my-house/kitchen",
+      "end_dir": "~",
+      "commands": [
+        "cd",
+        "cd ~",
+        "cd ~/"
+      ],
+      "hints": [
+        "Use the command 'cd' by itself to move yourself to the road ~"
+      ],
+      "next": [
+        27,
+        3
+      ]
+    },
+    {
+      "story": [
+        "Now get the food-filled basket to the family.",
+        "Move the basket to town/.hidden-shelter."
+      ],
+      "objective": "Move the basket to the hidden shelter",
+      "start_dir": "~",
+      "end_dir": "~",
+      "commands": [
+        "mv basket town/.hidden-shelter",
+        "mv basket/ town/.hidden-shelter",
+        "mv basket town/.hidden-shelter/",
+        "mv basket/ town/.hidden-shelter/",
+        "mv basket ~/town/.hidden-shelter",
+        "mv basket/ ~/town/.hidden-shelter",
+        "mv basket ~/town/.hidden-shelter/",
+        "mv basket/ ~/town/.hidden-shelter/"
+      ],
+      "hints": [
+        "Use 'mv basket town/.hidden-shelter/' to move the basket to the family."
+      ],
+      "modifications": [
+        {
+          "action": "remove",
+          "path": "~/basket"
+        },
+        {
+          "action": "add",
+          "path": "~/town/.hidden-shelter/basket",
+          "type": "directory"
+        }
+      ],
+      "next": [
+        27,
+        4
+      ]
+    },
+    {
+      "story": [
+        "Enter the town/.hidden-shelter using 'cd'."
+      ],
+      "objective": "Go back to the hidden shelter",
+      "start_dir": "~",
+      "end_dir": "~/town/.hidden-shelter",
+      "commands": [
+        "cd town/.hidden-shelter",
+        "cd town/.hidden-shelter/",
+        "cd ~/town/.hidden-shelter",
+        "cd ~/town/.hidden-shelter/"
+      ],
+      "hints": [
+        "Use 'cd town/.hidden-shelter' to be reunited with the family."
+      ],
+      "next": [
+        28,
+        1
+      ]
+    }
+  ]
+}

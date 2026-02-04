@@ -1,0 +1,117 @@
+{
+  "title": "Meeting Ruth",
+  "description": "Have a conversation with Ruth using the echo command",
+  "commands_taught": [
+    "echo"
+  ],
+  "steps": [
+    {
+      "story": [
+        "\ud83d\udc34 Cobweb: \"Neiiigh.\"",
+        "",
+        "\ud83d\udc37 Trotter: \"Oink Oink.\"",
+        "",
+        "\ud83d\udc04 Daisy: \"Mooooooooo.\"",
+        "",
+        "\ud83d\udc69 Ruth: \"Ah! Who are you?!\"",
+        "\"Do I know you? You look familiar...\"",
+        "\"Wait, you're Mum's kid, aren't you!\"",
+        "\"...Yes? Do you have a tongue?\"",
+        "\"Is your name not [your name]?\"",
+        "",
+        "Reply with 'echo yes' or 'echo no'."
+      ],
+      "objective": "Reply to Ruth's question",
+      "start_dir": "~/farm/barn",
+      "end_dir": "~/farm/barn",
+      "commands": [
+        "echo yes",
+        "echo Yes",
+        "echo YES"
+      ],
+      "hints": [
+        "Use 'echo' to reply to her question.",
+        "Reply with yes by using 'echo yes'."
+      ],
+      "next": [
+        35,
+        2
+      ]
+    },
+    {
+      "story": [
+        "\ud83d\udc69 Ruth: \"Ah, I knew it!\"",
+        "\"So you live in that little house outside town?\"",
+        "",
+        "1: \"Yes\"",
+        "2: \"No\"",
+        "3: \"I don't know\"",
+        "",
+        "Use 'echo 1', 'echo 2' or 'echo 3' to reply with either option 1, 2 or 3."
+      ],
+      "objective": "Choose an option to reply",
+      "start_dir": "~/farm/barn",
+      "end_dir": "~/farm/barn",
+      "commands": [
+        "echo 1",
+        "echo 2",
+        "echo 3"
+      ],
+      "hints": [
+        "Use 'echo 1', 'echo 2' or 'echo 3' to reply to Ruth."
+      ],
+      "next": [
+        35,
+        3
+      ]
+    },
+    {
+      "story": [
+        "\ud83d\udc69 Ruth: \"I thought so!\"",
+        "",
+        "\"Did you walk all the way from town? Did you see my husband there?",
+        "He's a pretty grumpy-man, he was travelling to town because of that big meeting with the Mayor.\"",
+        "",
+        "1: \"I'm sorry, he disappeared in front of me.\"",
+        "2: \"I didn't see your husband, but people have been disappearing in town.\"",
+        "3: \"I don't know anything.\"",
+        "",
+        "Respond with one of the following options using the echo command and option number."
+      ],
+      "objective": "Tell Ruth about her husband",
+      "start_dir": "~/farm/barn",
+      "end_dir": "~/farm/barn",
+      "commands": [
+        "echo 1"
+      ],
+      "hints": [
+        "Use 'echo 1', 'echo 2' or 'echo 3' to reply."
+      ],
+      "next": [
+        35,
+        4
+      ]
+    },
+    {
+      "story": [
+        "\ud83d\udc69 Ruth: \"He disappeared in front of you?? Oh no! They've been saying on the radio that people have been going missing...what should I do?\"",
+        "",
+        "1: \"Some people survived by going into hiding.\"",
+        "2: \"I think you should go and look for your husband\""
+      ],
+      "objective": "Give Ruth advice",
+      "start_dir": "~/farm/barn",
+      "end_dir": "~/farm/barn",
+      "commands": [
+        "echo 1"
+      ],
+      "hints": [
+        "Use 'echo 1' or 'echo 2' to reply."
+      ],
+      "next": [
+        36,
+        1
+      ]
+    }
+  ]
+}

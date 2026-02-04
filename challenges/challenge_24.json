@@ -1,0 +1,157 @@
+{
+  "title": "The Great Rescue",
+  "description": "Use mv to rescue Eleanor and the dog who wandered outside",
+  "commands_taught": [
+    "mv",
+    "ls"
+  ],
+  "steps": [
+    {
+      "story": [
+        "\ud83d\udc69 Edith: \"You should stop playing with that, that's the last of our food.\"",
+        "\"Ah! The dog ran outside!\"",
+        "",
+        "\ud83d\udc67 Eleanor: \"Doggy!\"",
+        "",
+        "\ud83d\udc69 Edith: \"No, honey! Don't go outside!\"",
+        "",
+        "Eleanor follows her dog and leaves the .hidden-shelter.",
+        "Look around to check this."
+      ],
+      "objective": "Look around to see Eleanor and dog are gone",
+      "start_dir": "~/town/.hidden-shelter",
+      "end_dir": "~/town/.hidden-shelter",
+      "commands": [
+        "ls",
+        "ls -a"
+      ],
+      "hints": [
+        "Look around using 'ls' to check if Eleanor is here."
+      ],
+      "modifications": [
+        {
+          "action": "remove",
+          "path": "~/town/.hidden-shelter/Eleanor"
+        },
+        {
+          "action": "remove",
+          "path": "~/town/.hidden-shelter/dog"
+        },
+        {
+          "action": "add",
+          "path": "~/town/Eleanor",
+          "type": "file",
+          "content": "Eleanor"
+        },
+        {
+          "action": "add",
+          "path": "~/town/dog",
+          "type": "file",
+          "content": "dog"
+        }
+      ],
+      "next": [
+        24,
+        2
+      ]
+    },
+    {
+      "story": [
+        "\ud83d\udc69 Edith: \"No! Honey, come back!!!\"",
+        "\"You, please, save my little girl!\"",
+        "",
+        "First, look outside for Eleanor with 'ls ../'."
+      ],
+      "objective": "Look outside the shelter for Eleanor",
+      "start_dir": "~/town/.hidden-shelter",
+      "end_dir": "~/town/.hidden-shelter",
+      "commands": [
+        "ls ..",
+        "ls ../",
+        "ls ~/town",
+        "ls ~/town/"
+      ],
+      "hints": [
+        "Look in the town directory by using either 'ls ../' or 'ls ~/town/'"
+      ],
+      "next": [
+        24,
+        3
+      ]
+    },
+    {
+      "story": [
+        "Now move Eleanor from the town outside (..) to your current position (.)."
+      ],
+      "objective": "Rescue Eleanor by moving her back to safety",
+      "start_dir": "~/town/.hidden-shelter",
+      "end_dir": "~/town/.hidden-shelter",
+      "commands": [
+        "mv ../Eleanor .",
+        "mv ../Eleanor ./",
+        "mv ~/town/Eleanor ~/town/.hidden-shelter",
+        "mv ~/town/Eleanor ~/town/.hidden-shelter/",
+        "mv ~/town/Eleanor .",
+        "mv ~/town/Eleanor ./"
+      ],
+      "hints": [
+        "Quick! Use 'mv ../Eleanor ./' to move the little girl back to safety."
+      ],
+      "modifications": [
+        {
+          "action": "remove",
+          "path": "~/town/Eleanor"
+        },
+        {
+          "action": "add",
+          "path": "~/town/.hidden-shelter/Eleanor",
+          "type": "file",
+          "content": "Eleanor"
+        }
+      ],
+      "next": [
+        24,
+        4
+      ]
+    },
+    {
+      "story": [
+        "\ud83d\udc69 Edith: \"Thank you for saving her!\"",
+        "",
+        "\ud83d\udc67 Eleanor: \"Doggy!\"",
+        "",
+        "\ud83d\udc69 Edith: \"Can you save her dog too? I'm worried something will happen to it if it stays outside.\""
+      ],
+      "objective": "Rescue the dog too",
+      "start_dir": "~/town/.hidden-shelter",
+      "end_dir": "~/town/.hidden-shelter",
+      "commands": [
+        "mv ../dog .",
+        "mv ../dog ./",
+        "mv ~/town/dog ~/town/.hidden-shelter",
+        "mv ~/town/dog ~/town/.hidden-shelter/",
+        "mv ~/town/dog .",
+        "mv ~/town/dog ./"
+      ],
+      "hints": [
+        "Use the command 'mv ../dog ./' to rescue the dog."
+      ],
+      "modifications": [
+        {
+          "action": "remove",
+          "path": "~/town/dog"
+        },
+        {
+          "action": "add",
+          "path": "~/town/.hidden-shelter/dog",
+          "type": "file",
+          "content": "dog"
+        }
+      ],
+      "next": [
+        25,
+        1
+      ]
+    }
+  ]
+}

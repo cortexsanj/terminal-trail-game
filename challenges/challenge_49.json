@@ -1,0 +1,108 @@
+{
+    "title": "Follow Ruth's hint",
+    "description": "Journey to the woods to find the Swordmaster",
+    "commands_taught": ["cd", "ls"],
+    "steps": [
+        {
+            "step": 1,
+            "story": [
+                "Eleanor: \"The diaries mention someone called the Swordmaster.\"",
+                "\"Clara said he was in the woods just off the Windy Road.\"",
+                "\"That's our home directory ~. Let's go there now.\""
+            ],
+            "start_dir": "~/town/east/shed-shop/basement",
+            "end_dir": "~",
+            "commands": ["cd", "cd ~", "cd ~/"],
+            "hints": [
+                "Use 'cd' by itself to go back to the Windy Road ~"
+            ],
+            "modifications": [
+                {
+                    "action": "add",
+                    "path": "~/woods",
+                    "type": "directory"
+                },
+                {
+                    "action": "add",
+                    "path": "~/woods/clearing",
+                    "type": "directory"
+                },
+                {
+                    "action": "add",
+                    "path": "~/woods/clearing/house",
+                    "type": "directory",
+                    "permissions": {"r": false, "w": false, "x": false}
+                },
+                {
+                    "action": "add",
+                    "path": "~/woods/clearing/house/Swordmaster",
+                    "type": "file",
+                    "content": "swordmaster"
+                },
+                {
+                    "action": "add",
+                    "path": "~/woods/clearing/signpost",
+                    "type": "file",
+                    "content": "signpost"
+                }
+            ],
+            "next": [49, 2]
+        },
+        {
+            "step": 2,
+            "story": [
+                "You're back at the Windy Road.",
+                "Eleanor: \"Look around to see where the woods are.\""
+            ],
+            "start_dir": "~",
+            "end_dir": "~",
+            "commands": ["ls", "ls -a"],
+            "hints": [
+                "Look around using 'ls'"
+            ],
+            "next": [49, 3]
+        },
+        {
+            "step": 3,
+            "story": [
+                "You see the woods in the distance, a set of dark and mysterious trees.",
+                "Eleanor: \"There they are! Let's go into the woods.\""
+            ],
+            "start_dir": "~",
+            "end_dir": "~/woods",
+            "commands": ["cd woods", "cd woods/"],
+            "hints": [
+                "Use 'cd woods' to go to the woods."
+            ],
+            "next": [49, 4]
+        },
+        {
+            "step": 4,
+            "story": [
+                "You enter the woods. The trees tower above you.",
+                "Look around and see where to go next."
+            ],
+            "start_dir": "~/woods",
+            "end_dir": "~/woods",
+            "commands": ["ls", "ls -a"],
+            "hints": [
+                "Look around using 'ls'"
+            ],
+            "next": [49, 5]
+        },
+        {
+            "step": 5,
+            "story": [
+                "You see a clearing which reminds you of a garden.",
+                "Eleanor: \"Let's go into the clearing.\""
+            ],
+            "start_dir": "~/woods",
+            "end_dir": "~/woods/clearing",
+            "commands": ["cd clearing", "cd clearing/"],
+            "hints": [
+                "Use 'cd clearing' to go into the clearing."
+            ],
+            "next": [50, 1]
+        }
+    ]
+}

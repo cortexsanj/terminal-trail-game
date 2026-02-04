@@ -1,0 +1,94 @@
+{
+    "title": "Go back to the swordmaster's",
+    "description": "Return to answer the Swordmaster's riddle",
+    "commands_taught": ["cd", "echo"],
+    "steps": [
+        {
+            "step": 1,
+            "story": [
+                "The answer is: 'secret'",
+                "",
+                "Eleanor: \"Perfect! Now we can answer the Swordmaster's riddle.\"",
+                "\"Let's go back to the clearing.\""
+            ],
+            "start_dir": "~/woods/cave",
+            "end_dir": "~/woods/clearing",
+            "commands": ["cd ../clearing", "cd ~/woods/clearing"],
+            "hints": [
+                "Go back to the clearing with 'cd ../clearing' or 'cd ~/woods/clearing'"
+            ],
+            "next": [55, 2]
+        },
+        {
+            "step": 2,
+            "story": [
+                "You're back at the Swordmaster's house.",
+                "Eleanor: \"Knock on the door again.\""
+            ],
+            "start_dir": "~/woods/clearing",
+            "end_dir": "~/woods/clearing",
+            "commands": ["echo knock knock"],
+            "hints": [
+                "Use 'echo knock knock' to knock."
+            ],
+            "next": [55, 3]
+        },
+        {
+            "step": 3,
+            "story": [
+                "Swordmaster: \"If you have me, you want to share me.\"",
+                "\"If you share me, you haven't got me.\"",
+                "\"What am I?\"",
+                "",
+                "Eleanor: \"Tell him the answer! Use 'echo secret'\""
+            ],
+            "start_dir": "~/woods/clearing",
+            "end_dir": "~/woods/clearing",
+            "commands": ["echo secret", "echo \"secret\"", "echo 'secret'"],
+            "hints": [
+                "Use 'echo secret' to give the answer."
+            ],
+            "next": [55, 4]
+        },
+        {
+            "step": 4,
+            "story": [
+                "Clunck.",
+                "",
+                "The door unlocks!",
+                "",
+                "Swordmaster: \"Correct. You may enter.\"",
+                "",
+                "Eleanor: \"Let's go inside!\""
+            ],
+            "start_dir": "~/woods/clearing",
+            "end_dir": "~/woods/clearing/house",
+            "commands": ["cd house", "cd house/"],
+            "hints": [
+                "Use 'cd house' to go inside."
+            ],
+            "modifications": [
+                {
+                    "action": "chmod",
+                    "path": "~/woods/clearing/house",
+                    "permissions": {"r": true, "w": true, "x": true}
+                }
+            ],
+            "next": [55, 5]
+        },
+        {
+            "step": 5,
+            "story": [
+                "You enter the Swordmaster's house.",
+                "Eleanor: \"Look around.\""
+            ],
+            "start_dir": "~/woods/clearing/house",
+            "end_dir": "~/woods/clearing/house",
+            "commands": ["ls", "ls -a"],
+            "hints": [
+                "Use 'ls' to look around."
+            ],
+            "next": [56, 1]
+        }
+    ]
+}

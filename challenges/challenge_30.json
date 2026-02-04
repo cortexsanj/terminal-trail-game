@@ -1,0 +1,80 @@
+{
+  "title": "The Hidden Chest",
+  "description": "Discover the hidden chest in your room",
+  "commands_taught": [
+    "cd",
+    "ls -a"
+  ],
+  "steps": [
+    {
+      "story": [
+        "\ud83d\udc68 Edward: \"Hey, that's our .tiny-chest. We use it to keep things safe.\"",
+        "\"That MV command is how I found out about moving objects with 'mv'.\"",
+        "\"It's probably more useful to you, please take it as a thank you for saving us.\"",
+        "",
+        "Maybe you should go back to my-house to look for more hidden items.",
+        "To quickly go back home, use 'cd ~/my-house'."
+      ],
+      "objective": "Go back to your house",
+      "start_dir": "~/town/.hidden-shelter",
+      "end_dir": "~/my-house",
+      "commands": [
+        "cd ~/my-house/",
+        "cd ~/my-house"
+      ],
+      "hints": [
+        "No shortcuts! Use 'cd ~/my-house' to get back to your house in one step."
+      ],
+      "next": [
+        30,
+        2
+      ]
+    },
+    {
+      "story": [
+        "Let's see if we can find anything hidden around here!",
+        "Where do you think any hidden things could be?",
+        "",
+        "Try looking closely in my-room first."
+      ],
+      "objective": "Look for hidden files in your room",
+      "start_dir": "~/my-house",
+      "end_dir": "~/my-house",
+      "commands": [
+        "ls -a my-room",
+        "ls -a my-room/"
+      ],
+      "hints": [
+        "Stuck? Have a look in my-room.",
+        "Use 'ls -a my-room' to look for hidden files in my-room."
+      ],
+      "next": [
+        30,
+        3
+      ]
+    },
+    {
+      "story": [
+        "There is an old antique .chest hidden under your bed, which you don't remember seeing before.",
+        "",
+        "You walk into my-room to have a closer look.",
+        "",
+        "Peer inside the .chest and see what it contains."
+      ],
+      "objective": "Go to your room and look inside the chest",
+      "start_dir": "~/my-house",
+      "end_dir": "~/my-house/my-room",
+      "commands": [
+        "cd my-room",
+        "cd my-room/"
+      ],
+      "hints": [
+        "Use 'cd my-room' to go into your room first"
+      ],
+      "next": [
+        31,
+        1
+      ]
+    }
+  ]
+}

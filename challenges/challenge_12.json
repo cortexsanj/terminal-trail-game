@@ -1,0 +1,78 @@
+{
+  "title": "The Journey to Town",
+  "description": "Learn to navigate to town and explore new areas",
+  "commands_taught": [
+    "cd",
+    "ls"
+  ],
+  "steps": [
+    {
+      "story": [
+        "\ud83d\udc69 Mum: \"You couldn't find him? That's strange, he never leaves home",
+        "without telling me first.\"",
+        "",
+        "\"Maybe he went to that town meeting with the Mayor, the one they were",
+        "talking about on the news. Why don't you go and check? I'll stay here",
+        "in case he comes back.\"",
+        "",
+        "Let's head to town! To leave the house, use 'cd' by itself.",
+        "This will take you to the main road."
+      ],
+      "objective": "Leave the house to start your journey",
+      "start_dir": "~/my-house/kitchen",
+      "end_dir": "~",
+      "commands": [
+        "cd"
+      ],
+      "hints": [
+        "Type 'cd' by itself to start the journey.",
+        "Using 'cd' alone takes you to your home directory (~)."
+      ],
+      "next": [
+        12,
+        2
+      ]
+    },
+    {
+      "story": [
+        "You're out of the house and on the long windy road called Tilde, or ~! \ud83d\udee3\ufe0f",
+        "",
+        "This is the main road that connects all the places in your world.",
+        "Look around to see where you can go next."
+      ],
+      "objective": "Look around the main road",
+      "start_dir": "~",
+      "end_dir": "~",
+      "commands": [
+        "ls"
+      ],
+      "hints": [
+        "Type 'ls' to look around and see what's available."
+      ],
+      "next": [
+        12,
+        3
+      ]
+    },
+    {
+      "story": [
+        "You can see a town in the distance! \ud83c\udfd8\ufe0f",
+        "Let's go there using 'cd town'."
+      ],
+      "objective": "Go to the town",
+      "start_dir": "~",
+      "end_dir": "~/town",
+      "commands": [
+        "cd town",
+        "cd town/"
+      ],
+      "hints": [
+        "Type 'cd town' to walk into town."
+      ],
+      "next": [
+        13,
+        1
+      ]
+    }
+  ]
+}

@@ -1,0 +1,57 @@
+{
+    "title": "Fixing the Script",
+    "description": "Use vi to fix Bernard's broken script",
+    "commands_taught": ["vi", "echo", "./script.sh"],
+    "steps": [
+        {
+            "step": 1,
+            "story": [
+                "You're back in Bernard's shed-shop.",
+                "Eleanor: \"Now we know about vi, let's try to fix that broken script!\"",
+                "",
+                "Use vi to edit the best-horn-in-the-world.sh file."
+            ],
+            "start_dir": "~/town/east/shed-shop",
+            "end_dir": "~/town/east/shed-shop",
+            "commands": ["vi best-horn-in-the-world.sh"],
+            "hints": [
+                "Use 'vi best-horn-in-the-world.sh' to edit the file."
+            ],
+            "next": [44, 2]
+        },
+        {
+            "step": 2,
+            "story": [
+                "Great! The file has been edited and saved.",
+                "You changed 'eco' to 'echo' to fix the script.",
+                "",
+                "Now let's test it by running the fixed script."
+            ],
+            "start_dir": "~/town/east/shed-shop",
+            "end_dir": "~/town/east/shed-shop",
+            "commands": ["./best-horn-in-the-world.sh"],
+            "hints": [
+                "Use './best-horn-in-the-world.sh' to run the fixed script."
+            ],
+            "next": [44, 3]
+        },
+        {
+            "step": 3,
+            "story": [
+                "Honk!",
+                "",
+                "Bernard: \"Excellent! You fixed my script! It works perfectly now.\"",
+                "Eleanor: \"That was amazing! Now let's explore more of the east town.\"",
+                "",
+                "Let's go back to the east town area."
+            ],
+            "start_dir": "~/town/east/shed-shop",
+            "end_dir": "~/town/east",
+            "commands": ["cd .."],
+            "hints": [
+                "Use 'cd ..' to go back to east town."
+            ],
+            "next": [45, 1]
+        }
+    ]
+}

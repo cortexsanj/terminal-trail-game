@@ -1,0 +1,139 @@
+{
+  "title": "Ancient Scrolls",
+  "description": "Explore the hidden chest and discover your parents' secrets",
+  "commands_taught": [
+    "ls",
+    "cat",
+    "cd"
+  ],
+  "steps": [
+    {
+      "story": [
+        "Look inside the .chest to see what it contains."
+      ],
+      "objective": "Look inside the hidden chest",
+      "start_dir": "~/my-house/my-room",
+      "end_dir": "~/my-house/my-room",
+      "commands": [
+        "ls .chest",
+        "ls .chest/",
+        "ls -a .chest",
+        "ls -a .chest/"
+      ],
+      "hints": [
+        "Use 'ls .chest' to look inside the .chest"
+      ],
+      "next": [
+        31,
+        2
+      ]
+    },
+    {
+      "story": [
+        "There are some scrolls, similar to what you found in the .hidden-shelter.",
+        "They could contain more powerful commands.",
+        "",
+        "Use 'cat' to read one of the scrolls."
+      ],
+      "objective": "Read one of the command scrolls",
+      "start_dir": "~/my-house/my-room",
+      "end_dir": "~/my-house/my-room",
+      "commands": [
+        "cat .chest/LS",
+        "cat .chest/CAT",
+        "cat .chest/CD"
+      ],
+      "hints": [
+        "Use 'cat .chest/LS' to read the LS scroll."
+      ],
+      "next": [
+        31,
+        3
+      ]
+    },
+    {
+      "story": [
+        "I wonder if there's anything else hidden in this .chest?",
+        "Have a closer look for some more items."
+      ],
+      "objective": "Look for hidden items in the chest",
+      "start_dir": "~/my-house/my-room",
+      "end_dir": "~/my-house/my-room",
+      "commands": [
+        "ls -a .chest",
+        "ls -a .chest/"
+      ],
+      "hints": [
+        "Use 'ls -a .chest' to see if there are any hidden items in the chest."
+      ],
+      "next": [
+        31,
+        4
+      ]
+    },
+    {
+      "story": [
+        "You suddenly notice a tiny stained .note, scrumpled in the corner of the .chest.",
+        "What does it say?"
+      ],
+      "objective": "Read the hidden note",
+      "start_dir": "~/my-house/my-room",
+      "end_dir": "~/my-house/my-room",
+      "commands": [
+        "cat .chest/.note"
+      ],
+      "hints": [
+        "Use 'cat .chest/.note' to read the .note."
+      ],
+      "next": [
+        31,
+        5
+      ]
+    },
+    {
+      "story": [
+        "You're in your room, standing in front of the .chest containing all the commands you've learned so far.",
+        "",
+        "Maybe something else is hidden in the house?",
+        "",
+        "Look in the hallway behind you. Remember, behind you is '..'."
+      ],
+      "objective": "Look in the hallway",
+      "start_dir": "~/my-house/my-room",
+      "end_dir": "~/my-house/my-room",
+      "commands": [
+        "ls ..",
+        "ls ../"
+      ],
+      "hints": [
+        "Look behind you with 'ls ../'"
+      ],
+      "next": [
+        31,
+        6
+      ]
+    },
+    {
+      "story": [
+        "You see doors to your garden, kitchen, my-room and parents-room.",
+        "We haven't checked out your parents' room properly yet.",
+        "",
+        "Go into your parents-room."
+      ],
+      "objective": "Go to your parents' room",
+      "start_dir": "~/my-house/my-room",
+      "end_dir": "~/my-house/parents-room",
+      "commands": [
+        "cd ../parents-room",
+        "cd ~/my-house/parents-room"
+      ],
+      "hints": [
+        "Use 'cd ../parents-room' to go to your parents' room"
+      ],
+      "next": [
+        32,
+        1
+      ]
+    }
+  ]
+}

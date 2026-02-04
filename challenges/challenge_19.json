@@ -1,0 +1,111 @@
+{
+  "title": "Racing Home",
+  "description": "Rush home to check on Mum",
+  "commands_taught": [
+    "cd"
+  ],
+  "steps": [
+    {
+      "story": [
+        "\ud83d\udcdd The note says: \"There's no time to lose. Run home.\"",
+        "",
+        "Oh no! Check your Mum is alright.",
+        "",
+        "Type 'cd ..' to leave town."
+      ],
+      "objective": "Leave town to head home",
+      "start_dir": "~/town",
+      "end_dir": "~",
+      "commands": [
+        "cd ..",
+        "cd ../",
+        "cd"
+      ],
+      "hints": [
+        "Use 'cd ..' to start heading back home."
+      ],
+      "next": [
+        19,
+        2
+      ]
+    },
+    {
+      "story": [
+        "\ud83d\udd14 Ding. Dong.",
+        "",
+        "Type 'cd my-house/kitchen' to go straight to the kitchen.",
+        "",
+        "\ud83d\udca1 Press TAB to speed up your typing!"
+      ],
+      "objective": "Go directly to the kitchen",
+      "start_dir": "~",
+      "end_dir": "~/my-house/kitchen",
+      "commands": [
+        "cd my-house/kitchen",
+        "cd my-house/kitchen/"
+      ],
+      "hints": [
+        "Use 'cd my-house/kitchen' to go to the kitchen."
+      ],
+      "modifications": [
+        {
+          "action": "remove",
+          "path": "~/my-house/kitchen/Mum"
+        },
+        {
+          "action": "add",
+          "path": "~/my-house/kitchen/note",
+          "type": "file",
+          "content": "note_kitchen"
+        },
+        {
+          "action": "remove",
+          "path": "~/town/note"
+        }
+      ],
+      "next": [
+        19,
+        3
+      ]
+    },
+    {
+      "story": [
+        "Take a look around to make sure everything is OK."
+      ],
+      "objective": "Look around the kitchen",
+      "start_dir": "~/my-house/kitchen",
+      "end_dir": "~/my-house/kitchen",
+      "commands": [
+        "ls"
+      ],
+      "hints": [
+        "Use 'ls' to see that everything is where it should be."
+      ],
+      "next": [
+        19,
+        4
+      ]
+    },
+    {
+      "story": [
+        "Oh no - Mum has vanished too!",
+        "Wait, there's another note.",
+        "",
+        "Use 'cat' to read the note."
+      ],
+      "objective": "Read the second note",
+      "start_dir": "~/my-house/kitchen",
+      "end_dir": "~/my-house/kitchen",
+      "commands": [
+        "cat note"
+      ],
+      "hints": [
+        "Use 'cat note' to read the note."
+      ],
+      "next": [
+        20,
+        1
+      ]
+    }
+  ]
+}

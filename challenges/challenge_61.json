@@ -1,0 +1,139 @@
+{
+    "title": "Into the Rabbithole",
+    "description": "Find and enter the rabbithole",
+    "commands_taught": ["ls", "cd", "chmod"],
+    "steps": [
+        {
+            "step": 1,
+            "story": [
+                "Woah! You destroyed the note.",
+                "",
+                "Eleanor: \"It's time to find that rabbit and put an end to this!\"",
+                "\"Let's go to where we met the rabbit.\""
+            ],
+            "start_dir": "~/town/east/library/private-section",
+            "end_dir": "~/woods/thicket",
+            "commands": ["cd ~/woods/thicket"],
+            "hints": [
+                "Use 'cd ~/woods/thicket' to go to the thicket."
+            ],
+            "next": [61, 2]
+        },
+        {
+            "step": 2,
+            "story": [
+                "You're back at the thicket.",
+                "Eleanor: \"Look around.\""
+            ],
+            "start_dir": "~/woods/thicket",
+            "end_dir": "~/woods/thicket",
+            "commands": ["ls", "ls -a"],
+            "hints": [
+                "Use 'ls' to look around."
+            ],
+            "next": [61, 3]
+        },
+        {
+            "step": 3,
+            "story": [
+                "You are outside the rabbithole. It has a large boulder in front of it.",
+                "Eleanor: \"Try to go inside.\""
+            ],
+            "start_dir": "~/woods/thicket",
+            "end_dir": "~/woods/thicket",
+            "commands": ["cd rabbithole", "cd rabbithole/"],
+            "hints": [
+                "Use 'cd rabbithole' to try to go inside."
+            ],
+            "next": [61, 4]
+        },
+        {
+            "step": 4,
+            "story": [
+                "You cannot get past the boulder.",
+                "The rabbithole is completely inaccessible.",
+                "",
+                "Eleanor: \"Unlock it! Use the same command we used for the private-section.\""
+            ],
+            "start_dir": "~/woods/thicket",
+            "end_dir": "~/woods/thicket/rabbithole",
+            "commands": ["chmod +rwx rabbithole", "chmod +rwx rabbithole/"],
+            "hints": [
+                "Use 'chmod +rwx rabbithole' to unlock it."
+            ],
+            "modifications": [
+                {
+                    "action": "chmod",
+                    "path": "~/woods/thicket/rabbithole",
+                    "permissions": {"r": true, "w": true, "x": true}
+                },
+                {
+                    "action": "add",
+                    "path": "~/woods/thicket/rabbithole/bell",
+                    "type": "file",
+                    "content": "bell"
+                },
+                {
+                    "action": "add",
+                    "path": "~/woods/thicket/rabbithole/Rabbit",
+                    "type": "file",
+                    "content": "Rabbit"
+                },
+                {
+                    "action": "add",
+                    "path": "~/woods/thicket/rabbithole/cage",
+                    "type": "directory",
+                    "permissions": {"r": true, "w": false, "x": true}
+                },
+                {
+                    "action": "add",
+                    "path": "~/woods/thicket/rabbithole/cage/Mum",
+                    "type": "file",
+                    "content": "Mum"
+                },
+                {
+                    "action": "add",
+                    "path": "~/woods/thicket/rabbithole/cage/Dad",
+                    "type": "file",
+                    "content": "Dad"
+                },
+                {
+                    "action": "add",
+                    "path": "~/woods/thicket/rabbithole/cage/Mayor",
+                    "type": "file",
+                    "content": "Mayor"
+                },
+                {
+                    "action": "add",
+                    "path": "~/woods/thicket/rabbithole/cage/Bernard",
+                    "type": "file",
+                    "content": "Bernard"
+                },
+                {
+                    "action": "add",
+                    "path": "~/woods/thicket/rabbithole/cage/Swordmaster",
+                    "type": "file",
+                    "content": "swordmaster-without-sword"
+                },
+                {
+                    "action": "add",
+                    "path": "~/woods/thicket/rabbithole/chest",
+                    "type": "directory"
+                },
+                {
+                    "action": "add",
+                    "path": "~/woods/thicket/rabbithole/chest/scroll",
+                    "type": "file",
+                    "content": "scroll"
+                },
+                {
+                    "action": "add",
+                    "path": "~/woods/thicket/rabbithole/chest/torn-note",
+                    "type": "file",
+                    "content": "torn-note"
+                }
+            ],
+            "next": [62, 1]
+        }
+    ]
+}

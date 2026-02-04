@@ -1,0 +1,52 @@
+{
+  "title": "Building Shelters",
+  "description": "Learn the mkdir command to create directories",
+  "commands_taught": [
+    "mkdir"
+  ],
+  "steps": [
+    {
+      "story": [
+        "\ud83d\udc69 Ruth: \"This says you can make something using the word 'mkdir'?\"",
+        "",
+        "Try making an igloo using 'mkdir igloo'.",
+        "",
+        "\ud83d\udca1 NEW POWER: 'mkdir' followed by a word lets you create a shelter"
+      ],
+      "objective": "Create an igloo shelter",
+      "start_dir": "~/farm/toolshed",
+      "end_dir": "~/farm/toolshed",
+      "commands": [
+        "mkdir igloo"
+      ],
+      "hints": [
+        "Create an igloo structure by using 'mkdir igloo'"
+      ],
+      "next": [
+        37,
+        2
+      ]
+    },
+    {
+      "story": [
+        "Now have a look around and see what's changed."
+      ],
+      "objective": "Look around to see the new igloo",
+      "start_dir": "~/farm/toolshed",
+      "end_dir": "~/farm/toolshed",
+      "commands": [
+        "ls",
+        "ls -a",
+        "ls .",
+        "ls ./"
+      ],
+      "hints": [
+        "Look around using 'ls'."
+      ],
+      "next": [
+        null,
+        null
+      ]
+    }
+  ]
+}

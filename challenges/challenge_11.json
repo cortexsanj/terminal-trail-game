@@ -1,0 +1,28 @@
+{
+  "title": "Breaking the News",
+  "description": "Tell Mum what you discovered about Dad",
+  "commands_taught": [
+    "cat"
+  ],
+  "steps": [
+    {
+      "story": [
+        "Let Mum know about Dad. \ud83d\ude1f",
+        "Talk to her using 'cat Mum'"
+      ],
+      "objective": "Talk to Mum about Dad",
+      "start_dir": "~/my-house/kitchen",
+      "end_dir": "~/my-house/kitchen",
+      "commands": [
+        "cat Mum"
+      ],
+      "hints": [
+        "To talk to your Mum, type 'cat Mum' and press Enter."
+      ],
+      "next": [
+        12,
+        1
+      ]
+    }
+  ]
+}

@@ -1,0 +1,193 @@
+{
+    "title": "Victory!",
+    "description": "Defeat the Rabbit and save Folderton",
+    "commands_taught": ["rm", "sudo", "cd", "ls", "cat"],
+    "steps": [
+        {
+            "step": 1,
+            "story": [
+                "Brilliant! You saved all the villagers!",
+                "",
+                "You are alone with the Rabbit and the bell.",
+                "The Rabbit turns angrily and starts running towards you.",
+                "",
+                "Eleanor: \"Quick! Remove the bell!\""
+            ],
+            "start_dir": "~/woods/thicket/rabbithole",
+            "end_dir": "~/woods/thicket/rabbithole",
+            "commands": ["rm bell"],
+            "hints": [
+                "Use 'rm bell' to remove the bell."
+            ],
+            "modifications": [
+                {
+                    "action": "remove",
+                    "path": "~/woods/thicket/rabbithole/Rabbit"
+                },
+                {
+                    "action": "add",
+                    "path": "~/woods/thicket/rabbithole/Rabbit",
+                    "type": "file",
+                    "content": "Rabbit-cute"
+                }
+            ],
+            "next": [63, 2]
+        },
+        {
+            "step": 2,
+            "story": [
+                "The rabbit stops. The anger behind its eyes fades, replaced with confusion.",
+                "",
+                "The Swordmaster runs into the rabbithole.",
+                "",
+                "Swordmaster: \"You did it! The rabbit is free from the cursed bell!\"",
+                "\"You saved everyone!\"",
+                "\"Have you looked inside the chest the rabbit stole? It's right here.\""
+            ],
+            "start_dir": "~/woods/thicket/rabbithole",
+            "end_dir": "~/woods/thicket/rabbithole",
+            "commands": ["cat chest/scroll"],
+            "hints": [
+                "Use 'cat chest/scroll' to examine the contents."
+            ],
+            "modifications": [
+                {
+                    "action": "add",
+                    "path": "~/woods/thicket/rabbithole/Swordmaster",
+                    "type": "file",
+                    "content": "swordmaster-without-sword"
+                }
+            ],
+            "next": [63, 3]
+        },
+        {
+            "step": 3,
+            "story": [
+                "The scroll describes a powerful command: 'sudo'",
+                "",
+                "NEW POWER: Use 'sudo' to make yourself into a Super User!",
+                "",
+                "Swordmaster: \"Try it out. Use 'sudo ls' to look around.\"",
+                "\"This command gives you the power to do things when all else fails.\""
+            ],
+            "start_dir": "~/woods/thicket/rabbithole",
+            "end_dir": "~/woods/thicket/rabbithole",
+            "commands": ["sudo ls", "sudo ls .", "sudo ls ./"],
+            "hints": [
+                "Use 'sudo ls' to test the new power."
+            ],
+            "next": [63, 4]
+        },
+        {
+            "step": 4,
+            "story": [
+                "Swordmaster: \"Wow, you have some skills!\"",
+                "\"You became a Super User for an instant!\"",
+                "\"Knowing this command gives you tremendous power.\"",
+                "",
+                "\"You should turn into a Super User and remove this chest\"",
+                "\"so it cannot fall into enemy hands again.\"",
+                "\"To delete the whole chest, use: sudo rm -r chest\"",
+                "\"The -r flag is used for directories.\""
+            ],
+            "start_dir": "~/woods/thicket/rabbithole",
+            "end_dir": "~/woods/thicket/rabbithole",
+            "commands": ["sudo rm -r chest", "sudo rm -r chest/"],
+            "hints": [
+                "Use 'sudo rm -r chest' to remove the chest and its contents."
+            ],
+            "next": [63, 5]
+        },
+        {
+            "step": 5,
+            "story": [
+                "Swordmaster: \"Well done!\"",
+                "\"Let's go back to ~/town. Everyone will want to thank you!\""
+            ],
+            "start_dir": "~/woods/thicket/rabbithole",
+            "end_dir": "~/town",
+            "commands": ["cd ~/town"],
+            "hints": [
+                "Use 'cd ~/town' to go back to town."
+            ],
+            "modifications": [
+                {
+                    "action": "add",
+                    "path": "~/town/Ruth",
+                    "type": "file",
+                    "content": "Ruth"
+                },
+                {
+                    "action": "add",
+                    "path": "~/town/Clara",
+                    "type": "file",
+                    "content": "Clara"
+                },
+                {
+                    "action": "add",
+                    "path": "~/town/Eleanor",
+                    "type": "file",
+                    "content": "Eleanor"
+                },
+                {
+                    "action": "add",
+                    "path": "~/town/Rabbit",
+                    "type": "file",
+                    "content": "Rabbit-cute"
+                },
+                {
+                    "action": "add",
+                    "path": "~/town/Swordmaster",
+                    "type": "file",
+                    "content": "swordmaster-without-sword"
+                }
+            ],
+            "next": [63, 6]
+        },
+        {
+            "step": 6,
+            "story": [
+                "The townspeople cheer as you walk into town!",
+                "",
+                "Eleanor: \"Look around at everyone!\""
+            ],
+            "start_dir": "~/town",
+            "end_dir": "~/town",
+            "commands": ["ls", "ls -a"],
+            "hints": [
+                "Use 'ls' to look around."
+            ],
+            "next": [63, 7]
+        },
+        {
+            "step": 7,
+            "story": [
+                "You see your Mum, Dad, and everyone else you met on your adventure!",
+                "They stand around you clapping and cheering.",
+                "",
+                "Mum: \"You saved Folderton! You're a hero!\"",
+                "Dad: \"I'm so proud of you!\"",
+                "Mayor: \"Remember: With great power comes great responsibility.\"",
+                "Eleanor: \"You found my parents! Thank you for everything!\"",
+                "Swordmaster: \"You've done well. Keep training and you'll become even more powerful.\"",
+                "",
+                "Congratulations! You've completed Terminal Trail!",
+                "",
+                "You've learned essential Linux commands:",
+                "ls, cd, cat, pwd, mkdir, echo, mv, rm, vi, chmod, ls -l, sudo",
+                "",
+                "You now have the skills to navigate and control a Linux system.",
+                "Keep practicing and exploring!",
+                "",
+                "Thank you for playing Terminal Trail!"
+            ],
+            "start_dir": "~/town",
+            "end_dir": "~/town",
+            "commands": ["echo \"I completed Terminal Trail!\""],
+            "hints": [
+                "Use echo to celebrate your victory!"
+            ],
+            "next": [null, null]
+        }
+    ]
+}

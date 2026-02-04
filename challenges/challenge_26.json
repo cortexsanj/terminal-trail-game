@@ -1,0 +1,79 @@
+{
+  "title": "Filling the Basket",
+  "description": "Fill the basket with food for the family",
+  "commands_taught": [
+    "mv",
+    "cd"
+  ],
+  "steps": [
+    {
+      "story": [
+        "Now go into my-house/kitchen using 'cd'."
+      ],
+      "objective": "Go to the kitchen",
+      "start_dir": "~",
+      "end_dir": "~/my-house/kitchen",
+      "commands": [
+        "cd my-house/kitchen",
+        "cd my-house/kitchen/",
+        "cd ~/my-house/kitchen",
+        "cd ~/my-house/kitchen/"
+      ],
+      "hints": [
+        "Use 'cd my-house/kitchen' to go to your kitchen."
+      ],
+      "next": [
+        26,
+        2
+      ]
+    },
+    {
+      "story": [
+        "Let's look around to see what food is available in the kitchen."
+      ],
+      "objective": "Look around the kitchen",
+      "start_dir": "~/my-house/kitchen",
+      "end_dir": "~/my-house/kitchen",
+      "commands": [
+        "ls",
+        "ls -a"
+      ],
+      "hints": [
+        "Use 'ls' to have a look around the kitchen."
+      ],
+      "next": [
+        26,
+        3
+      ]
+    },
+    {
+      "story": [
+        "Move three pieces of food into your basket.",
+        "",
+        "You can move multiple items using 'mv item1 item2 item3 basket/'",
+        "For example: mv banana cake milk basket/"
+      ],
+      "objective": "Move 3 food items into the basket",
+      "start_dir": "~/my-house/kitchen",
+      "end_dir": "~/my-house/kitchen",
+      "commands": [
+        "mv banana basket",
+        "mv cake basket",
+        "mv croissant basket",
+        "mv pie basket",
+        "mv grapes basket",
+        "mv milk basket",
+        "mv sandwich basket"
+      ],
+      "hints": [
+        "Move food items like banana, cake, grapes, milk, pie, or sandwich into the basket",
+        "Use 'mv banana basket/' to move the banana",
+        "You need to move at least 3 food items"
+      ],
+      "next": [
+        27,
+        1
+      ]
+    }
+  ]
+}

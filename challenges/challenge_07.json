@@ -1,0 +1,113 @@
+{
+  "title": "Looking for Dad",
+  "description": "Navigate to the garden to find Dad",
+  "commands_taught": [
+    "cd"
+  ],
+  "steps": [
+    {
+      "story": [
+        "\ud83d\udc69 Mum: \"Hi sleepyhead, breakfast is nearly ready. Can you go and grab your Dad?",
+        "I think he's in the garden.\"",
+        "",
+        "Let's look for your Dad in the garden.",
+        "First we need to leave the kitchen using 'cd ..'"
+      ],
+      "objective": "Leave the kitchen",
+      "start_dir": "~/my-house/kitchen",
+      "end_dir": "~/my-house",
+      "commands": [
+        "cd ..",
+        "cd ../"
+      ],
+      "hints": [
+        "To leave the kitchen, type 'cd ..'"
+      ],
+      "next": [
+        7,
+        2
+      ]
+    },
+    {
+      "story": [
+        "You are back in the main hall of your house.",
+        "",
+        "Can you see your garden? Have a look around you."
+      ],
+      "objective": "Look around for the garden",
+      "start_dir": "~/my-house",
+      "end_dir": "~/my-house",
+      "commands": [
+        "ls"
+      ],
+      "hints": [
+        "Type 'ls' to look around you."
+      ],
+      "next": [
+        7,
+        3
+      ]
+    },
+    {
+      "story": [
+        "You see doors to the garden, kitchen, my-room and parents-room.",
+        "Go into your garden. \ud83c\udf3b"
+      ],
+      "objective": "Go to the garden",
+      "start_dir": "~/my-house",
+      "end_dir": "~/my-house/garden",
+      "commands": [
+        "cd garden",
+        "cd garden/"
+      ],
+      "hints": [
+        "Type 'cd garden' to go into the garden."
+      ],
+      "next": [
+        7,
+        4
+      ]
+    },
+    {
+      "story": [
+        "Use 'ls' to look in the garden for your Dad. \ud83d\udc68"
+      ],
+      "objective": "Look for Dad in the garden",
+      "start_dir": "~/my-house/garden",
+      "end_dir": "~/my-house/garden",
+      "commands": [
+        "ls"
+      ],
+      "hints": [
+        "To look for your Dad, type 'ls' and press Enter."
+      ],
+      "next": [
+        7,
+        5
+      ]
+    },
+    {
+      "story": [
+        "The garden looks beautiful at this time of year. \ud83c\udf3a",
+        "Hmmm...but you can't see him anywhere.",
+        "Maybe he's in the greenhouse. \ud83c\udfe0",
+        "",
+        "Go inside the greenhouse."
+      ],
+      "objective": "Go to the greenhouse",
+      "start_dir": "~/my-house/garden",
+      "end_dir": "~/my-house/garden/greenhouse",
+      "commands": [
+        "cd greenhouse",
+        "cd greenhouse/"
+      ],
+      "hints": [
+        "To go to the greenhouse, type 'cd greenhouse'"
+      ],
+      "next": [
+        8,
+        1
+      ]
+    }
+  ]
+}

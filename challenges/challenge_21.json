@@ -1,0 +1,118 @@
+{
+  "title": "The Hidden Shelter",
+  "description": "Discover the secret shelter using ls -a",
+  "commands_taught": [
+    "ls -a",
+    "cd"
+  ],
+  "steps": [
+    {
+      "story": [
+        "There doesn't seem to be anything here but loads of food.",
+        "See if you can find something back in town.",
+        "",
+        "First, use 'cd ..' to leave the kitchen."
+      ],
+      "objective": "Leave the kitchen",
+      "start_dir": "~/my-house/kitchen",
+      "end_dir": "~/my-house",
+      "commands": [
+        "cd ..",
+        "cd ../"
+      ],
+      "hints": [
+        "Use 'cd ..' to leave the kitchen."
+      ],
+      "next": [
+        21,
+        2
+      ]
+    },
+    {
+      "story": [
+        "Now navigate back to town to continue searching.",
+        "Use 'cd ../town' to go to town."
+      ],
+      "objective": "Go back to town",
+      "start_dir": "~/my-house",
+      "end_dir": "~/town",
+      "commands": [
+        "cd ../town",
+        "cd ~/town",
+        "cd ..",
+        "cd town"
+      ],
+      "hints": [
+        "Use 'cd ../town' or 'cd ~/town' to go to town."
+      ],
+      "next": [
+        21,
+        3
+      ]
+    },
+    {
+      "story": [
+        "Use 'ls' to look around."
+      ],
+      "objective": "Look around the empty town",
+      "start_dir": "~/town",
+      "end_dir": "~/town",
+      "commands": [
+        "ls"
+      ],
+      "hints": [
+        "Use 'ls' to have a look around the town."
+      ],
+      "next": [
+        21,
+        4
+      ]
+    },
+    {
+      "story": [
+        "The place appears to be deserted.",
+        "However, you think you hear whispers.",
+        "",
+        "\ud83d\udde3\ufe0f ?: \".....if they use ls -a, they'll see us...\"",
+        "\ud83d\udde3\ufe0f ?: \"..Shhh! ...might hear....\""
+      ],
+      "objective": "Use the mysterious command you overheard",
+      "start_dir": "~/town",
+      "end_dir": "~/town",
+      "commands": [
+        "ls -a"
+      ],
+      "hints": [
+        "You heard whispers referring to 'ls -a', try using it!"
+      ],
+      "next": [
+        21,
+        5
+      ]
+    },
+    {
+      "story": [
+        "You see a .hidden-shelter that you didn't notice before!",
+        "",
+        "\ud83d\udca1 Something that starts with . is normally hidden from view.",
+        "",
+        "It sounds like the whispers are coming from there. Try going in."
+      ],
+      "objective": "Enter the hidden shelter",
+      "start_dir": "~/town",
+      "end_dir": "~/town/.hidden-shelter",
+      "commands": [
+        "cd .hidden-shelter",
+        "cd .hidden-shelter/"
+      ],
+      "hints": [
+        "Try going inside the .hidden-shelter using cd",
+        "Use the command 'cd .hidden-shelter' to go inside."
+      ],
+      "next": [
+        22,
+        1
+      ]
+    }
+  ]
+}

@@ -1,0 +1,104 @@
+{
+    "title": "Set the bird free",
+    "description": "Learn chmod +x and +w to free the bird",
+    "commands_taught": ["chmod", "ls", "cat", "mv"],
+    "steps": [
+        {
+            "step": 1,
+            "story": [
+                "Eleanor: \"The lights are on! Look inside the dark-room again.\""
+            ],
+            "start_dir": "~/woods/cave",
+            "end_dir": "~/woods/cave",
+            "commands": ["ls dark-room", "ls dark-room/"],
+            "hints": [
+                "Use 'ls dark-room' to look inside."
+            ],
+            "next": [52, 2]
+        },
+        {
+            "step": 2,
+            "story": [
+                "You can see a sign in the dark-room now!",
+                "Eleanor: \"Read the sign.\""
+            ],
+            "start_dir": "~/woods/cave",
+            "end_dir": "~/woods/cave",
+            "commands": ["cat dark-room/sign"],
+            "hints": [
+                "Use 'cat dark-room/sign' to read it."
+            ],
+            "next": [52, 3]
+        },
+        {
+            "step": 3,
+            "story": [
+                "The sign says: 'Use chmod +x to EXECUTE (unlock doors and run scripts)'",
+                "",
+                "Eleanor: \"So chmod +x unlocks doors! Let's use it on the locked-room.\"",
+                "",
+                "NEW POWER: Use 'chmod +x locked-room' to unlock the locked-room."
+            ],
+            "start_dir": "~/woods/cave",
+            "end_dir": "~/woods/cave",
+            "commands": ["chmod +x locked-room", "chmod +x locked-room/"],
+            "hints": [
+                "Unlock the locked-room with 'chmod +x locked-room'"
+            ],
+            "next": [52, 4]
+        },
+        {
+            "step": 4,
+            "story": [
+                "The door unlocks with a click!",
+                "Eleanor: \"Now we can examine what's inside. Read the sign in the locked-room.\""
+            ],
+            "start_dir": "~/woods/cave",
+            "end_dir": "~/woods/cave",
+            "commands": ["cat locked-room/sign"],
+            "hints": [
+                "Use 'cat locked-room/sign' to read it."
+            ],
+            "next": [52, 5]
+        },
+        {
+            "step": 5,
+            "story": [
+                "The sign says: 'Use chmod +w to WRITE (unlock cages and edit files)'",
+                "",
+                "Eleanor: \"Perfect! That's what we need to free the bird!\"",
+                "",
+                "NEW POWER: Use 'chmod +w cage' to unlock the cage."
+            ],
+            "start_dir": "~/woods/cave",
+            "end_dir": "~/woods/cave",
+            "commands": ["chmod +w cage", "chmod +w cage/"],
+            "hints": [
+                "Use 'chmod +w cage' to unlock the cage."
+            ],
+            "next": [52, 6]
+        },
+        {
+            "step": 6,
+            "story": [
+                "The cage door swings open!",
+                "Eleanor: \"Quick! Move the bird outside to safety.\""
+            ],
+            "start_dir": "~/woods/cave",
+            "end_dir": "~/woods/cave",
+            "commands": ["mv cage/bird .", "mv cage/bird ./"],
+            "hints": [
+                "Use 'mv cage/bird ./' to move the bird outside."
+            ],
+            "modifications": [
+                {
+                    "action": "add",
+                    "path": "~/woods/cave/cage/scroll",
+                    "type": "file",
+                    "content": "scroll-cage"
+                }
+            ],
+            "next": [53, 1]
+        }
+    ]
+}

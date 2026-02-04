@@ -1,0 +1,135 @@
+{
+    "title": "Learning About Scripts",
+    "description": "Discover scripts and learn how they work",
+    "commands_taught": ["cat", "./script.sh", "ls"],
+    "steps": [
+        {
+            "step": 1,
+            "story": [
+                "Bernard: \"Hello! Shush, don't say a word.\"",
+                "\"I know why you're here. You want a shed!\"",
+                "\"I have just the thing for you. I have the best-shed-maker-in-the-world.sh\"",
+                "",
+                "He seems pretty enthusiastic about it. Examine the tool best-shed-maker-in-the-world.sh",
+                "",
+                "Use TAB to speed up your typing."
+            ],
+            "start_dir": "~/town/east/shed-shop",
+            "end_dir": "~/town/east/shed-shop",
+            "commands": ["cat best-shed-maker-in-the-world.sh"],
+            "hints": [
+                "Use 'cat' to examine the best-shed-maker-in-the-world.sh",
+                "Use 'cat best-shed-maker-in-the-world.sh' to examine the tool."
+            ],
+            "next": [42, 2]
+        },
+        {
+            "step": 2,
+            "story": [
+                "The tool has an inscription that reads \"mkdir shed\".",
+                "You recognise the command 'mkdir'. It's what you used to help Ruth in the farm.",
+                "",
+                "Bernard: \"This tool is called a script. It's incredible. Just run the command, and you get a new shed.\"",
+                "\"Try it out. Use it with ./best-shed-maker-in-the-world.sh\"",
+                "",
+                "Use TAB to speed up your typing."
+            ],
+            "start_dir": "~/town/east/shed-shop",
+            "end_dir": "~/town/east/shed-shop",
+            "commands": ["./best-shed-maker-in-the-world.sh"],
+            "hints": [
+                "Do as Bernard says - use './best-shed-maker-in-the-world.sh' to run his script"
+            ],
+            "next": [42, 3]
+        },
+        {
+            "step": 3,
+            "story": [
+                "Look around to see if it created a shed."
+            ],
+            "start_dir": "~/town/east/shed-shop",
+            "end_dir": "~/town/east/shed-shop",
+            "commands": ["ls", "ls -a"],
+            "hints": [
+                "Use 'ls' to look around."
+            ],
+            "next": [42, 4]
+        },
+        {
+            "step": 4,
+            "story": [
+                "It worked! You can see a new shed in the room.",
+                "",
+                "What happens if you run it again?",
+                "",
+                "Press UP twice to replay the command."
+            ],
+            "start_dir": "~/town/east/shed-shop",
+            "end_dir": "~/town/east/shed-shop",
+            "commands": ["./best-shed-maker-in-the-world.sh"],
+            "hints": [
+                "See what happens when you run the script again.",
+                "Run the script again using './best-shed-maker-in-the-world.sh' to see what happens."
+            ],
+            "next": [42, 5]
+        },
+        {
+            "step": 5,
+            "story": [
+                "You get the error 'mkdir: cannot create directory 'shed': File exists'",
+                "",
+                "Bernard: \"Of course it won't work a second time - you already have a shed!\"",
+                "\"I'm working on the next big thing, best-horn-in-the-world.sh.\"",
+                "\"It can be used to alert anyone that you're coming. I'm having some teething problems, but I'm sure I'll fix them soon.\"",
+                "",
+                "Examine best-horn-in-the-world.sh and see if you can identify the problem.",
+                "",
+                "Remember to use TAB!"
+            ],
+            "start_dir": "~/town/east/shed-shop",
+            "end_dir": "~/town/east/shed-shop",
+            "commands": ["cat best-horn-in-the-world.sh"],
+            "hints": [
+                "Use 'cat' to examine the tool.",
+                "Use 'cat best-horn-in-the-world.sh' to examine the tool."
+            ],
+            "next": [42, 6]
+        },
+        {
+            "step": 6,
+            "story": [
+                "The script reads 'eco \"Honk!\"'",
+                "Maybe it should read 'echo \"Honk!\"' instead...",
+                "How could we make changes to this script?",
+                "",
+                "Bernard: \"Ho ho, you look like you understand the problem.\"",
+                "Eleanor: \"If we need extra help, we can go to the library, it was just outside.\"",
+                "",
+                "Before we go, have a look in the basement."
+            ],
+            "start_dir": "~/town/east/shed-shop",
+            "end_dir": "~/town/east/shed-shop",
+            "commands": ["ls basement", "ls basement/"],
+            "hints": [
+                "Use 'ls' to look through.",
+                "Use 'ls basement/' to look inside."
+            ],
+            "next": [42, 7]
+        },
+        {
+            "step": 7,
+            "story": [
+                "Bernard: \"Oooh naughty, you can't look in there.\"",
+                "",
+                "Let's leave the shed shop and go back to east of town."
+            ],
+            "start_dir": "~/town/east/shed-shop",
+            "end_dir": "~/town/east",
+            "commands": ["cd .."],
+            "hints": [
+                "Leave the shed-shop using 'cd ..'"
+            ],
+            "next": [43, 1]
+        }
+    ]
+}

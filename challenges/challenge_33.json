@@ -1,0 +1,97 @@
+{
+  "title": "Journey to the Farm",
+  "description": "Travel to the farm and explore",
+  "commands_taught": [
+    "cd",
+    "ls"
+  ],
+  "steps": [
+    {
+      "story": [
+        "Woah! You spoke aloud into the empty room!",
+        "",
+        "\u2705 You learnt the new power 'echo'!",
+        "",
+        "This command can probably be used to talk to people.",
+        "",
+        "Now let's head to ~ to find that farm!",
+        "Type 'cd' by itself to go to the Windy Road ~"
+      ],
+      "objective": "Go to the home directory",
+      "start_dir": "~/my-house/parents-room",
+      "end_dir": "~",
+      "commands": [
+        "cd",
+        "cd ~",
+        "cd ~/"
+      ],
+      "hints": [
+        "Use 'cd' by itself to go to ~"
+      ],
+      "next": [
+        33,
+        2
+      ]
+    },
+    {
+      "story": [
+        "You are back on the windy road, which stretches endlessly in both directions.",
+        "Look around."
+      ],
+      "objective": "Look around the windy road",
+      "start_dir": "~",
+      "end_dir": "~",
+      "commands": [
+        "ls",
+        "ls -a"
+      ],
+      "hints": [
+        "Look around with 'ls'."
+      ],
+      "next": [
+        33,
+        3
+      ]
+    },
+    {
+      "story": [
+        "You notice a small remote farm in the distance.",
+        "",
+        "Let's go to the farm."
+      ],
+      "objective": "Go to the farm",
+      "start_dir": "~",
+      "end_dir": "~/farm",
+      "commands": [
+        "cd farm",
+        "cd farm/"
+      ],
+      "hints": [
+        "Use 'cd farm' to head to the farm."
+      ],
+      "next": [
+        33,
+        4
+      ]
+    },
+    {
+      "story": [
+        "You walk up the path to the farm.",
+        "Look around."
+      ],
+      "objective": "Look around the farm",
+      "start_dir": "~/farm",
+      "end_dir": "~/farm",
+      "commands": [
+        "ls"
+      ],
+      "hints": [
+        "Use 'ls' to look around."
+      ],
+      "next": [
+        34,
+        1
+      ]
+    }
+  ]
+}
