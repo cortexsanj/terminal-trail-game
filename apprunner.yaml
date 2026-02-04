@@ -1,12 +1,13 @@
 version: 1.0
 
-runtime: python3
+runtime: python311
 build:
   commands:
     build:
       - pip install --no-cache-dir -r requirements-web.txt
+
 run:
-  runtime-version: 3.12
+  runtime-version: 3.11
   command: python3 web_server.py
   network:
     port: 8000
