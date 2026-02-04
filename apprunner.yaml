@@ -5,19 +5,19 @@ runtime: python311
 build:
   commands:
     build:
-      - echo "=== Installing dependencies ==="
+      - echo "=== Installing dependencies for build ==="
       - python3 -m pip install --upgrade pip
       - python3 -m pip install --no-cache-dir -r requirements-web.txt
-      - echo "=== Verifying installation ==="
-      - python3 -c "import fastapi; print('FastAPI installed successfully')"
-      - python3 -c "import uvicorn; print('Uvicorn installed successfully')"
-      - echo "=== Checking game files ==="
-      - ls -la
-      - test -d challenges && echo "challenges folder found" || echo "challenges folder missing"
-      - test -d assets && echo "assets folder found" || echo "assets folder missing"
-      - echo "=== Build complete ==="
+      - echo "=== Build dependencies installed ==="
 
 run:
+  pre-run:
+    - echo "=== Installing dependencies for runtime ==="
+    - python3 -m pip install --upgrade pip
+    - python3 -m pip install --no-cache-dir -r requirements-web.txt
+    - echo "=== Runtime dependencies installed ==="
+    - echo "=== Verifying FastAPI is available ==="
+    - python3 -c "import fastapi; print('FastAPI available at runtime')"
   command: python3 web_server.py
   network:
     port: 8000
