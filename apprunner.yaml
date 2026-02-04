@@ -4,14 +4,13 @@ runtime: python311
 build:
   commands:
     build:
-      - pip install --no-cache-dir -r requirements-web.txt
+      - python3 -m pip install --upgrade pip
+      - python3 -m pip install --no-cache-dir -r requirements-web.txt
 
 run:
-  runtime-version: 3.11
   command: python3 web_server.py
   network:
     port: 8000
-    env: APP_PORT
   env:
     - name: PORT
       value: "8000"
