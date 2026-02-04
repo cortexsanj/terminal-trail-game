@@ -2,6 +2,14 @@
 
 Run Terminal Trail in your browser with a real terminal interface!
 
+## ⚠️ Important: HTTP Polling Architecture
+
+This web version uses **HTTP polling** instead of WebSockets because **AWS App Runner does not support WebSocket connections** (no sticky session support for stateful protocols).
+
+- **WebSocket version**: Available in `websocket_backup/` folder for future migration to ECS/Fargate
+- **Current version**: Uses HTTP polling (500ms intervals) - works perfectly on App Runner
+- **User experience**: Minimal latency (~0.5s), perfectly fine for a text-based game
+
 ## 🚀 Quick Start (Local)
 
 ### 1. Install Dependencies
@@ -27,18 +35,19 @@ You'll see a terminal interface where you can play Terminal Trail!
 ## 📦 What's Included
 
 ### New Files Created:
-- `web_server.py` - FastAPI server with WebSocket support
+- `web_server.py` - FastAPI server with HTTP polling (App Runner compatible)
 - `requirements-web.txt` - Python dependencies for web version
 - `Dockerfile` - Container configuration for deployment
+- `websocket_backup/` - Original WebSocket implementation (for ECS/Fargate migration)
 - `web_static/` - HTML, CSS, JS files (auto-generated)
   - `index.html` - Main game page
   - `terminal.css` - Terminal styling
-  - `terminal.js` - WebSocket client and terminal logic
+  - `terminal.js` - HTTP polling client and terminal logic
 
 ### How It Works:
 ```
 Browser (Xterm.js)
-    ↓ WebSocket
+    ↓ HTTP Polling (500ms)
 FastAPI Server (web_server.py)
     ↓
 Game Engine (your existing code)
@@ -227,7 +236,7 @@ python3 web_server.py --port 8080
 python3 web_server.py --setup
 ```
 
-**WebSocket connection fails:**
+**Connection issues:**
 - Check firewall settings
 - Ensure port 8000 is accessible
 - Try http://127.0.0.1:8000 instead of localhost
@@ -244,10 +253,9 @@ python3 web_server.py --setup
 - Verify port 8000 is exposed
 - Check application logs
 
-**WebSocket doesn't work:**
-- App Runner supports WebSockets by default
-- Ensure using `wss://` (not `ws://`) in production
-- Check browser console for errors
+**Slow response:**
+- Normal with HTTP polling (500ms intervals)
+- For real-time needs, migrate to ECS/Fargate with WebSocket version
 
 ## 🔄 Updates
 
@@ -266,16 +274,15 @@ python3 web_server.py
 ## 📝 Next Steps
 
 ### Current Status:
-- ✅ Web server running
+- ✅ Web server running with HTTP polling
 - ✅ Terminal interface working
-- ✅ WebSocket communication
-- ⏳ Full game integration (in progress)
+- ✅ App Runner compatible (no WebSocket needed)
+- ✅ Full game integration complete
 
-### To Complete:
-1. Integrate full game engine with async I/O
-2. Add user authentication (optional)
-3. Add progress persistence (database)
-4. Add multiplayer features (optional)
+### Future Migration Options:
+1. **Stay on App Runner**: Current HTTP polling works great
+2. **Migrate to ECS/Fargate**: Use WebSocket version from `websocket_backup/`
+3. **Use API Gateway**: WebSocket API + Lambda for serverless
 
 ### Future Enhancements:
 - User accounts and progress tracking
@@ -294,7 +301,8 @@ The web version is designed to be deployment-ready while keeping the core game l
 - [FastAPI Documentation](https://fastapi.tiangolo.com/)
 - [Xterm.js Documentation](https://xtermjs.org/)
 - [AWS App Runner Documentation](https://docs.aws.amazon.com/apprunner/)
-- [WebSocket Protocol](https://developer.mozilla.org/en-US/docs/Web/API/WebSockets_API)
+- [AWS App Runner WebSocket Limitation](https://github.com/aws/apprunner-roadmap/issues/13)
+- [HTTP Polling vs WebSocket](https://ably.com/topic/websockets-vs-http-polling)
 
 ## 🎮 Play Now!
 

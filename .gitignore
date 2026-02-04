@@ -69,6 +69,9 @@ htmlcov/
 # Documentation (archived)
 Archive/
 
+# WebSocket backup (for future ECS/Fargate migration)
+websocket_backup/
+
 # Temporary files
 *.tmp
 *.bak
