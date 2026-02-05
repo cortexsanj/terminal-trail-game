@@ -8,6 +8,8 @@ import os
 from pathlib import Path
 from typing import Dict, Optional
 
+from level_config import get_level_for_challenge, get_level_progress
+
 
 class ProgressTracker:
     """Tracks and persists game progress"""
@@ -18,9 +20,13 @@ class ProgressTracker:
     
     def save_progress(self, challenge: int, step: int):
         """Save current progress"""
+        level_info = get_level_progress(challenge)
+        
         progress_data = {
             "challenge": challenge,
             "step": step,
+            "level": level_info["level_num"],
+            "level_name": level_info["level_name"],
             "completed_challenges": self._get_completed_challenges(challenge, step)
         }
         

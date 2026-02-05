@@ -12,6 +12,7 @@ from story_manager import StoryManager
 from file_system import GameFileSystem
 from terminal_handler import TerminalHandler
 from progress_tracker import ProgressTracker
+from level_config import get_level_progress
 
 
 class GameEngine:
@@ -174,9 +175,13 @@ class GameEngine:
         """Display the story text for current challenge"""
         story_text = challenge_data.get('story', [])
         
-        # Show chapter and challenge number on same line
+        # Get level information
+        level_info = get_level_progress(self.current_challenge)
+        
+        # Show level, challenge, and chapter on same line
         chapter_name = self._get_chapter_name(self.current_challenge)
-        print(f"📚 {chapter_name} | 🎮 Challenge {self.current_challenge}")
+        print(f"{level_info['level_emoji']} Level {level_info['level_num']}: {level_info['level_name']} | "
+              f"🎮 Challenge {self.current_challenge} ({level_info['challenge_position']}/{level_info['total_challenges']})")
         print("=" * 60)
         print()
         

@@ -23,6 +23,7 @@ try:
     from game_engine import GameEngine
     from terminal_handler import TerminalHandler
     from file_system import GameFileSystem
+    from level_config import get_level_progress
 except ImportError as e:
     print(f"Error importing game components: {e}")
     print(f"Current directory: {os.getcwd()}")
@@ -300,6 +301,9 @@ async def display_story(session: WebGameSession, challenge_data: dict, challenge
     """Display the story text for current challenge"""
     import re
     
+    # Get level information
+    level_info = get_level_progress(challenge_num)
+    
     # Get chapter name
     chapters = {
         (1, 10): "Chapter 1: Home",
@@ -318,7 +322,9 @@ async def display_story(session: WebGameSession, challenge_data: dict, challenge
     
     story_text = challenge_data.get('story', [])
     
-    await session.send_output(f"📚 {chapter_name} | 🎮 Challenge {challenge_num}\n")
+    # Display level and challenge info
+    await session.send_output(f"{level_info['level_emoji']} Level {level_info['level_num']}: {level_info['level_name']} | "
+                             f"🎮 Challenge {challenge_num} ({level_info['challenge_position']}/{level_info['total_challenges']})\n")
     await session.send_output("=" * 60 + "\n\n")
     
     await session.send_output("📖 STORY:\n")
@@ -473,12 +479,27 @@ def create_static_files():
 <body>
     <div class="container">
         <div class="header">
-            <h1>🎮 Terminal Trail</h1>
-            <p>Learn Linux Commands Through Story</p>
+            <div class="header-left">
+                <h1>🎮 Terminal Trail</h1>
+                <p>Learn Linux Commands Through Story</p>
+                <div id="level-indicator" class="level-indicator">
+                    <span id="level-text">Level 1: First Steps</span>
+                </div>
+            </div>
+            <div class="header-right">
+                <div class="tips">
+                    <div class="tips-title">💡 Tips:</div>
+                    <ul>
+                        <li>Type 'help' for available commands</li>
+                        <li>Type 'hint' if you're stuck</li>
+                        <li>Type 'quit' to exit the game</li>
+                    </ul>
+                </div>
+            </div>
         </div>
         <div id="terminal-container"></div>
         <div class="footer">
-            <p>Type commands to play • Press Ctrl+C to interrupt • Type 'quit' to exit</p>
+            <p>Type commands to play • Press Ctrl+C to interrupt</p>
         </div>
     </div>
     <script src="/static/terminal.js"></script>
@@ -515,8 +536,20 @@ body {
 .header {
     background: rgba(0, 0, 0, 0.5);
     padding: 20px;
-    text-align: center;
     border-bottom: 2px solid #00ff00;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 20px;
+}
+
+.header-left {
+    flex: 1;
+    min-width: 0;
+}
+
+.header-right {
+    flex-shrink: 0;
 }
 
 .header h1 {
@@ -529,6 +562,59 @@ body {
 .header p {
     color: #00ff00;
     opacity: 0.8;
+    margin-bottom: 10px;
+}
+
+.level-indicator {
+    margin-top: 10px;
+    padding: 8px 16px;
+    background: rgba(0, 255, 0, 0.1);
+    border: 1px solid #00ff00;
+    border-radius: 5px;
+    display: inline-block;
+}
+
+.level-indicator span {
+    color: #00ff00;
+    font-weight: bold;
+    font-size: 0.95em;
+}
+
+.tips {
+    background: rgba(0, 255, 0, 0.05);
+    border: 1px solid rgba(0, 255, 0, 0.3);
+    border-radius: 5px;
+    padding: 12px 16px;
+    min-width: 280px;
+}
+
+.tips-title {
+    color: #00ff00;
+    font-weight: bold;
+    margin-bottom: 8px;
+    font-size: 0.95em;
+}
+
+.tips ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.tips li {
+    color: #00ff00;
+    opacity: 0.85;
+    font-size: 0.85em;
+    line-height: 1.6;
+    padding-left: 12px;
+    position: relative;
+}
+
+.tips li:before {
+    content: "•";
+    position: absolute;
+    left: 0;
+    color: #00ff00;
 }
 
 #terminal-container {
@@ -587,6 +673,17 @@ body {
     
     .header {
         padding: 15px 10px;
+        flex-direction: column;
+        gap: 15px;
+    }
+    
+    .header-right {
+        width: 100%;
+    }
+    
+    .tips {
+        min-width: 0;
+        width: 100%;
     }
     
     .header h1 {
@@ -595,6 +692,23 @@ body {
     
     .header p {
         font-size: 0.85em;
+    }
+    
+    .level-indicator {
+        padding: 6px 12px;
+        margin-top: 8px;
+    }
+    
+    .level-indicator span {
+        font-size: 0.85em;
+    }
+    
+    .tips-title {
+        font-size: 0.9em;
+    }
+    
+    .tips li {
+        font-size: 0.8em;
     }
     
     #terminal-container {
@@ -622,12 +736,37 @@ body {
         margin: 5px 0;
     }
     
+    .header {
+        padding: 12px 8px;
+    }
+    
     .header h1 {
         font-size: 1.1em;
     }
     
     .header p {
         font-size: 0.75em;
+    }
+    
+    .level-indicator {
+        padding: 5px 10px;
+    }
+    
+    .level-indicator span {
+        font-size: 0.75em;
+    }
+    
+    .tips {
+        padding: 10px 12px;
+    }
+    
+    .tips-title {
+        font-size: 0.85em;
+    }
+    
+    .tips li {
+        font-size: 0.75em;
+        line-height: 1.5;
     }
     
     .xterm {
@@ -697,6 +836,20 @@ let ws = null;
 let currentInput = '';
 let isWaitingForInput = false;
 
+// Function to update level indicator
+function updateLevelIndicator(text) {
+    const levelText = document.getElementById('level-text');
+    if (levelText && text) {
+        // Extract level info from terminal output
+        const levelMatch = text.match(/Level (\\d+): ([^|]+)/);
+        if (levelMatch) {
+            const levelNum = levelMatch[1];
+            const levelName = levelMatch[2].trim();
+            levelText.textContent = `Level ${levelNum}: ${levelName}`;
+        }
+    }
+}
+
 function connect() {
     const protocol = window.location.protocol === 'https:' ? 'wss:' : 'ws:';
     const wsUrl = `${protocol}//${window.location.host}/ws`;
@@ -713,7 +866,10 @@ function connect() {
         const message = JSON.parse(event.data);
         
         if (message.type === 'output') {
-            term.write(message.data.replace(/\\n/g, '\\r\\n'));
+            const output = message.data.replace(/\\n/g, '\\r\\n');
+            term.write(output);
+            // Update level indicator if level info is in the output
+            updateLevelIndicator(message.data);
         } else if (message.type === 'prompt') {
             term.write(message.data);
             isWaitingForInput = true;
