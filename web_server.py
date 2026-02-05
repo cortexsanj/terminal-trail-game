@@ -70,6 +70,7 @@ class WebGameSession:
         self.game_engine = GameEngine(debug=False)
         self.input_queue = asyncio.Queue()
         self.running = True
+        self.client_progress = None  # Store progress from client localStorage
         
     async def send_output(self, text: str):
         """Send text output to browser - convert newlines for terminal"""
@@ -159,6 +160,10 @@ async def websocket_endpoint(websocket: WebSocket):
                 
                 if message["type"] == "input":
                     await session.handle_input(message["data"])
+                elif message["type"] == "load_progress":
+                    # Client sent their saved progress from localStorage
+                    session.client_progress = message.get("data")
+                    logger.info(f"Received progress from client: {session.client_progress}")
                 elif message["type"] == "ping":
                     await websocket.send_json({"type": "pong"})
                     
@@ -196,14 +201,17 @@ async def run_game_session(session: WebGameSession):
         from progress_tracker import ProgressTracker
         
         story_manager = StoryManager(debug=False)
-        progress_tracker = ProgressTracker()
+        progress_tracker = ProgressTracker()  # Only used for getting applied_modifications
         
         # Game state
         current_challenge = 1
         current_step = 1
         
-        # Check for saved progress
-        saved_progress = progress_tracker.load_progress()
+        # Wait a moment for client to send their progress
+        await asyncio.sleep(0.5)
+        
+        # Check for saved progress from client localStorage
+        saved_progress = session.client_progress
         if saved_progress:
             saved_challenge = saved_progress.get('challenge', 1)
             saved_step = saved_progress.get('step', 1)
@@ -221,9 +229,17 @@ async def run_game_session(session: WebGameSession):
                     current_challenge = saved_challenge
                     current_step = saved_step
                     await session.send_output("✅ Resuming from saved progress...\n\n")
+                    
+                    # Reapply modifications from saved progress
+                    applied_mods = saved_progress.get('applied_modifications', [])
+                    if applied_mods:
+                        file_system.apply_challenge_modifications(applied_mods)
                 else:
                     await session.send_output("✅ Starting from the beginning...\n\n")
-                    progress_tracker.reset_progress()
+                    # Send reset message to client
+                    await session.websocket.send_json({
+                        "type": "progress_reset"
+                    })
         
         # Print welcome message
         await session.send_output("=" * 60 + "\n")
@@ -265,8 +281,32 @@ async def run_game_session(session: WebGameSession):
                 success = await run_challenge(session, challenge_data, terminal_handler, file_system)
                 
                 if success:
-                    # Save progress
-                    progress_tracker.save_progress(current_challenge, current_step)
+                    # Save progress to client localStorage
+                    level_info = get_level_progress(current_challenge)
+                    
+                    # Get completed challenges list
+                    completed_challenges = []
+                    for i in range(1, current_challenge):
+                        completed_challenges.append(i)
+                    
+                    # Get applied modifications
+                    applied_modifications = progress_tracker._get_applied_modifications(current_challenge, current_step)
+                    
+                    # Create progress data
+                    progress_data = {
+                        "challenge": current_challenge,
+                        "step": current_step,
+                        "level": level_info["level_num"],
+                        "level_name": level_info["level_name"],
+                        "completed_challenges": completed_challenges,
+                        "applied_modifications": applied_modifications
+                    }
+                    
+                    # Send progress update to client
+                    await session.websocket.send_json({
+                        "type": "progress_update",
+                        "data": progress_data
+                    })
                     
                     # Move to next step/challenge
                     next_challenge, next_step = challenge_data.get('next', (None, None))
@@ -781,6 +821,43 @@ body {
     
     # Create terminal.js
     js_content = """// Terminal Trail - Browser Client
+
+// ===== Progress Management with localStorage =====
+const PROGRESS_KEY = 'terminalTrailProgress';
+
+function saveProgress(progressData) {
+    try {
+        localStorage.setItem(PROGRESS_KEY, JSON.stringify(progressData));
+        console.log('Progress saved to localStorage:', progressData);
+    } catch (e) {
+        console.error('Failed to save progress:', e);
+    }
+}
+
+function loadProgress() {
+    try {
+        const saved = localStorage.getItem(PROGRESS_KEY);
+        if (saved) {
+            const progress = JSON.parse(saved);
+            console.log('Progress loaded from localStorage:', progress);
+            return progress;
+        }
+    } catch (e) {
+        console.error('Failed to load progress:', e);
+    }
+    return null;
+}
+
+function clearProgress() {
+    try {
+        localStorage.removeItem(PROGRESS_KEY);
+        console.log('Progress cleared from localStorage');
+    } catch (e) {
+        console.error('Failed to clear progress:', e);
+    }
+}
+
+// ===== Terminal Setup =====
 // Detect mobile and adjust terminal settings
 const isMobile = window.innerWidth <= 768;
 const fontSize = isMobile ? 12 : 14;
@@ -860,6 +937,16 @@ function connect() {
     
     ws.onopen = () => {
         term.writeln('\\x1b[32m✓ Connected!\\x1b[0m\\r\\n');
+        
+        // Send saved progress to server
+        const savedProgress = loadProgress();
+        if (savedProgress) {
+            ws.send(JSON.stringify({
+                type: 'load_progress',
+                data: savedProgress
+            }));
+            console.log('Sent saved progress to server');
+        }
     };
     
     ws.onmessage = (event) => {
@@ -873,6 +960,14 @@ function connect() {
         } else if (message.type === 'prompt') {
             term.write(message.data);
             isWaitingForInput = true;
+        } else if (message.type === 'progress_update') {
+            // Server sent progress update - save to localStorage
+            saveProgress(message.data);
+            console.log('Progress updated:', message.data);
+        } else if (message.type === 'progress_reset') {
+            // Server reset progress - clear localStorage
+            clearProgress();
+            console.log('Progress reset');
         } else if (message.type === 'pong') {
             // Keep-alive response
         }

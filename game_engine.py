@@ -69,6 +69,13 @@ class GameEngine:
                         self.current_challenge = saved_challenge
                         self.current_step = saved_step
                         print("✅ Resuming from saved progress...\n")
+                        
+                        # Reapply all modifications from previous progress
+                        applied_mods = self.saved_progress.get('applied_modifications', [])
+                        if applied_mods:
+                            if self.debug:
+                                print(f"Reapplying {len(applied_mods)} file system modifications...")
+                            self.file_system.apply_challenge_modifications(applied_mods)
                     else:
                         print("✅ Starting from the beginning...\n")
                         # Reset progress file
@@ -76,6 +83,17 @@ class GameEngine:
                 except (EOFError, KeyboardInterrupt):
                     print("\n✅ Starting from the beginning...\n")
                     self.progress_tracker.reset_progress()
+        
+        # If starting from a specific challenge via command line, apply modifications
+        if challenge is not None and challenge > 1:
+            # Load and apply all modifications up to this challenge
+            from progress_tracker import ProgressTracker
+            temp_tracker = ProgressTracker(debug=self.debug)
+            applied_mods = temp_tracker._get_applied_modifications(challenge, step if step else 1)
+            if applied_mods:
+                if self.debug:
+                    print(f"Applying {len(applied_mods)} file system modifications for challenge {challenge}...")
+                self.file_system.apply_challenge_modifications(applied_mods)
         
         self._print_welcome()
         self._game_loop()
@@ -294,6 +312,12 @@ class GameEngine:
                 if output:
                     print(output)
                 
+                # Check if we've reached the end directory (for navigation challenges)
+                current_dir = self.terminal_handler.get_current_directory()
+                if end_dir != '~' and end_dir == current_dir and user_input.startswith('cd'):
+                    # Navigation challenge completed by reaching destination
+                    return True
+                
                 # Check if command matches requirements
                 if user_input in required_commands and user_input not in completed_commands:
                     completed_commands.append(user_input)
@@ -301,7 +325,6 @@ class GameEngine:
                     # Check if enough commands completed
                     if len(completed_commands) >= required_count:
                         # Also check directory requirement
-                        current_dir = self.terminal_handler.get_current_directory()
                         if end_dir == current_dir or end_dir == '~':
                             return True
                     else:
@@ -313,7 +336,6 @@ class GameEngine:
                 elif user_input in required_commands and user_input in completed_commands:
                     # For single command challenges with alternatives, this is still success
                     if required_count == 1:
-                        current_dir = self.terminal_handler.get_current_directory()
                         if end_dir == current_dir or end_dir == '~':
                             return True
                 

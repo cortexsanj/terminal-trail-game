@@ -17,6 +17,7 @@ class ProgressTracker:
     def __init__(self):
         self.base_dir = Path(__file__).parent
         self.progress_file = self.base_dir / "progress.json"
+        self.debug = False  # Add debug flag
     
     def save_progress(self, challenge: int, step: int):
         """Save current progress"""
@@ -27,7 +28,8 @@ class ProgressTracker:
             "step": step,
             "level": level_info["level_num"],
             "level_name": level_info["level_name"],
-            "completed_challenges": self._get_completed_challenges(challenge, step)
+            "completed_challenges": self._get_completed_challenges(challenge, step),
+            "applied_modifications": self._get_applied_modifications(challenge, step)
         }
         
         try:
@@ -57,6 +59,49 @@ class ProgressTracker:
             completed.append(i)
         
         return completed
+    
+    def _get_applied_modifications(self, current_challenge: int, current_step: int) -> list:
+        """Get list of all modifications that should be applied up to current progress"""
+        import json
+        from pathlib import Path
+        
+        modifications = []
+        challenges_dir = self.base_dir / "challenges"
+        
+        # Go through all completed challenges and current challenge up to current step
+        for challenge_num in range(1, current_challenge + 1):
+            challenge_file = challenges_dir / f"challenge_{challenge_num:02d}.json"
+            
+            if not challenge_file.exists():
+                continue
+            
+            try:
+                with open(challenge_file, 'r') as f:
+                    challenge_data = json.load(f)
+                
+                steps = challenge_data.get('steps', [])
+                
+                # For completed challenges, include all steps
+                # For current challenge, only include completed steps
+                max_step = len(steps) if challenge_num < current_challenge else current_step
+                
+                for step_num in range(1, max_step + 1):
+                    if step_num <= len(steps):
+                        step_data = steps[step_num - 1]
+                        step_mods = step_data.get('modifications', [])
+                        if step_mods:
+                            # Add challenge and step info for tracking
+                            for mod in step_mods:
+                                mod_with_info = mod.copy()
+                                mod_with_info['_challenge'] = challenge_num
+                                mod_with_info['_step'] = step_num
+                                modifications.append(mod_with_info)
+            
+            except Exception as e:
+                if self.debug:
+                    print(f"Warning: Could not load modifications from challenge {challenge_num}: {e}")
+        
+        return modifications
     
     def reset_progress(self):
         """Reset all progress"""

@@ -15,12 +15,11 @@
       "objective": "Go back to town",
       "start_dir": "~/my-house",
       "end_dir": "~/town",
-      "commands": [
-        "cd town",
-        "cd ~/town"
-      ],
+      "commands": [],
       "hints": [
-        "Use 'cd town' to go back to town"
+        "Use 'cd town' to go back to town",
+        "Or use 'cd ~/town' to go directly",
+        "Or use 'cd ..' then 'cd town' step by step"
       ],
       "next": [
         16,
