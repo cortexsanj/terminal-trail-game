@@ -313,3 +313,212 @@ All should complete the challenge!
 
 **Last Updated:** 2026-02-04
 **Game Engine Version:** With automatic destination checking (game_engine.py lines 296-299)
+
+
+---
+
+## Modification Timing Best Practices
+
+### Problem
+Modifications are applied at the START of a step, BEFORE the player executes commands. This causes issues when modifications move files that the player is supposed to move.
+
+### Solution
+Place modifications in the step AFTER the player performs the action, to persist what they did.
+
+### Pattern 1: Single Move Command
+
+**WRONG:**
+```json
+{
+  "step": 1,
+  "objective": "Move apple into basket",
+  "commands": ["mv apple basket"],
+  "modifications": [
+    {"action": "remove", "path": "~/apple"},
+    {"action": "add", "path": "~/basket/apple"}
+  ]
+}
+```
+❌ Modifications move the apple BEFORE player can move it!
+
+**CORRECT:**
+```json
+{
+  "step": 1,
+  "objective": "Move apple into basket",
+  "commands": ["mv apple basket"],
+  "next": [X, 2]
+},
+{
+  "step": 2,
+  "objective": "Check the apple is in basket",
+  "commands": ["ls basket"],
+  "modifications": [
+    {"action": "remove", "path": "~/apple"},
+    {"action": "add", "path": "~/basket/apple"}
+  ],
+  "next": [X, 3]
+}
+```
+✅ Modifications persist what player did in previous step
+
+### Pattern 2: Multi-Step Move Sequence
+
+When an object moves multiple times across steps:
+
+**Example:** Challenge 23 (apple in/out of basket)
+```json
+{
+  "step": 1,
+  "objective": "Move apple into basket",
+  "commands": ["mv apple basket"],
+  "next": [23, 2]
+},
+{
+  "step": 2,
+  "objective": "Check apple is gone",
+  "commands": ["ls"],
+  "modifications": [
+    {"action": "remove", "path": "~/apple"},
+    {"action": "add", "path": "~/basket/apple"}
+  ],
+  "next": [23, 3]
+},
+{
+  "step": 3,
+  "objective": "Check apple is in basket",
+  "commands": ["ls basket"],
+  "modifications": [
+    {"action": "remove", "path": "~/apple"},
+    {"action": "add", "path": "~/basket/apple"}
+  ],
+  "next": [23, 4]
+},
+{
+  "step": 4,
+  "objective": "Move apple back out",
+  "commands": ["mv basket/apple ."],
+  "next": [24, 1]
+}
+```
+
+**Key Points:**
+- Step 2 & 3: Repeat modifications to maintain state
+- Step 4: No modifications (next challenge sets up its own state)
+- Each step's modifications reflect CURRENT state, not future action
+
+### Pattern 3: Cross-Challenge Persistence
+
+When the next challenge needs files in a specific location:
+
+**Example:** Challenge 23 → Challenge 24
+```json
+// Challenge 23, Step 4
+{
+  "objective": "Move apple back",
+  "commands": ["mv basket/apple ."],
+  "next": [24, 1]  // No modifications here
+}
+
+// Challenge 24, Step 1
+{
+  "story": ["Edith: 'Stop playing with that food!'"],
+  "modifications": [
+    {"action": "remove", "path": "~/basket/apple"},
+    {"action": "add", "path": "~/apple"}  // Ensure apple is here
+  ]
+}
+```
+
+### Pattern 4: Multiple Files at Once
+
+When moving multiple files in one step:
+
+**Example:** Challenge 38 (moving animals to shelter)
+```json
+{
+  "step": 6,
+  "commands": ["mv Trotter .shelter/", "mv Daisy .shelter/", "mv Cobweb .shelter/", "mv Ruth .shelter/"],
+  "modifications": [
+    {"action": "remove", "path": "~/farm/barn/Trotter"},
+    {"action": "remove", "path": "~/farm/barn/Daisy"},
+    {"action": "remove", "path": "~/farm/barn/Cobweb"},
+    {"action": "remove", "path": "~/farm/barn/Ruth"},
+    {"action": "add", "path": "~/farm/barn/.shelter/Trotter", "type": "file", "content": "Trotter"},
+    {"action": "add", "path": "~/farm/barn/.shelter/Daisy", "type": "file", "content": "Daisy"},
+    {"action": "add", "path": "~/farm/barn/.shelter/Cobweb", "type": "file", "content": "Cobweb"},
+    {"action": "add", "path": "~/farm/barn/.shelter/Ruth", "type": "file", "content": "Ruth"}
+  ]
+}
+```
+
+**Key Points:**
+- All files must be explicitly listed in modifications
+- Modifications persist ALL moves from that step
+
+### Pattern 5: Wildcard Moves
+
+When using wildcards like `mv cage/* ~/town`:
+- Either add explicit modifications for each file
+- Or ensure next challenge doesn't depend on those files being there
+- Wildcard moves are complex - consider if they're necessary
+
+---
+
+## Fixed Challenges
+
+The following challenges have been updated to follow these patterns:
+- Challenge 23: Apple move sequence
+- Challenge 24: Eleanor and dog rescue
+- Challenge 38: Moving animals to shelter
+
+
+
+---
+
+## Command Alternatives Best Practice
+
+### Problem
+Many challenges list 4-8 command variations (e.g., `"mv basket ~", "mv basket/ ~", "mv basket ~/", "mv basket/ ~/"`) which creates confusion even though the game only requires 1.
+
+### Solution
+**List only 1-2 of the most common command variations.**
+
+### Pattern
+
+**WRONG (too many alternatives):**
+```json
+{
+  "commands": [
+    "mv basket ~",
+    "mv basket/ ~",
+    "mv basket ~/",
+    "mv basket/ ~/",
+    "mv basket ../..",
+    "mv basket/ ../..",
+    "mv basket ../../",
+    "mv basket/ ../../"
+  ]
+}
+```
+
+**CORRECT (1-2 common alternatives):**
+```json
+{
+  "commands": [
+    "mv basket ~",
+    "mv basket ~/"
+  ]
+}
+```
+
+### Game Logic
+- If objective/story contains multi-command patterns ("at least 2", "everyone", "one by one"), game requires multiple commands
+- Otherwise, `required_count = 1` - player only needs to complete ONE command from the list
+- The commands array shows valid alternatives, not a checklist
+
+### Recommendation
+- **Single command**: List 1-2 variations (with/without trailing slash)
+- **Navigation**: List 1-2 common paths (relative vs absolute)
+- **Multi-command**: List all required commands (e.g., "move everyone")
+

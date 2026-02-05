@@ -31,14 +31,7 @@
       "start_dir": "~/town/.hidden-shelter",
       "end_dir": "~/town/.hidden-shelter",
       "commands": [
-        "mv basket ~",
-        "mv basket/ ~",
-        "mv basket ~/",
-        "mv basket/ ~/",
-        "mv basket ../..",
-        "mv basket/ ../..",
-        "mv basket ../../",
-        "mv basket/ ../../"
+        "mv basket ~/"
       ],
       "hints": [
         "Use the command 'mv basket ~/' to move the basket to the windy road ~"
@@ -46,12 +39,23 @@
       "modifications": [
         {
           "action": "remove",
-          "path": "~/town/.hidden-shelter/basket"
+          "path": "~/town/Eleanor"
         },
         {
           "action": "add",
-          "path": "~/basket",
-          "type": "directory"
+          "path": "~/town/.hidden-shelter/Eleanor",
+          "type": "file",
+          "content": "Eleanor"
+        },
+        {
+          "action": "remove",
+          "path": "~/town/dog"
+        },
+        {
+          "action": "add",
+          "path": "~/town/.hidden-shelter/dog",
+          "type": "file",
+          "content": "dog"
         }
       ],
       "next": [
@@ -74,6 +78,17 @@
       "hints": [
         "Use the command 'cd' by itself to move yourself to the road ~"
       ],
+      "modifications": [
+        {
+          "action": "remove",
+          "path": "~/town/.hidden-shelter/basket"
+        },
+        {
+          "action": "add",
+          "path": "~/basket",
+          "type": "directory"
+        }
+      ],
       "next": [
         25,
         3
@@ -92,6 +107,17 @@
       "hints": [
         "Use 'ls' by itself to look around."
       ],
+      "modifications": [
+        {
+          "action": "remove",
+          "path": "~/town/.hidden-shelter/basket"
+        },
+        {
+          "action": "add",
+          "path": "~/basket",
+          "type": "directory"
+        }
+      ],
       "next": [
         25,
         4
@@ -108,27 +134,11 @@
       "end_dir": "~",
       "commands": [
         "mv basket my-house/kitchen",
-        "mv basket/ my-house/kitchen",
         "mv basket my-house/kitchen/",
-        "mv basket/ my-house/kitchen/",
-        "mv basket ~/my-house/kitchen",
-        "mv basket/ ~/my-house/kitchen",
-        "mv basket ~/my-house/kitchen/",
-        "mv basket/ ~/my-house/kitchen/"
+        "mv basket ~/my-house/kitchen"
       ],
       "hints": [
         "Use 'mv basket my-house/kitchen/' to move the basket to your kitchen."
-      ],
-      "modifications": [
-        {
-          "action": "remove",
-          "path": "~/basket"
-        },
-        {
-          "action": "add",
-          "path": "~/my-house/kitchen/basket",
-          "type": "directory"
-        }
       ],
       "next": [
         26,

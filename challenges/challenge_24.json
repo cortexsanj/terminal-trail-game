@@ -31,6 +31,16 @@
       "modifications": [
         {
           "action": "remove",
+          "path": "~/town/.hidden-shelter/basket/apple"
+        },
+        {
+          "action": "add",
+          "path": "~/town/.hidden-shelter/apple",
+          "type": "file",
+          "content": "apple"
+        },
+        {
+          "action": "remove",
           "path": "~/town/.hidden-shelter/Eleanor"
         },
         {
@@ -67,12 +77,32 @@
       "end_dir": "~/town/.hidden-shelter",
       "commands": [
         "ls ..",
-        "ls ../",
-        "ls ~/town",
-        "ls ~/town/"
+        "ls ../"
       ],
       "hints": [
         "Look in the town directory by using either 'ls ../' or 'ls ~/town/'"
+      ],
+      "modifications": [
+        {
+          "action": "remove",
+          "path": "~/town/.hidden-shelter/Eleanor"
+        },
+        {
+          "action": "remove",
+          "path": "~/town/.hidden-shelter/dog"
+        },
+        {
+          "action": "add",
+          "path": "~/town/Eleanor",
+          "type": "file",
+          "content": "Eleanor"
+        },
+        {
+          "action": "add",
+          "path": "~/town/dog",
+          "type": "file",
+          "content": "dog"
+        }
       ],
       "next": [
         24,
@@ -88,26 +118,10 @@
       "end_dir": "~/town/.hidden-shelter",
       "commands": [
         "mv ../Eleanor .",
-        "mv ../Eleanor ./",
-        "mv ~/town/Eleanor ~/town/.hidden-shelter",
-        "mv ~/town/Eleanor ~/town/.hidden-shelter/",
-        "mv ~/town/Eleanor .",
-        "mv ~/town/Eleanor ./"
+        "mv ../Eleanor ./"
       ],
       "hints": [
         "Quick! Use 'mv ../Eleanor ./' to move the little girl back to safety."
-      ],
-      "modifications": [
-        {
-          "action": "remove",
-          "path": "~/town/Eleanor"
-        },
-        {
-          "action": "add",
-          "path": "~/town/.hidden-shelter/Eleanor",
-          "type": "file",
-          "content": "Eleanor"
-        }
       ],
       "next": [
         24,
@@ -127,26 +141,10 @@
       "end_dir": "~/town/.hidden-shelter",
       "commands": [
         "mv ../dog .",
-        "mv ../dog ./",
-        "mv ~/town/dog ~/town/.hidden-shelter",
-        "mv ~/town/dog ~/town/.hidden-shelter/",
-        "mv ~/town/dog .",
-        "mv ~/town/dog ./"
+        "mv ../dog ./"
       ],
       "hints": [
         "Use the command 'mv ../dog ./' to rescue the dog."
-      ],
-      "modifications": [
-        {
-          "action": "remove",
-          "path": "~/town/dog"
-        },
-        {
-          "action": "add",
-          "path": "~/town/.hidden-shelter/dog",
-          "type": "file",
-          "content": "dog"
-        }
       ],
       "next": [
         25,

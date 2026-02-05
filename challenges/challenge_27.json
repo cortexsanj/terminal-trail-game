@@ -16,9 +16,7 @@
       "end_dir": "~/my-house/kitchen",
       "commands": [
         "mv basket ~",
-        "mv basket/ ~",
-        "mv basket ~/",
-        "mv basket/ ~/"
+        "mv basket ~/"
       ],
       "hints": [
         "Use the command 'mv basket ~/' to move the basket to the windy road ~"
@@ -26,11 +24,11 @@
       "modifications": [
         {
           "action": "remove",
-          "path": "~/my-house/kitchen/basket"
+          "path": "~/basket"
         },
         {
           "action": "add",
-          "path": "~/basket",
+          "path": "~/my-house/kitchen/basket",
           "type": "directory"
         }
       ],
@@ -69,27 +67,10 @@
       "end_dir": "~",
       "commands": [
         "mv basket town/.hidden-shelter",
-        "mv basket/ town/.hidden-shelter",
-        "mv basket town/.hidden-shelter/",
-        "mv basket/ town/.hidden-shelter/",
-        "mv basket ~/town/.hidden-shelter",
-        "mv basket/ ~/town/.hidden-shelter",
-        "mv basket ~/town/.hidden-shelter/",
-        "mv basket/ ~/town/.hidden-shelter/"
+        "mv basket town/.hidden-shelter/"
       ],
       "hints": [
         "Use 'mv basket town/.hidden-shelter/' to move the basket to the family."
-      ],
-      "modifications": [
-        {
-          "action": "remove",
-          "path": "~/basket"
-        },
-        {
-          "action": "add",
-          "path": "~/town/.hidden-shelter/basket",
-          "type": "directory"
-        }
       ],
       "next": [
         27,
@@ -111,6 +92,17 @@
       ],
       "hints": [
         "Use 'cd town/.hidden-shelter' to be reunited with the family."
+      ],
+      "modifications": [
+        {
+          "action": "remove",
+          "path": "~/basket"
+        },
+        {
+          "action": "add",
+          "path": "~/town/.hidden-shelter/basket",
+          "type": "directory"
+        }
       ],
       "next": [
         28,

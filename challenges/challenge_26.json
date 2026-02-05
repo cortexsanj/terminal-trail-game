@@ -22,6 +22,17 @@
       "hints": [
         "Use 'cd my-house/kitchen' to go to your kitchen."
       ],
+      "modifications": [
+        {
+          "action": "remove",
+          "path": "~/basket"
+        },
+        {
+          "action": "add",
+          "path": "~/my-house/kitchen/basket",
+          "type": "directory"
+        }
+      ],
       "next": [
         26,
         2

@@ -88,6 +88,18 @@
       "hints": [
         "Use the command 'ls basket/' to look in the basket."
       ],
+      "modifications": [
+        {
+          "action": "remove",
+          "path": "~/town/.hidden-shelter/apple"
+        },
+        {
+          "action": "add",
+          "path": "~/town/.hidden-shelter/basket/apple",
+          "type": "file",
+          "content": "apple"
+        }
+      ],
       "next": [
         23,
         4
@@ -111,18 +123,6 @@
       ],
       "hints": [
         "Use the command 'mv basket/apple ./' to move the apple from the basket to your current position (./)"
-      ],
-      "modifications": [
-        {
-          "action": "remove",
-          "path": "~/town/.hidden-shelter/basket/apple"
-        },
-        {
-          "action": "add",
-          "path": "~/town/.hidden-shelter/apple",
-          "type": "file",
-          "content": "apple"
-        }
       ],
       "next": [
         24,

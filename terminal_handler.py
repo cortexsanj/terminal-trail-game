@@ -52,6 +52,47 @@ class TerminalHandler:
         
         return f"player@terminal:{display_dir}$"
     
+    def _normalize_path(self, path: str, relative_to: str = None) -> str:
+        """Normalize a path, handling . and .. references"""
+        if relative_to is None:
+            relative_to = self.current_dir
+        
+        # Handle absolute paths
+        if path.startswith("~/"):
+            components = path[2:].split("/") if path != "~/" else []
+            base = ["~"]
+        elif path == "~":
+            return "~"
+        elif path.startswith("/"):
+            # Absolute path from root (treat as ~)
+            components = path[1:].split("/") if path != "/" else []
+            base = ["~"]
+        else:
+            # Relative path - start from current directory
+            if relative_to == "~":
+                base = ["~"]
+            else:
+                base = relative_to.split("/")
+            components = path.split("/")
+        
+        # Process components, handling . and ..
+        result = base.copy()
+        for component in components:
+            if component == "" or component == ".":
+                # Skip empty and current directory references
+                continue
+            elif component == "..":
+                # Go up one level (but not above ~)
+                if len(result) > 1:
+                    result.pop()
+            else:
+                result.append(component)
+        
+        # Reconstruct path
+        if len(result) == 1 and result[0] == "~":
+            return "~"
+        return "/".join(result)
+    
     def execute_command(self, command_line: str) -> Tuple[bool, str]:
         """Execute a command and return (success, output)"""
         if not command_line.strip():
@@ -146,25 +187,8 @@ class TerminalHandler:
         if target_dir.endswith("/") and target_dir != "/":
             target_dir = target_dir[:-1]
         
-        # Resolve target directory
-        if target_dir == ".":
-            target_dir = self.current_dir
-        elif target_dir.startswith("./"):
-            # Remove ./ and join with current directory
-            relative_path = target_dir[2:]
-            if self.current_dir == "~":
-                target_dir = "~/" + relative_path
-            else:
-                target_dir = self.current_dir + "/" + relative_path
-        elif not target_dir.startswith("~/"):
-            # Relative path - join with current directory
-            if self.current_dir == "~":
-                target_dir = "~/" + target_dir
-            else:
-                target_dir = self.current_dir + "/" + target_dir
-        
-        # Clean up any double slashes
-        target_dir = target_dir.replace("//", "/")
+        # Normalize the path (handles . and ..)
+        target_dir = self._normalize_path(target_dir)
         
         # Check read permission
         if not self.file_system.has_permission(target_dir, "r"):
@@ -200,56 +224,16 @@ class TerminalHandler:
         
         target_dir = args[0]
         
-        # Handle relative paths
-        if target_dir == "..":
-            # Go up one directory
-            if self.current_dir == "~":
-                return ""  # Can't go above home
-            parts = self.current_dir.split("/")
-            if len(parts) > 1:
-                self.current_dir = "/".join(parts[:-1])
-                if self.current_dir == "":
-                    self.current_dir = "~"
-        elif target_dir.startswith("../"):
-            # Go up and then down
-            if self.current_dir == "~":
-                new_path = "~/" + target_dir[3:]
-            else:
-                parts = self.current_dir.split("/")
-                if len(parts) > 1:
-                    base = "/".join(parts[:-1])
-                    if base == "":
-                        base = "~"
-                    new_path = base + "/" + target_dir[3:]
-                else:
-                    new_path = "~/" + target_dir[3:]
-            
-            # Check if directory exists and has execute permission
-            if not self.file_system.directory_exists(new_path):
-                return f"cd: {target_dir}: No such file or directory"
-            if not self.file_system.has_permission(new_path, "x"):
-                return f"cd: {target_dir}: Permission denied"
-            self.current_dir = new_path
-        elif target_dir.startswith("~/"):
-            # Absolute path from home
-            if not self.file_system.directory_exists(target_dir):
-                return f"cd: {target_dir}: No such file or directory"
-            if not self.file_system.has_permission(target_dir, "x"):
-                return f"cd: {target_dir}: Permission denied"
-            self.current_dir = target_dir
-        else:
-            # Relative path
-            if self.current_dir == "~":
-                new_path = "~/" + target_dir
-            else:
-                new_path = self.current_dir + "/" + target_dir
-            
-            if not self.file_system.directory_exists(new_path):
-                return f"cd: {target_dir}: No such file or directory"
-            if not self.file_system.has_permission(new_path, "x"):
-                return f"cd: {target_dir}: Permission denied"
-            self.current_dir = new_path
+        # Normalize the path (handles . and ..)
+        new_path = self._normalize_path(target_dir)
         
+        # Check if directory exists and has execute permission
+        if not self.file_system.directory_exists(new_path):
+            return f"cd: {target_dir}: No such file or directory"
+        if not self.file_system.has_permission(new_path, "x"):
+            return f"cd: {target_dir}: Permission denied"
+        
+        self.current_dir = new_path
         return ""
     
     def _cmd_cat(self, args: List[str], output_file: str = None) -> str:
@@ -350,13 +334,7 @@ class TerminalHandler:
             # Get the directory part
             if '/' in source:
                 dir_part = source.rsplit('/', 1)[0]
-                if not dir_part.startswith("~/"):
-                    if self.current_dir == "~":
-                        dir_path = "~/" + dir_part
-                    else:
-                        dir_path = self.current_dir + "/" + dir_part
-                else:
-                    dir_path = dir_part
+                dir_path = self._normalize_path(dir_part)
             else:
                 dir_path = self.current_dir
             
@@ -367,30 +345,17 @@ class TerminalHandler:
             
             # Move each item
             for item in items:
-                item_path = dir_path + "/" + item
-                success = self.file_system.move_file(item_path, dest)
+                item_path = dir_path + "/" + item if dir_path != "~" else "~/" + item
+                dest_path = self._normalize_path(dest)
+                success = self.file_system.move_file(item_path, dest_path)
                 if not success:
                     return f"mv: cannot move '{item}' to '{dest}'"
             
             return ""
         
-        # Resolve source path
-        if not source.startswith("~/"):
-            if self.current_dir == "~":
-                source_path = "~/" + source
-            else:
-                source_path = self.current_dir + "/" + source
-        else:
-            source_path = source
-        
-        # Resolve destination path
-        if not dest.startswith("~/"):
-            if self.current_dir == "~":
-                dest_path = "~/" + dest
-            else:
-                dest_path = self.current_dir + "/" + dest
-        else:
-            dest_path = dest
+        # Normalize source and destination paths (handles . and ..)
+        source_path = self._normalize_path(source)
+        dest_path = self._normalize_path(dest)
         
         # Move file
         success = self.file_system.move_file(source_path, dest_path)

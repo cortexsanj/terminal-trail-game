@@ -14,10 +14,10 @@ from level_config import get_level_for_challenge, get_level_progress
 class ProgressTracker:
     """Tracks and persists game progress"""
     
-    def __init__(self):
+    def __init__(self, debug=False):
         self.base_dir = Path(__file__).parent
         self.progress_file = self.base_dir / "progress.json"
-        self.debug = False  # Add debug flag
+        self.debug = debug
     
     def save_progress(self, challenge: int, step: int):
         """Save current progress"""

@@ -5,6 +5,7 @@ Core game loop and challenge management
 
 import os
 import sys
+import readline
 from pathlib import Path
 from typing import Optional, Tuple
 
@@ -13,6 +14,54 @@ from file_system import GameFileSystem
 from terminal_handler import TerminalHandler
 from progress_tracker import ProgressTracker
 from level_config import get_level_progress
+
+
+class FileCompleter:
+    """TAB completion for file and directory names"""
+    
+    def __init__(self, file_system, terminal_handler):
+        self.file_system = file_system
+        self.terminal_handler = terminal_handler
+        self.matches = []
+    
+    def complete(self, text, state):
+        """Return the next possible completion for 'text'"""
+        if state == 0:
+            # First call - generate matches
+            # Get the full line to understand context
+            line = readline.get_line_buffer()
+            # Get just the word being completed
+            self.matches = self._get_matches(text, line)
+        
+        try:
+            return self.matches[state]
+        except IndexError:
+            return None
+    
+    def _get_matches(self, text, line):
+        """Get all possible completions for text"""
+        # Get current directory
+        current_dir = self.terminal_handler.get_current_directory()
+        
+        # Get items in current directory
+        items = self.file_system.list_directory(current_dir, show_hidden=True)
+        if not items:
+            return []
+        
+        # Filter items that start with text
+        matches = [item for item in items if item.startswith(text)]
+        
+        # Add trailing slash for directories
+        result = []
+        for match in matches:
+            item_path = current_dir + "/" + match if current_dir != "~" else "~/" + match
+            node = self.file_system._get_node(item_path)
+            if node and node.get("type") == "directory":
+                result.append(match + "/")
+            else:
+                result.append(match)
+        
+        return result
 
 
 class GameEngine:
@@ -40,6 +89,21 @@ class GameEngine:
         self.file_system = GameFileSystem(debug=debug)
         self.terminal_handler = TerminalHandler(self.file_system, debug=debug)
         self.progress_tracker = ProgressTracker()
+        
+        # Setup TAB completion
+        self.completer = FileCompleter(self.file_system, self.terminal_handler)
+        readline.set_completer(self.completer.complete)
+        
+        # Set word delimiters (space is the main delimiter for commands)
+        readline.set_completer_delims(' \t\n')
+        
+        # Configure TAB completion for both GNU readline and libedit (macOS)
+        if 'libedit' in readline.__doc__:
+            # macOS uses libedit
+            readline.parse_and_bind("bind ^I rl_complete")
+        else:
+            # Linux uses GNU readline
+            readline.parse_and_bind("tab: complete")
         
         # Load saved progress (but don't apply it yet)
         self.saved_progress = self.progress_tracker.load_progress()

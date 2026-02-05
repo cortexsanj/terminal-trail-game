@@ -133,6 +133,66 @@ async def health_check():
     return {"status": "healthy", "service": "terminal-trail"}
 
 
+async def handle_autocomplete(session: WebGameSession, partial: str) -> str:
+    """Handle TAB autocomplete for file/directory names"""
+    if not partial:
+        return None
+    
+    # Parse the partial command
+    parts = partial.split()
+    if not parts:
+        return None
+    
+    # Get the last part (what we're trying to complete)
+    to_complete = parts[-1] if parts else ""
+    
+    # Get current directory from terminal handler
+    terminal_handler = session.game_engine.terminal_handler
+    current_dir = terminal_handler.get_current_directory()
+    
+    # Get list of items in current directory
+    file_system = session.game_engine.file_system
+    items = file_system.list_directory(current_dir, show_hidden=True)
+    
+    if not items:
+        return None
+    
+    # Find matches
+    matches = [item for item in items if item.startswith(to_complete)]
+    
+    if len(matches) == 1:
+        # Single match - complete it
+        completed = matches[0]
+        # Check if it's a directory and add trailing slash
+        item_path = current_dir + "/" + completed if current_dir != "~" else "~/" + completed
+        node = file_system._get_node(item_path)
+        if node and node.get("type") == "directory":
+            completed += "/"
+        
+        # Rebuild the command with the completion
+        if len(parts) > 1:
+            return " ".join(parts[:-1]) + " " + completed
+        else:
+            return completed
+    elif len(matches) > 1:
+        # Multiple matches - find common prefix
+        common = matches[0]
+        for match in matches[1:]:
+            while not match.startswith(common):
+                common = common[:-1]
+                if not common:
+                    break
+        
+        if common and len(common) > len(to_complete):
+            # Complete to common prefix
+            if len(parts) > 1:
+                return " ".join(parts[:-1]) + " " + common
+            else:
+                return common
+    
+    return None
+
+
 @app.websocket("/ws")
 async def websocket_endpoint(websocket: WebSocket):
     """WebSocket endpoint for game communication"""
@@ -164,6 +224,15 @@ async def websocket_endpoint(websocket: WebSocket):
                     # Client sent their saved progress from localStorage
                     session.client_progress = message.get("data")
                     logger.info(f"Received progress from client: {session.client_progress}")
+                elif message["type"] == "autocomplete":
+                    # Handle TAB autocomplete
+                    partial = message.get("data", "")
+                    completion = await handle_autocomplete(session, partial)
+                    if completion:
+                        await websocket.send_json({
+                            "type": "autocomplete",
+                            "data": completion
+                        })
                 elif message["type"] == "ping":
                     await websocket.send_json({"type": "pong"})
                     
@@ -960,6 +1029,18 @@ function connect() {
         } else if (message.type === 'prompt') {
             term.write(message.data);
             isWaitingForInput = true;
+        } else if (message.type === 'autocomplete') {
+            // Server sent autocomplete suggestion
+            const completion = message.data;
+            if (completion && completion.length > currentInput.length) {
+                // Clear current input from terminal
+                for (let i = 0; i < currentInput.length; i++) {
+                    term.write('\\b \\b');
+                }
+                // Write completed text
+                currentInput = completion;
+                term.write(completion);
+            }
         } else if (message.type === 'progress_update') {
             // Server sent progress update - save to localStorage
             saveProgress(message.data);
@@ -1001,6 +1082,14 @@ term.onData((data) => {
             }));
             currentInput = '';
             isWaitingForInput = false;
+        }
+    } else if (data === '\\t') { // Tab - autocomplete
+        if (currentInput.length > 0) {
+            // Request autocomplete from server
+            ws.send(JSON.stringify({
+                type: 'autocomplete',
+                data: currentInput
+            }));
         }
     } else if (data === '\\u007F') { // Backspace
         if (currentInput.length > 0) {

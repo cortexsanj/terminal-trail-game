@@ -103,6 +103,48 @@
                 "Use 'mv Trotter .shelter/' to move Trotter into the shelter.",
                 "Move all the animals and Ruth into the .shelter."
             ],
+            "modifications": [
+                {
+                    "action": "remove",
+                    "path": "~/farm/barn/Trotter"
+                },
+                {
+                    "action": "remove",
+                    "path": "~/farm/barn/Daisy"
+                },
+                {
+                    "action": "remove",
+                    "path": "~/farm/barn/Cobweb"
+                },
+                {
+                    "action": "remove",
+                    "path": "~/farm/barn/Ruth"
+                },
+                {
+                    "action": "add",
+                    "path": "~/farm/barn/.shelter/Trotter",
+                    "type": "file",
+                    "content": "Trotter"
+                },
+                {
+                    "action": "add",
+                    "path": "~/farm/barn/.shelter/Daisy",
+                    "type": "file",
+                    "content": "Daisy"
+                },
+                {
+                    "action": "add",
+                    "path": "~/farm/barn/.shelter/Cobweb",
+                    "type": "file",
+                    "content": "Cobweb"
+                },
+                {
+                    "action": "add",
+                    "path": "~/farm/barn/.shelter/Ruth",
+                    "type": "file",
+                    "content": "Ruth"
+                }
+            ],
             "next": [38, 7]
         },
         {

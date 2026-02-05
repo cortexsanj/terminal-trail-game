@@ -685,28 +685,55 @@ class GameFileSystem:
         return True
     
     def move_file(self, source_path: str, dest_path: str) -> bool:
-        """Move a file from source to destination"""
-        # Read source file
+        """Move a file or directory from source to destination"""
+        # Get source node
         source_node = self._get_node(source_path)
-        if source_node is None or source_node.get("type") != "file":
+        if source_node is None:
             return False
         
-        content = source_node.get("content", "")
+        source_type = source_node.get("type")
+        
+        # Get source components for the name
+        source_components = self._resolve_path(source_path)
+        source_name = source_components[-1]
         
         # Check if destination is a directory
         dest_node = self._get_node(dest_path)
         if dest_node and dest_node.get("type") == "directory":
-            # Moving into directory
-            source_components = self._resolve_path(source_path)
-            filename = source_components[-1]
-            dest_path = dest_path + "/" + filename
+            # Moving into directory - append source name
+            dest_path = dest_path + "/" + source_name if dest_path != "~" else "~/" + source_name
         
-        # Write to destination
-        if not self.write_file(dest_path, content):
+        # Get parent of source for removal
+        source_parent_components = source_components[:-1]
+        if len(source_parent_components) == 0:
+            return False  # Can't move root
+        
+        source_parent_path = "/".join(source_parent_components) if len(source_parent_components) > 1 else source_parent_components[0]
+        source_parent = self._get_node(source_parent_path)
+        if source_parent is None or "children" not in source_parent:
             return False
         
-        # Remove source
-        return self.remove_file(source_path)
+        # Get parent of destination for adding
+        dest_components = self._resolve_path(dest_path)
+        dest_name = dest_components[-1]
+        dest_parent_components = dest_components[:-1]
+        
+        if len(dest_parent_components) == 0:
+            return False  # Can't move to root level
+        
+        dest_parent_path = "/".join(dest_parent_components) if len(dest_parent_components) > 1 else dest_parent_components[0]
+        dest_parent = self._get_node(dest_parent_path)
+        if dest_parent is None or dest_parent.get("type") != "directory":
+            return False
+        
+        if "children" not in dest_parent:
+            dest_parent["children"] = {}
+        
+        # Move the node (copy then delete)
+        dest_parent["children"][dest_name] = source_node
+        del source_parent["children"][source_name]
+        
+        return True
 
     def chmod(self, path: str, mode: str) -> bool:
         """Change permissions on a file or directory"""
