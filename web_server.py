@@ -137,67 +137,50 @@ async def health_check():
 
 async def handle_autocomplete(session: WebGameSession, partial: str) -> str:
     """Handle TAB autocomplete for file/directory names"""
-    import logging
-    logger = logging.getLogger("uvicorn")
-    logger.info(f"Autocomplete called with partial: '{partial}'")
-    
     if not partial:
-        logger.info("Partial is empty, returning None")
         return None
     
     # Parse the partial command
     parts = partial.split()
     if not parts:
-        logger.info("No parts after split, returning None")
         return None
     
     # Get the last part (what we're trying to complete)
     to_complete = parts[-1] if parts else ""
-    logger.info(f"To complete: '{to_complete}'")
     
     # Get current directory from the session's terminal handler
     if not session.terminal_handler or not session.file_system:
-        logger.info("Terminal handler or file system not initialized yet")
         return None
     
     terminal_handler = session.terminal_handler
     current_dir = terminal_handler.get_current_directory()
-    logger.info(f"Current directory: {current_dir}")
     
     # Get list of items in current directory
     file_system = session.file_system
     items = file_system.list_directory(current_dir, show_hidden=True)
-    logger.info(f"Items in directory: {items}")
     
     if not items:
-        logger.info("No items in directory, returning None")
         return None
     
     # Find matches
     matches = [item for item in items if item.startswith(to_complete)]
-    logger.info(f"Matches found: {matches}")
     
     if len(matches) == 1:
         # Single match - complete it
         completed = matches[0]
-        logger.info(f"Single match found: {completed}")
         # Check if it's a directory and add trailing slash
         item_path = current_dir + "/" + completed if current_dir != "~" else "~/" + completed
         node = file_system._get_node(item_path)
         if node and node.get("type") == "directory":
             completed += "/"
-            logger.info(f"It's a directory, adding slash: {completed}")
         
         # Rebuild the command with the completion
         if len(parts) > 1:
-            result = " ".join(parts[:-1]) + " " + completed
+            return " ".join(parts[:-1]) + " " + completed
         else:
-            result = completed
-        logger.info(f"Returning completion: '{result}'")
-        return result
+            return completed
     elif len(matches) > 1:
         # Multiple matches - find common prefix
-        logger.info(f"Multiple matches: {matches}")
         common = matches[0]
         for match in matches[1:]:
             while not match.startswith(common):
@@ -207,15 +190,11 @@ async def handle_autocomplete(session: WebGameSession, partial: str) -> str:
         
         if common and len(common) > len(to_complete):
             # Complete to common prefix
-            logger.info(f"Common prefix: {common}")
             if len(parts) > 1:
-                result = " ".join(parts[:-1]) + " " + common
+                return " ".join(parts[:-1]) + " " + common
             else:
-                result = common
-            logger.info(f"Returning common prefix: '{result}'")
-            return result
+                return common
     
-    logger.info("No completion found, returning None")
     return None
 
 
@@ -252,19 +231,13 @@ async def websocket_endpoint(websocket: WebSocket):
                     logger.info(f"Received progress from client: {session.client_progress}")
                 elif message["type"] == "autocomplete":
                     # Handle TAB autocomplete
-                    logger.info(f"Received autocomplete request: {message}")
                     partial = message.get("data", "")
-                    logger.info(f"Calling handle_autocomplete with: '{partial}'")
                     completion = await handle_autocomplete(session, partial)
-                    logger.info(f"Autocomplete result: '{completion}'")
                     if completion:
-                        logger.info(f"Sending autocomplete response: {completion}")
                         await websocket.send_json({
                             "type": "autocomplete",
                             "data": completion
                         })
-                    else:
-                        logger.info("No completion found, not sending response")
                 elif message["type"] == "ping":
                     await websocket.send_json({"type": "pong"})
                     
@@ -1107,9 +1080,6 @@ term.onData((data) => {
         return;
     }
     
-    // Debug: log key codes
-    console.log('Key pressed:', data, 'charCode:', data.charCodeAt(0));
-    
     // Handle special keys
     if (data === '\\r') { // Enter
         term.write('\\r\\n');
@@ -1123,16 +1093,12 @@ term.onData((data) => {
             isWaitingForInput = false;
         }
     } else if (data === '\\t') { // Tab - autocomplete
-        console.log('TAB detected! currentInput:', currentInput);
         if (currentInput.length > 0) {
-            console.log('Sending autocomplete request for:', currentInput);
             // Request autocomplete from server
             ws.send(JSON.stringify({
                 type: 'autocomplete',
                 data: currentInput
             }));
-        } else {
-            console.log('currentInput is empty, not sending autocomplete');
         }
     } else if (data === '\\u007F') { // Backspace
         if (currentInput.length > 0) {
